@@ -5,9 +5,16 @@ class QAndA extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      data:[]
     }
   }
+
+  //  axios.get('/qa/questions', {params: {this.props.productId}})
+  // .then(() => {
+  //   setState({
+  //     data:res.data.results
+  //   })
+  // })
 
   render() {
     return(<div>
