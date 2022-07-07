@@ -18,9 +18,19 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    //setting header to include our Auth token
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
+    //getting list of products from the API
     axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products").then((data) => {
-      console.log(data.data)
+      this.setState({productList : data.data});
+      //if the list contains item, set current item to first item in the list as a default
+      if (this.state.productList.length > 0) {
+        this.setState({currentProduct: this.state.productList[0]})
+        console.log('App current product on mount:', this.state.currentProduct)
+        //set the id for the current product
+        this.setState({currentId: this.state.currentProduct.id})
+        console.log('App currentId on mount:', this.state.currentId)
+      }
     })
   }
 
@@ -29,7 +39,7 @@ class App extends React.Component {
       Hi friends!
       npm run react-dev should open a live listener of webpack,
       then if you refresh the index.html you have open it should update it all!
-      <div><ProductDetails/></div>
+      <div><ProductDetails products={this.state.productList}/></div>
       <div><QAndA/></div>
       <div><RelatedItems/></div>
       <div><Reviews/></div>
