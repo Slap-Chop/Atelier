@@ -4,6 +4,8 @@ import ProductDetails from './ProductDetails/ProductDetails.jsx';
 import QAndA from './QAndA/QAndA.jsx';
 import RelatedItems from './RelatedItems/RelatedItems.jsx';
 import Reviews from './Reviews/Reviews.jsx';
+import axios from 'axios';
+import config from '../../config.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +15,13 @@ class App extends React.Component {
       productList: [],
       currentId: 1,
     }
+  }
+
+  componentDidMount() {
+    axios.defaults.headers.common['Authorization'] = config.TOKEN;
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products").then((data) => {
+      console.log(data.data)
+    })
   }
 
   render() {
