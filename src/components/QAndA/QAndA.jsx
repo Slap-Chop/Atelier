@@ -1,28 +1,42 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, {useState, useEffect} from 'react';
+import QnaList from './qnaList.jsx';
+//import './QAndA.css';
 
-class QAndA extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data:[]
-    }
+const {getQnaData} = require('./parse.jsx');
+
+const QAndA = (props) => {
+
+  const [fetchData, setFetchData] = useState([]);
+
+
+
+  const getData = (event) => {
+    console.log('clicked')
+    event.preventDefault();
+    getQnaData(props.productId)
+    .then( res => {
+      console.log("this is from res",res.data.results)
+      setFetchData((prevData) => {
+        return [...res.data.results, ...prevData]
+      })
+      //setFetchData(res.data.results );
+      console.log("this is after setstate", fetchData)
+
+    })
+
   }
 
-  //  axios.get('/qa/questions', {params: {this.props.productId}})
-  // .then(() => {
-  //   setState({
-  //     data:res.data.results
-  //   })
-  // })
 
-  render() {
-    return(<div>
+    return(<div  onClick={getData}>
       Q And A!
+      <QnaList qnaData={fetchData} />
+      <div>{JSON.stringify(fetchData)}</div>
     </div>
 
+
     )
-  }
 }
+
+
 
 export default QAndA;
