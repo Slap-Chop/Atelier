@@ -31,17 +31,17 @@ class QAndA extends React.Component {
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     axios.get(options.url, options.headers)
     .then( res => {
-      console.log("this is from res",res.data.results)
+      //console.log("this is from res",res.data.results)
       this.setState({
         qnaData:res.data.results
       })
-      console.log("this is after setstate", this.state.qnaData)
+      //console.log("this is after setstate", this.state.qnaData)
     })
   }
 
   //update user input searchtext
   onSearchHandler(searchText) {
-    console.log(searchText);
+    //console.log(searchText);
     this.setState({
       searchText: searchText
     })
@@ -50,7 +50,7 @@ class QAndA extends React.Component {
   //bc compoenent setstate with fetched data
   //if use filter function setstate with updated value will be over-written
   filterItems(text, items) {
-    console.log("in filteritem function", text);
+    //console.log("in filteritem function", text);
     if (text.length > 3) {
       return items.filter( (question) => {
         return question.question_body.toLowerCase().includes(text.toLowerCase());
