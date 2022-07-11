@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import QnaList from './QnaList.jsx';
 import QnaSearch from './QnaSearch.jsx';
+import AddQuestion from './FORM/AddQuestion.jsx';
 const axios = require('axios');
 const config = require('../../../config.js');
 
@@ -62,10 +63,15 @@ class QAndA extends React.Component {
 
 
   render () {
-    return(<div style={{color:"blue", border: "solid 2px"}}>
+    return(<div className="qna-section" style={{color:"blue", border: "solid 2px"}}>
        <h3>QUESTIONS & ANSWERS </h3>
-       <QnaSearch onSearchHandler={this.onSearchHandler} />
+       <div className="qnaSearch" >
+        <QnaSearch onSearchHandler={this.onSearchHandler} />
+       </div>
       <QnaList qnaData={this.filterItems(this.state.searchText,this.state.qnaData)} />
+      <div className="qna-function">
+        <button>MORE ANSWERED QUESTIONS</button><AddQuestion/>
+      </div>
     </div>)
   }
 

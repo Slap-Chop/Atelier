@@ -11,9 +11,9 @@ const QnaSearch = (props) => {
   }
 
   return(
-    <div className="qnaSearch">
-      <input id="qnaSearchEntry" placeholder="Have a question? Search for answers…" onChange={(event) =>searchHandler(event)} ></input>
-    </div>
+    <>
+      <input id="qnaSearchEntry" style={{"width" :"90%"}} placeholder="Have a question? Search for answers…" onChange={(event) =>searchHandler(event)} ></input>
+    </>
   )
 }
 
