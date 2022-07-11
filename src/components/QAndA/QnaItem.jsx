@@ -1,5 +1,6 @@
 import React from 'react';
 import AnswerList from './AnswerList.jsx';
+import HelpCounter from './UI/HelpCounter.jsx';
 
 const QnaItem = ({data}) => {
 
@@ -14,10 +15,14 @@ const QnaItem = ({data}) => {
     return "Q: " + str[0].toUpperCase() + str.substring(1).toLowerCase();
   }
 
+  const qHelpHandler = (event) => {
+    console.log("inside quaItem.jsx", num);
+  }
+
   return (
     <div className="qnaItem">
-      {/* <div>something</div> */}
-      <div>{formatString(data.question_body)}</div>
+      <div>{formatString(data.question_body)}
+      <HelpCounter help={data.question_helpfulness} onHelpHandler={qHelpHandler}/> <span>|</span></div>
       <div><AnswerList answerData={answerData} /></div>
     </div>
   )

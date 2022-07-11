@@ -23,7 +23,7 @@ class QAndA extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
       headers: {
         'User-Agent': 'request',
-         "params": {product_id: "40347"}
+         "params": {product_id: "40344"}
          //uncomment this line 28 for group test
         // "params": {product_id:this.props.productId}
       }
@@ -51,7 +51,7 @@ class QAndA extends React.Component {
   //if use filter function setstate with updated value will be over-written
   filterItems(text, items) {
     //console.log("in filteritem function", text);
-    if (text.length > 3) {
+    if (text.length > 2) {
       return items.filter( (question) => {
         return question.question_body.toLowerCase().includes(text.toLowerCase());
       })

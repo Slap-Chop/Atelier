@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       currentProduct: {},
       productList: [],
-      currentId: "",
+      currentId: 1,
     }
   }
 
