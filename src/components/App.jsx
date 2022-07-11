@@ -43,7 +43,7 @@ class App extends React.Component {
       then if you refresh the index.html you have open it should update it all!
       <div><ProductDetails products={this.state.productList}/></div>
       <div><QAndA/></div>
-      <div>{this.state.currentProduct.id ? <RelatedItems currentId={this.state.currentProduct.id}/> : null}</div>
+      <div>{this.state.currentProduct.id ? <RelatedItems products={this.state}/> : null}</div>
       <div><Reviews/></div>
     </div>
 

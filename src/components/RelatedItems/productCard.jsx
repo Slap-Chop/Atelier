@@ -5,8 +5,9 @@ var productCard = (props) => {
 
   return
       (
-        <div class="card">
+        <div class="card">Product Card
           <img src="" alt="IMAGE N/A"/>
+
         </div>
       )
 
