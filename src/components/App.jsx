@@ -39,7 +39,10 @@ class App extends React.Component {
       Hi friends!
       npm run react-dev should open a live listener of webpack,
       then if you refresh the index.html you have open it should update it all!
-      <div><ProductDetails products={this.state.productList}/></div>
+      <div><ProductDetails
+      products={this.state.productList}
+      id={this.state.currentId}
+      currentProduct={this.state.currentProduct}/></div>
       <div><QAndA/></div>
       <div><RelatedItems/></div>
       <div><Reviews/></div>
