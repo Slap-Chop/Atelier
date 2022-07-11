@@ -24,7 +24,7 @@ class QAndA extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
       headers: {
         'User-Agent': 'request',
-         "params": {product_id: "40344"}
+         "params": {product_id: "40346"}
          //uncomment this line 28 for group test
         // "params": {product_id:this.props.productId}
       }
