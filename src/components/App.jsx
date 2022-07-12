@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       currentProduct: {},
       productList: [],
-      currentId: 1,
+      currentId: 40344,
     }
   }
 
@@ -41,7 +41,10 @@ class App extends React.Component {
       Hi friends!
       npm run react-dev should open a live listener of webpack,
       then if you refresh the index.html you have open it should update it all!
-      <div><ProductDetails products={this.state.productList}/></div>
+      <div><ProductDetails
+      products={this.state.productList}
+      id={this.state.currentId}
+      currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
       <div>{this.state.currentProduct.id ? <RelatedItems products={this.state}/> : null}</div>
       <div><Reviews/></div>
