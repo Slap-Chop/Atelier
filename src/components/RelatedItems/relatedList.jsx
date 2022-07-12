@@ -12,7 +12,7 @@ var RelatedList = (props) => {
     whiteSpace: 'nowrap'
    }}
    >{props.relatedProducts.map((product, index) => {
-      return <ProductCard class="card" key= {product.id} product={product}/>
+      return <ProductCard class="card" key= {product.id} product={product} onClick={props.onClick}/>
    })}</div>
   );
 }

@@ -9,14 +9,14 @@ class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: this.props.products.currentProduct.id,
+      product_id: null
     }
   }
 
 
 
   componentDidMount() {
-    let ID = this.props.products.currentProduct.id
+    let ID = this.props.products.currentId
     var relatedProds = [];
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${ID}/related`, { params: {product_id: ID
@@ -102,13 +102,12 @@ class RelatedItems extends React.Component {
   }
 
 
-
   render() {
     return (
         <div className="related-list" style={
           {display: 'flex', overflow: 'auto', justifyContent: 'center', border: '1px solid blue'}
         }>
-        {this.state.relatedProducts ?  <RelatedList relatedProducts={this.state.relatedProducts}/> : null }
+        {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts}/> : null }
         </div>
     )
   }
