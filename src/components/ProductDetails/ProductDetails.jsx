@@ -18,7 +18,7 @@ class ProductDetails extends React.Component {
   componentDidMount() {
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.props.id}/styles`).then((data) => {
-      // console.log('style data in Style selector',data.data.results[0])
+      console.log('style data in Style selector',data.data.results)
       this.setState({styles: data.data.results, currentStyle:data.data.results[0]})
       data.data.results.forEach((result) => {
         if (result["default?"]) {

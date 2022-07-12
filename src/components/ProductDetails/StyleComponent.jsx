@@ -12,7 +12,14 @@ const StyleComponent = (props) => {
     textAlign: 'center',
     textAlignVertical: 'center'
     }}>
-    {props.style.name}
+    {/* {props.style.name} */}
+    <img style={{float: 'right',
+    transformOrigin: '50% 50%',
+    borderRadius: '50%',
+    height: '100%',
+    width: '100%'}}
+    src={`${props.style.photos[0].thumbnail_url}`}
+    alt='Image N/A'/>
     {/* {console.log(props.style)} */}
   </div>
   )

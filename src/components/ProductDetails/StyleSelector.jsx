@@ -47,11 +47,11 @@ class StyleSelector extends React.Component {
     const thumbailRows = rows.map((row, index) => (this.props.styles.slice(index*4, index*4 + 4)))
 
     if (salePrice) {
-      priceStyle = {color: "red", textDecorationLine: 'line-through'};
+      priceStyle = {color: 'red', textDecorationLine: 'line-through'};
       salePrice = `$${salePrice}`
     }
     if (this.state.styles.length === 0) {
-      styleError = "Something went wrong! Click this message to reload."
+      styleError = 'Something went wrong! Click this message to reload.'
     }
 
 
