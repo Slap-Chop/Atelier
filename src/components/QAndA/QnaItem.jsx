@@ -24,7 +24,7 @@ const QnaItem = ({data}) => {
   return (
     <div className="qnaItem">
       <div className="question" >
-        <span id="question-body">{formatString(data.question_body)}</span>
+        <span id="question-body" style={{"fontWeight": "bold"}}>{formatString(data.question_body)}</span>
         <span id="question-helpCounter"><HelpCounter help={data.question_helpfulness} onHelpHandler={qHelpHandler}/></span> <span>|</span>
         <span id="add-answer"><AddAnswer/></span>
       </div>
