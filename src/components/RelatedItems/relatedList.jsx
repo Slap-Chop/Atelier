@@ -6,14 +6,13 @@ var RelatedList = (props) => {
 
   return (
    <div style={{
-    width: '30%',
+    width: 'auto',
     height: '100%',
     border: '1px solid red',
-    overflow: 'auto',
     whiteSpace: 'nowrap'
    }}
-   >{props.relatedProducts.map((product) => {
-    return <ProductCard class="card" key= {product.id} product={product}/>
+   >{props.relatedProducts.map((product, index) => {
+      return <ProductCard class="card" key= {product.id} product={product}/>
    })}</div>
   );
 }

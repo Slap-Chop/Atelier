@@ -24,14 +24,16 @@ class ProductCard extends React.Component {
             display: 'flex',
             justifyContent: 'center'
           }}>
-          <img src={this.props.product.default.photos[0].url} style={{width:'50px'}, {height: '50px'}} alt="Image N/A"/>
+          <img src={this.props.product.default.photos[0].url} style={{height: '100px'}} alt="Image N/A"/>
           </div>
 
-          <div className="container">
-          <p className="category">{this.props.product.category}</p>
-          <p className="name">{this.props.product.name}</p>
-          <p className="price">{this.props.product.default_price}</p>
-          <p className="rating">star rating to go here</p>
+          <div className="container" style={{
+            textAlign: 'center'
+          }}>
+          <div className="category">{this.props.product.category}</div>
+          <div className="name">{this.props.product.name}</div>
+          <div className="price">{this.props.product.default_price}</div>
+          <div className="rating">star rating to go here</div>
           </div>
         </div>
       )
