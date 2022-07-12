@@ -11,8 +11,8 @@ class Cart extends React.Component {
       quantity: 0,
       skuId: 0,
       skuObj: {}
-
     }
+    this.sizeRef = React.createRef();
   }
 
   componentDidUpdate() {
@@ -54,6 +54,9 @@ class Cart extends React.Component {
 
   handleAddCart() {
     console.log(this.props.currentStyle.name, this.state.quantity, this.state.currentSize)
+    if (this.state.currentSize === 'Select Size') {
+      this.sizeRef.current?.focus();
+    }
   }
 
   render() {
@@ -68,14 +71,17 @@ class Cart extends React.Component {
       <div style={{border: '1px solid yellow'}}>Cart placeholder {this.props.currentStyle?.name}
       <div>
       {/* Size dropdown menu */}
-      Size:
       <select onChange={this.handleSizeChange.bind(this)}
+      ref={this.sizeRef}
+      //look into material UI or something to open, instead of focus
+      // onFocus={(e) =>(e.target.size='1')}
+      // onBlur={(e) =>(e.target.size='0')}
       style={{width: '200px'}}
       disabled={!this.state.inStock}>
       {/* check if item is in stock*/}
         <option value={'N/A'}>{this.state.stockMessage}</option>
       {/* map and add sizes to the dropdown */}
-        {Object.entries(this.state.stock)?.map((sku, index) => {
+        {this.state.stock && Object.entries(this.state.stock)?.map((sku, index) => {
           // console.log(sku)
         return (<option value={sku[0]} key={index}>{sku[1].size}</option>)
       })}
@@ -92,7 +98,7 @@ class Cart extends React.Component {
       </select>
       </div>
       {/* Add to Cart Button */}
-      <button onClick={this.handleAddCart.bind(this)}>Add to Cart</button>
+      {this.state.inStock && <button onClick={this.handleAddCart.bind(this)}>Add to Cart</button>}
     </div>
     )
   }
