@@ -34,6 +34,8 @@ class App extends React.Component {
     })
   }
 
+
+
   render() {
     return(<div>
       Hi friends!
@@ -43,8 +45,8 @@ class App extends React.Component {
       products={this.state.productList}
       id={this.state.currentId}
       currentProduct={this.state.currentProduct}/></div>
-      <div><QAndA/></div>
-      <div><RelatedItems/></div>
+      <div><QAndA productId={this.state.currentId}/></div>
+      <div>{this.state.currentProduct.id ? <RelatedItems products={this.state}/> : null}</div>
       <div><Reviews/></div>
     </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import StyleSelector from './StyleSelector.jsx';
 
 const ProductInfo = (props) => {
-  console.log('currentProduct:', props.currentProduct)
+  // console.log('currentProduct:', props.currentProduct)
   return (
   <div style={{border: '1px solid blue'}}>
     <p>Review star component</p>
@@ -11,11 +11,9 @@ const ProductInfo = (props) => {
     <div style={{fontSize: 24,
       fontWeight: 600}}>
       {props.currentProduct.name}</div>
-    {/* price information below */}
-
     {/* product Styles */}
-    <StyleSelector currentProduct={props.currentProduct} style={props.style} id={props.id}/>
-    <p>social media buttons</p>
+    {/* {console.log('product info props',props)} */}
+    <StyleSelector currentProduct={props.currentProduct} currentStyle={props.currentStyle} id={props.id} styles={props.styles}/>
   </div>
 )}
 
