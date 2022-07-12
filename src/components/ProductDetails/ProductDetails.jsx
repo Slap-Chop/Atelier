@@ -20,6 +20,12 @@ class ProductDetails extends React.Component {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.props.id}/styles`).then((data) => {
       // console.log('style data in Style selector',data.data.results[0])
       this.setState({styles: data.data.results, currentStyle:data.data.results[0]})
+      data.data.results.forEach((result) => {
+        if (result["default?"]) {
+          // console.log('enter default')
+          this.setState({currentStyle: result})
+        }
+      })
     })
   }
 
