@@ -44,7 +44,7 @@ class App extends React.Component {
       <div><ProductDetails products={this.state.productList}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
       <div>{this.state.currentProduct.id ? <RelatedItems products={this.state}/> : null}</div>
-      <div><Reviews/></div>
+      <div><Reviews id={this.state.currentId}/></div>
     </div>
 
     )
