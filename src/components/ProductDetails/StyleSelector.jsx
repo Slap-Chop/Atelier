@@ -55,7 +55,7 @@ class StyleSelector extends React.Component {
         {/* price and sale price */}
         <div style={{display:'flex'}}>
           <p style={priceStyle}>${defaultPrice}</p>
-          <p>{salePrice}</p>
+          <p style={{paddingLeft: '10px'}}>{salePrice}</p>
         </div>
 
           <div>Style > {this.props.currentStyle?.name}</div>
