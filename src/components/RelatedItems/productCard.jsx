@@ -5,8 +5,14 @@ class ProductCard extends React.Component {
     super(props)
     this.state = {
     };
+    this.onProdClick = this.onProdClick.bind(this)
   }
 
+
+  onProdClick(e) {
+    e.preventDefault();
+    this.props.onClick(this.props.product.id, this.props.product)
+  }
 
   render() {
     if (this.props.product.default === undefined) {
@@ -15,7 +21,7 @@ class ProductCard extends React.Component {
       )
     } else {
       return (
-        <div className="card" style={
+        <div  className="card" id={this.props.product.name}  onClick={this.onProdClick} style={
           {display: 'inline-block',
           border: '1px solid blue',
           margin: '10px'}
