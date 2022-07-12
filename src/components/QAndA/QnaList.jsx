@@ -1,5 +1,5 @@
 import React from 'react';
-import QnaItem from './qnaItem.jsx';
+import QnaItem from './QnaItem.jsx';
 
 const QnaList = (props) => {
 
