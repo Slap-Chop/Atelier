@@ -29,6 +29,10 @@ class ProductDetails extends React.Component {
     })
   }
 
+  handleStyleChange(style) {
+    this.setState({currentStyle: style});
+  }
+
 
   render() {
     return(<div style={{border: '1px solid blue',
@@ -38,7 +42,9 @@ class ProductDetails extends React.Component {
         <ImageGallery/></div>
       <div>
       <ProductInfo currentProduct={this.props.currentProduct}
-      styles={this.state.styles} currentStyle={this.state.currentStyle}
+      styles={this.state.styles}
+      currentStyle={this.state.currentStyle}
+      click={this.handleStyleChange.bind(this)}
       id={this.props.id}/>
       <Cart/>
       <p>social media buttons</p>

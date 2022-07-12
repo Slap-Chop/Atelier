@@ -13,7 +13,11 @@ const ProductInfo = (props) => {
       {props.currentProduct.name}</div>
     {/* product Styles */}
     {/* {console.log('product info props',props)} */}
-    <StyleSelector currentProduct={props.currentProduct} currentStyle={props.currentStyle} id={props.id} styles={props.styles}/>
+    <StyleSelector currentProduct={props.currentProduct}
+    currentStyle={props.currentStyle}
+    click={props.click}
+    id={props.id}
+    styles={props.styles}/>
   </div>
 )}
 

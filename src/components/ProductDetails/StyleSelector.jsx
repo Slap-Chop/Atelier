@@ -6,8 +6,7 @@ class StyleSelector extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      styles: [],
-      currentStyle: {},
+
     }
   }
 
@@ -28,18 +27,14 @@ class StyleSelector extends React.Component {
     // console.log('styleselector props', this.props)
   }
 
-  handleStyleChange(style) {
-    this.setState({currentStyle: style});
-  }
-
   handleReload() {
     this.setState({currentStyle: this.props.currentStyle})
     this.setState({styles: this.props.styles})
   }
 
   render() {
-    let salePrice = this.state.currentStyle.sale_price;
-    let defaultPrice = this.state.currentStyle.original_price;
+    let salePrice = this.props.currentStyle.sale_price;
+    let defaultPrice = this.props.currentStyle.original_price;
     let priceStyle, styleError;
 
     // breaking up the styles into groups of 4
@@ -50,7 +45,7 @@ class StyleSelector extends React.Component {
       priceStyle = {color: 'red', textDecorationLine: 'line-through'};
       salePrice = `$${salePrice}`
     }
-    if (this.state.styles.length === 0) {
+    if (this.props.styles.length === 0) {
       styleError = 'Something went wrong! Click this message to reload.'
     }
 
@@ -63,7 +58,7 @@ class StyleSelector extends React.Component {
           <p>{salePrice}</p>
         </div>
 
-          <div>Style > {this.state.currentStyle?.name}</div>
+          <div>Style > {this.props.currentStyle?.name}</div>
           {/* style thumbnails */}
           <div onClick={this.handleReload.bind(this)}>{styleError}</div>
 
@@ -72,11 +67,11 @@ class StyleSelector extends React.Component {
             //highlight the style if it is selected
               if (this.state.currentStyle === style) {
                 return (<StyleComponent style={style}
-                click={this.handleStyleChange.bind(this)}
+                click={this.props.click}
                 key={index}
                 weight={600}/>)
               } else {
-                return (<StyleComponent click={this.handleStyleChange.bind(this)}
+                return (<StyleComponent click={this.props.click}
                   key={index}
                   style={style}/>)
         }
