@@ -12,11 +12,15 @@ class QAndA extends React.Component {
     super(props);
     this.state = {
       qnaData: [],
-      searchText: ""
+      searchText: "",
+      showItem:2
     }
     //inside constructor
     this.onSearchHandler = this.onSearchHandler.bind(this);
     this.filterItems = this.filterItems.bind(this);
+    this.questionLength = this.questionLength.bind(this);
+    this.sortQuestions = this.sortQuestions.bind(this);
+    this.loadMoreHandler = this.loadMoreHandler.bind(this);
   }
 
   componentDidMount() {
@@ -48,10 +52,16 @@ class QAndA extends React.Component {
     })
   }
 
+  loadMoreHandler(event) {
+    event.preventDefault();
+    this.setState({
+      showItem: this.state.showItem + 2
+    })
+  }
+
   //bc compoenent setstate with fetched data
   //if use filter function setstate with updated value will be over-written
   filterItems(text, items) {
-    //console.log("in filteritem function", text);
     if (text.length > 2) {
       return items.filter( (question) => {
         return question.question_body.toLowerCase().includes(text.toLowerCase());
@@ -61,6 +71,20 @@ class QAndA extends React.Component {
     }
   }
 
+  //check questions length to render more questions button
+  questionLength(questions) {
+    if (questions.length >= 2 && this.state.showItem < questions.length) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  sortQuestions(questions) {
+    return questions.sort( (a, b) => {
+      return b["question_helpfulness"] - a["question_helpfulness"];
+    })
+  }
 
   render () {
     return(<div className="qna-section" style={{color:"blue", border: "solid 2px"}}>
@@ -68,15 +92,13 @@ class QAndA extends React.Component {
        <div className="qnaSearch" >
         <QnaSearch onSearchHandler={this.onSearchHandler} />
        </div>
-      <QnaList qnaData={this.filterItems(this.state.searchText,this.state.qnaData)} />
+      <QnaList qnaData={this.filterItems(this.state.searchText,this.sortQuestions(this.state.qnaData))} qnaLength={this.state.showItem} />
       <div className="qna-function">
-        <button>MORE ANSWERED QUESTIONS</button><AddQuestion/>
+        {this.questionLength(this.state.qnaData) && <button style={{"fontWeight": "bold"}} onClick={event => this.loadMoreHandler(event)}>MORE ANSWERED QUESTIONS</button>}<AddQuestion/>
       </div>
     </div>)
   }
 
 }
-
-
 
 export default QAndA;
