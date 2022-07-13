@@ -14,8 +14,10 @@ class App extends React.Component {
       currentProduct: {},
       productList: [],
       currentId: 40344,
+      currentOutfit: [],
     }
-    this.relatedProdClick = this.relatedProdClick.bind(this)
+    this.relatedProdClick = this.relatedProdClick.bind(this);
+    this.addOutfitClick = this.addOutfitClick.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +41,18 @@ class App extends React.Component {
     this.setState({currentId: id, currentProduct: product})
   }
 
+  addOutfitClick(product) {
+    let filtered = this.state.currentOutfit.filter(item => item.id === product.id);
+    console.log(filtered)
+    if (filtered.length > 0) {
+      return;
+    } else {
+      var outFit = this.state.currentOutfit;
+      outFit.push(product)
+      this.setState({currentOutfit: outFit})
+    }
+  }
+
   render() {
     return(<div>
       Hi friends!
@@ -49,7 +63,7 @@ class App extends React.Component {
       id={this.state.currentId}
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
-      <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick}/></div>
+      <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick}/></div>
       <div><Reviews/></div>
     </div>
 
