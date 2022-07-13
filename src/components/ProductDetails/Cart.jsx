@@ -18,7 +18,7 @@ class Cart extends React.Component {
   componentDidUpdate() {
     // console.log(this.state.stock)
     if(this.props.currentStyle.skus !== this.state.stock) {
-      this.setState({stock: this.props.currentStyle?.skus})
+      this.setState({stock: this.props.currentStyle?.skus, currentSize: 'Select Size'})
       if (this.props.currentStyle?.skus?.length !== 0) {
         this.setState({stockMessage: 'Select Size', inStock: true});
       } else {
@@ -30,6 +30,7 @@ class Cart extends React.Component {
   handleSizeChange(event) {
     let skuId = event?.target?.value
     let skuObj = this.state.stock[skuId]
+
     // setting state to have the select sku information
     if (skuId === 'N/A') {
       this.setState({sku: 0,
@@ -44,7 +45,7 @@ class Cart extends React.Component {
         quantity: this.state.quantity > skuObj.quantity ? 1 : this.state.quantity ? this.state.quantity : 1
       })
     }
-    console.log(skuId, this.state.stock[skuId])
+    console.log(skuId, this.state.stock[skuId], skuObj?.size)
   }
 
   handleQuantChange(event) {
@@ -68,35 +69,51 @@ class Cart extends React.Component {
 
 
     return(
-      <div style={{border: '1px solid yellow'}}>Cart placeholder {this.props.currentStyle?.name}
-      <div>
+      <div style={{border: '1px solid yellow'}}>{this.props.currentProduct?.name} > {this.props.currentStyle?.name}
+      <div style={{
+        display: 'flex',
+        paddingBottom: '20px'
+
+      }}>
+      <div style ={{paddingRight: '30px'}}>
       {/* Size dropdown menu */}
       <select onChange={this.handleSizeChange.bind(this)}
       ref={this.sizeRef}
       //look into material UI or something to open, instead of focus
-      // onFocus={(e) =>(e.target.size='1')}
+      // onFocus={(e) =>(e.target.size='6')}
       // onBlur={(e) =>(e.target.size='0')}
-      style={{width: '200px'}}
+      style={{
+        width: '200px',
+        height: '40px',
+      }}
       disabled={!this.state.inStock}>
       {/* check if item is in stock*/}
         <option value={'N/A'}>{this.state.stockMessage}</option>
       {/* map and add sizes to the dropdown */}
         {this.state.stock && Object.entries(this.state.stock)?.map((sku, index) => {
-          // console.log(sku)
         return (<option value={sku[0]} key={index}>{sku[1].size}</option>)
       })}
       </select>
 
-      {/* Quantity dropdown menu */}
-      <select style={{width: '40px'}}
-      onChange={this.handleQuantChange.bind(this)}
-      disabled={this.state.currentSize === 'Select Size'}>
+
+      </div>
+      <div>
+        {/* Quantity dropdown menu */}
+        <select style={{
+          width: '80px',
+          height: '40px',
+        }}
+        onChange={this.handleQuantChange.bind(this)}
+        disabled={this.state.currentSize === 'Select Size'}>
         {Object.keys(this.state.skuObj).length === 0 && <option>-</option>}
         {quantArray.map((number, index) => {
           return <option key={index} value={number}>{number}</option>
         })}
-      </select>
+        </select>
       </div>
+
+      </div>
+
       {/* Add to Cart Button */}
       {this.state.inStock && <button onClick={this.handleAddCart.bind(this)}>Add to Cart</button>}
     </div>

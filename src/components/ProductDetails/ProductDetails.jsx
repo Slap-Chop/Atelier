@@ -66,7 +66,8 @@ class ProductDetails extends React.Component {
       currentStyle={this.state.currentStyle}
       click={this.handleStyleChange.bind(this)}
       id={this.props.id}/>
-      <Cart currentStyle={this.state.currentStyle}/>
+      <Cart currentStyle={this.state.currentStyle}
+      currentProduct={this.props.currentProduct}/>
       <p>social media buttons</p>
       <div style={{border: '1px solid green'}}>
         <h5>{this.props.currentProduct.slogan}</h5>
