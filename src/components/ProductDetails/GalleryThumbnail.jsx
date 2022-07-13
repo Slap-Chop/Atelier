@@ -14,8 +14,16 @@ const GalleryThumbnail = (props) => {
       textAlign: 'center',
       textAlignVertical: 'center',
       padding: '5px'
-      }}>
-      <img src={`${props.photo.thumbnail_url}`}/>
+      }}
+      >
+      <img
+      style={{float: 'right',
+      transformOrigin: '50% 50%',
+      borderRadius: '10%',
+      height: '60%',
+      width: '60%',
+      }}
+      src={`${props.photo.thumbnail_url}`}/>
 
     </div>
   )
