@@ -60,7 +60,7 @@ class ProductDetails extends React.Component {
     justifyContent: 'center' }}>
       <div style={{
         border: '1px solid red',
-        width: '80%',
+        width: '80%'
         }}>
         <ImageGallery style={this.state.currentStyle}/></div>
       <div>

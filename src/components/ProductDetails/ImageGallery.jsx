@@ -1,4 +1,5 @@
 import React from 'react';
+import GalleryThumbnail from './GalleryThumbnail.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -21,16 +22,17 @@ class ImageGallery extends React.Component {
     }
   }
 
+  handleThumbnailClick(index) {
+    this.setState({photoIndex: index})
+  }
+
   render() {
-    // console.log('style in image', this.props.style.photos)
-
-
+    // make sure props have been passed before trying to render
     if (this.state.photos && this.state.photos[this.state.photoIndex]) {
-      // console.log('photo url', this.state.photos[this.state.photoIndex])
       return(
         <div
         style={{
-          backgroundImage:`url(${this.state.photos[this.state.photoIndex].url})`,
+          backgroundImage:`url(${this.props.style.photos[this.state.photoIndex].url})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           height: '100%',
@@ -38,8 +40,18 @@ class ImageGallery extends React.Component {
           backgroundSize: 'contain'
         }}
         >
+          <div>
+            {this.state.photos.map((photo, index) => {
+              return(
+                <GalleryThumbnail
+                  click={this.handleThumbnailClick.bind(this)}
+                  photo={photo}
+                  index={index}
+                  key={index}/>
+              )
+            })}
+          </div>
 
-          {/* {console.log('style in image', this.props.style)} */}
       </div>
       )
     }
