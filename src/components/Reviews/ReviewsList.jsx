@@ -3,6 +3,8 @@ import ReviewsListEntry from './ReviewsListEntry.jsx';
 
 export default function ReviewsList ({reviewsToShow, reviews, more, setMore, setReviewsToShow}) {
 
+  const [sort, setSort] = useState({option1: 'Helpful', option2: 'Newest', option3: 'Relevant'})
+
   function showMoreReviews() {
 
     let reviewsCount = reviewsToShow;
@@ -16,11 +18,12 @@ export default function ReviewsList ({reviewsToShow, reviews, more, setMore, set
     <>
     <label>Sort By</label>
     <select>
-      <option value="test">TEST</option>
+      <option value="">{sort.option1}</option>
+      <option value="">{sort.option2}</option>
+      <option value="">{sort.option3}</option>
     </select>
-    <label>Sort By</label>
     <select>
-      <option value="test2">TEST2</option>
+      <option value="">TEST2</option>
     </select>
     <div>
       <ul>
@@ -28,7 +31,7 @@ export default function ReviewsList ({reviewsToShow, reviews, more, setMore, set
       </ul>
     </div>
 
-    {more ? <button onClick={() => showMoreReviews()}>More Reviews</button> : <button disabled={true}>No more reviews</button>}
+    {more ? <button onClick={showMoreReviews}>More Reviews</button> : <button disabled={true}>No more reviews</button>}
     </>
   )
 

@@ -6,25 +6,23 @@ import ReviewsList from './ReviewsList.jsx';
 
 
 export default function Reviews (props) {
-  // constructor (props) {
-  //   super(props);
-  //   this.state = {
-  //     reviews: []
-  //   }
-  //   this.getReviews = this.getReviews.bind(this);
-  // }
-  // hooks need to be called in order and can't be put in a condiiton
+
   const [productId, setProductId] = useState(props.id);
   const [reviews, setReviews] = useState([]);
   const [more, setMore] = useState(true);
   const [reviewsToShow, setReviewsToShow] = useState(2);
+
+  const ReviewsListStyle = {
+    overflow: 'auto',
+    maxLength: '50%'
+  }
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
 
     console.log('id', productId);
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', {
-      params: {product_id: '40344'}
+      params: {product_id: props.id}
     })
     .then((response) => {
       console.log('reponse', response);
@@ -37,8 +35,11 @@ export default function Reviews (props) {
 
   return (
     <>
-      <div className="reviews">
+      <div className="reviews" style={{display:'block', maxLength: 200, padding: 40, align: 'right'}}>
         Reviews:
+        <select style={ReviewsListStyle}>
+          <option>test</option>
+        </select>
         <ReviewsList reviews={reviews} more={more} setMore={setMore} reviewsToShow={reviewsToShow}
           setReviewsToShow={setReviewsToShow}
         />
