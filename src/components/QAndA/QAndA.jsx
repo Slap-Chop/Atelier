@@ -30,9 +30,9 @@ class QAndA extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
       headers: {
         'User-Agent': 'request',
-         "params": {product_id: "40348"}
+         //"params": {product_id: "40348"}
          //uncomment this line 28 for group test
-        // "params": {product_id:this.props.productId}
+         "params": {product_id:this.props.productId}
       }
     };
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
@@ -62,7 +62,7 @@ class QAndA extends React.Component {
   }
 
   addQuestionHandler = (status) => {
-    console.log('clicked add', status)
+    //console.log('clicked add', status)
     this.setState({
       addQuestion: status
     })
@@ -107,7 +107,7 @@ class QAndA extends React.Component {
       <div className="qna-function">
           {this.questionLength(this.state.qnaData) && <button style={{"fontWeight": "bold"}} onClick={event => this.loadMoreHandler(event)}>MORE ANSWERED QUESTIONS</button>}
           <button onClick={() => this.addQuestionHandler(true)}>Add Question +</button>
-          {this.state.addQuestion && <AddQuestion addQuestion={this.state.addQuestion} addQuestionHandler={this.addQuestionHandler}/>}
+          {this.state.addQuestion && <AddQuestion addQuestion={this.state.addQuestion} addQuestionHandler={this.addQuestionHandler} productId={this.props.productId}/>}
       </div>
     </div>
     )

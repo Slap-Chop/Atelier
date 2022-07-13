@@ -43,7 +43,7 @@ const AnswerList = (props) => {
 
   return (
     <>
-    <div  className="answerList" style={{maxHeight: 200, overflow: 'auto'}}>
+    <div  className="answerList" style={{maxHeight: 150, overflow: 'auto'}}>
       {displayData(props.answerData).map( (ans) => {
         return <AnswerItem key={ans.id} data={ans} reportStatus={props.reportStatus}/>
       })}
