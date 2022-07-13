@@ -71,7 +71,11 @@ class Cart extends React.Component {
 
 
     return(
-      <div style={{border: '1px solid yellow'}}>{this.props.currentProduct?.name} > {this.props.currentStyle?.name}
+      <div style={{
+        border: '1px solid yellow',
+        }}>
+
+        {this.props.currentProduct?.name} > {this.props.currentStyle?.name}
       <div style={{
         display: 'flex',
         paddingBottom: '20px'
