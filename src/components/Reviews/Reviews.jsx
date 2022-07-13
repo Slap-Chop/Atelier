@@ -54,7 +54,7 @@ class Reviews extends React.Component {
   render() {
     return (
       <>
-        <div>
+        <div className="w3-container">
           Reviews:
           <ReviewsList reviews={this.state.reviews}/>
         </div>
