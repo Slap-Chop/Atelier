@@ -9,7 +9,7 @@ const ProductInfo = (props) => {
     <p>Review star component</p>
     {/* product name and category */}
     <div>{props.currentProduct.category}</div>
-    <div style={{fontSize: 24,
+    <div className="ProductName" style={{fontSize: 24,
       fontWeight: 600}}>
       {props.currentProduct.name}</div>
     {/* product Styles */}
