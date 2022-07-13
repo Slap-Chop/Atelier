@@ -21,8 +21,9 @@ class Cart extends React.Component {
       this.setState({stock: this.props.currentStyle?.skus, currentSize: 'Select Size'})
       if (this.props.currentStyle?.skus?.length !== 0) {
         this.setState({stockMessage: 'Select Size', inStock: true});
-      } else {
-        this.setState({stockMessage: 'Out of Stock', inStock: false})
+      }
+      if (this.props.currentStyle?.skus?.null) {
+        this.setState({stockMessage: 'Out of Stock', inStock: false, currentSize: 'Select Size'})
       }
     }
   }
@@ -58,6 +59,7 @@ class Cart extends React.Component {
     if (this.state.currentSize === 'Select Size') {
       this.sizeRef.current?.focus();
     }
+    // console.log('skus', this.props.currentStyle?.skus)
   }
 
   render() {
@@ -105,8 +107,8 @@ class Cart extends React.Component {
         }}
         onChange={this.handleQuantChange.bind(this)}
         disabled={this.state.currentSize === 'Select Size'}>
-        {Object.keys(this.state.skuObj).length === 0 && <option>-</option>}
-        {quantArray.map((number, index) => {
+        {this.state.currentSize === 'Select Size' && <option>-</option>}
+        {this.state.inStock && quantArray.map((number, index) => {
           return <option key={index} value={number}>{number}</option>
         })}
         </select>
