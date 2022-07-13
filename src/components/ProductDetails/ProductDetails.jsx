@@ -58,8 +58,11 @@ class ProductDetails extends React.Component {
     return(<div style={{border: '1px solid blue',
     display: 'flex',
     justifyContent: 'center' }}>
-      <div style={{border: '1px solid red'}}>
-        <ImageGallery/></div>
+      <div style={{
+        border: '1px solid red',
+        width: '80%',
+        }}>
+        <ImageGallery style={this.state.currentStyle}/></div>
       <div>
       <ProductInfo currentProduct={this.props.currentProduct}
       styles={this.state.styles}
