@@ -6,6 +6,9 @@ const ReviewsListEntry = ({review}) => {
       <div className="review">
         Review:
         <p>{review.body}</p>
+        <p>{review.helpfulness}</p>
+        <p>{review.reviewer_name}</p>
+        <p>{review.summary}</p>
       </div>
     </div>
   )

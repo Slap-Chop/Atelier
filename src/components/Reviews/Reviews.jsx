@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import config from '../../../config.js';
@@ -64,6 +64,9 @@ class Reviews extends React.Component {
     }
 }
 
+/*
+Container must have max height
+*/
 
 // class Reviews extends React.Component {
 //   constructor(props) {
