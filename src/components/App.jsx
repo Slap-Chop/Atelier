@@ -15,6 +15,7 @@ class App extends React.Component {
       productList: [],
       currentId: 40344,
     }
+    this.relatedProdClick = this.relatedProdClick.bind(this)
   }
 
   componentDidMount() {
@@ -34,19 +35,21 @@ class App extends React.Component {
     })
   }
 
-
+  relatedProdClick(id, product) {
+    this.setState({currentId: id, currentProduct: product})
+  }
 
   render() {
     return(<div>
       Hi friends!
       npm run react-dev should open a live listener of webpack,
-      then if you refresh the index.html you have open it should update it all!
+      in another terminal do npm run server-dev and navigate to localhost:8000 to view the app!
       <div><ProductDetails
       products={this.state.productList}
       id={this.state.currentId}
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
-      <div>{this.state.currentProduct.id ? <RelatedItems products={this.state}/> : null}</div>
+      <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick}/></div>
       <div><Reviews/></div>
     </div>
 
