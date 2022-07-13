@@ -12,12 +12,14 @@ class ProductDetails extends React.Component {
     this.state = {
       styles: [],
       currentStyle: {},
+      id: 0
     }
   }
 
   componentDidMount() {
+    this.state.id = this.props.id
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.props.id}/styles`).then((data) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.id}/styles`).then((data) => {
       // console.log('style data in Style selector',data.data.results)
       this.setState({styles: data.data.results, currentStyle:data.data.results[0]})
       data.data.results.forEach((result) => {
@@ -27,6 +29,24 @@ class ProductDetails extends React.Component {
         }
       })
     })
+  }
+
+  componentDidUpdate() {
+    if (this.state.id !== this.props.id) {
+      this.setState({id: this.props.id});
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.props.id}/styles`).then((data) => {
+      // console.log('style data in Style selector update',data.data.results)
+      this.setState({styles: data.data.results, currentStyle:data.data.results[0]})
+      data.data.results.forEach((result) => {
+        if (result["default?"]) {
+          // console.log('enter default')
+          this.setState({currentStyle: result})
+        }
+      })
+    })
+
+    }
+    // console.log(this.state.currentStyle, this.props.id, this.props.currentProduct)
   }
 
   handleStyleChange(style) {

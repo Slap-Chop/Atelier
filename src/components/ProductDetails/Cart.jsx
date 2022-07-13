@@ -19,7 +19,7 @@ class Cart extends React.Component {
     // console.log(this.state.stock)
     if(this.props.currentStyle.skus !== this.state.stock) {
       this.setState({stock: this.props.currentStyle?.skus})
-      if (this.props.currentStyle.skus?.length !== 0) {
+      if (this.props.currentStyle?.skus?.length !== 0) {
         this.setState({stockMessage: 'Select Size', inStock: true});
       } else {
         this.setState({stockMessage: 'Out of Stock', inStock: false})

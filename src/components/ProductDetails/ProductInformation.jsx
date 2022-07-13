@@ -3,6 +3,7 @@ import StyleSelector from './StyleSelector.jsx';
 
 const ProductInfo = (props) => {
   // console.log('currentProduct:', props.currentProduct)
+  // console.log('product infostyles', props.styles)
   return (
   <div style={{border: '1px solid blue'}}>
     <p>Review star component</p>
