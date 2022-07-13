@@ -42,6 +42,17 @@ class ImageGallery extends React.Component {
         >
           <div>
             {this.state.photos.map((photo, index) => {
+              if (index === this.state.photoIndex) {
+                //return a highlighted component if it is the current photo
+                return(
+                <GalleryThumbnail
+                  click={this.handleThumbnailClick.bind(this)}
+                  photo={photo}
+                  index={index}
+                  key={index}
+                  selected={1}
+                  />)
+              }
               return(
                 <GalleryThumbnail
                   click={this.handleThumbnailClick.bind(this)}

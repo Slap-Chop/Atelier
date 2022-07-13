@@ -22,6 +22,7 @@ const GalleryThumbnail = (props) => {
       borderRadius: '10%',
       height: '60%',
       width: '60%',
+      opacity: props.selected || .5
       }}
       src={`${props.photo.thumbnail_url}`}/>
 
