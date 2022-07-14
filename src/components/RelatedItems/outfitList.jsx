@@ -7,6 +7,7 @@ class OutfitList extends React.Component {
   constructor(props) {
     super(props)
     this.onAdd = this.onAdd.bind(this);
+
   }
 
   onAdd(e) {
@@ -14,27 +15,28 @@ class OutfitList extends React.Component {
     this.props.onAddOutfit(this.props.currentProduct)
   }
 
+
+
   render() {
+    if (this.props.currentOutfit.length > 0) {
+      var outfitCards = this.props.currentOutfit.map((product, index) => {
+        return <OutfitCard key={index} product={product} onRemove={this.props.onRemove}/>
+     })
+     outfitCards.unshift( <AddOutfit key={outfitCards.length + 1}currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>)
+    } else {
+      outfitCards =  [<AddOutfit key="0" currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>]
+    }
     return (
       <>
       <div id="scroll" style={{
-        width: '40%',
+        display: 'inline-flex',
+        width: '60%',
         height: '100%',
         border: '1px solid red',
         whiteSpace: 'nowrap',
         overflow: 'auto',
-        alignItems: 'center'
-       }}
-       >
-        <AddOutfit currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>
-
-        {this.props.currentOutfit.map((product, index) => {
-          return <OutfitCard key={index} product={product}/>
-       })}
-
-        {/* <div style={{position: 'relative', float: 'right', bottom: '100px'}}>
-          <FontAwesomeIcon icon={faArrowTurnRight} /> */}
-         {/* </div> */}
+       }} >
+        {outfitCards}
        </div>
        </>
 

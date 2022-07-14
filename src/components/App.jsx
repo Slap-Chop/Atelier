@@ -18,6 +18,7 @@ class App extends React.Component {
     }
     this.relatedProdClick = this.relatedProdClick.bind(this);
     this.addOutfitClick = this.addOutfitClick.bind(this);
+    this.removeOutfitLick = this.removeOutfitLick.bind(this);
   }
 
   componentDidMount() {
@@ -43,14 +44,26 @@ class App extends React.Component {
 
   addOutfitClick(product) {
     let filtered = this.state.currentOutfit.filter(item => item.id === product.id);
-    console.log(filtered)
     if (filtered.length > 0) {
       return;
     } else {
-      var outFit = this.state.currentOutfit;
+      let outFit = this.state.currentOutfit;
       outFit.push(product)
       this.setState({currentOutfit: outFit})
     }
+  }
+
+  removeOutfitLick(product) {
+    let outfit = this.state.currentOutfit;
+    for (var i = 0; i < outfit.length; i++) {
+      if (product.id === outfit[i].id) {
+        outfit.splice(i, 1);
+        break;
+      }
+    }
+    this.setState({currentOutfit: outfit})
+
+
   }
 
   render() {
@@ -63,7 +76,7 @@ class App extends React.Component {
       id={this.state.currentId}
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
-      <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick}/></div>
+      <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
       <div><Reviews key={this.state.currentId} id={this.state.currentId}/></div>
     </div>
 
