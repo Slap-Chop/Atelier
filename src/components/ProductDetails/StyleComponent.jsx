@@ -13,7 +13,7 @@ const StyleComponent = (props) => {
     padding: '5px'
     }}>
     {/* {props.style.name} */}
-    <img style={{float: 'right',
+    <img className='thumbnail' style={{float: 'right',
     transformOrigin: '50% 50%',
     borderRadius: '50%',
     height: '80%',
