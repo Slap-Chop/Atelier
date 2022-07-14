@@ -25,7 +25,7 @@ class QAndA extends React.Component {
     this.addFormHandler = this.addQuestionHandler.bind(this);
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     let options = {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
       headers: {
@@ -103,7 +103,7 @@ class QAndA extends React.Component {
       <div className="qnaSearch" >
         <QnaSearch onSearchHandler={this.onSearchHandler} />
       </div>
-        <QnaList qnaData={this.filterItems(this.state.searchText,this.sortQuestions(this.state.qnaData))} qnaLength={this.state.showItem} />
+        <QnaList qnaData={this.filterItems(this.state.searchText,this.sortQuestions(this.state.qnaData))} qnaLength={this.state.showItem} productId={this.props.productId}/>
       <div className="qna-function">
           {this.questionLength(this.state.qnaData) && <button style={{"fontWeight": "bold"}} onClick={event => this.loadMoreHandler(event)}>MORE ANSWERED QUESTIONS</button>}
           <button onClick={() => this.addQuestionHandler(true)}>Add Question +</button>
