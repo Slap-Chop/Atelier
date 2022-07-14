@@ -43,7 +43,6 @@ class StyleSelector extends React.Component {
             <div style={{display:'flex'}} key={index}>{row.map((style, index) => {
             //highlight the style if it is selected
               if (this.props.currentStyle === style) {
-                console.log('found highlight style')
                 return (<StyleComponent style={style}
                 click={this.props.click}
                 key={index}

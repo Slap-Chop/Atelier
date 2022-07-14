@@ -30,8 +30,8 @@ const StyleComponent = (props) => {
     {props.current ? <img
       src={checkmark}
       style={{
-        width: '10px',
-        height: '10px',
+        width: '15px',
+        height: '15px',
         backgroundColor:'white',
         borderRadius: '50%',
         objectFit: 'cover'

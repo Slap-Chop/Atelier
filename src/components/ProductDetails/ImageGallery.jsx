@@ -1,5 +1,7 @@
 import React from 'react';
 import GalleryThumbnail from './GalleryThumbnail.jsx';
+// import leftArrow from './Images/leftArrow.png';
+// import rightArrow from './Images/rightArrow.png';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -20,6 +22,9 @@ class ImageGallery extends React.Component {
     if (this.state.photos !== this.props.style.photos && this.props.style.photos) {
       this.setState({photos:this.props.style.photos})
     }
+    // if (this.state.photos[this.state.photoIndex] === undefined) {
+    //   this.setState({photoIndex: 0})
+    // }
   }
 
   handleThumbnailClick(index) {
@@ -32,6 +37,8 @@ class ImageGallery extends React.Component {
       return(
         <div
         style={{
+          position: 'relative',
+          display: 'table',
           backgroundImage:`url(${this.props.style.photos[this.state.photoIndex].url})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
@@ -62,6 +69,16 @@ class ImageGallery extends React.Component {
               )
             })}
           </div>
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            left: '10%'
+          }}>left Arrow</div>
+          <div style={{
+            position: 'absolute',
+            top: '50%',
+            right: '0%'
+          }}>right arrow</div>
 
       </div>
       )
