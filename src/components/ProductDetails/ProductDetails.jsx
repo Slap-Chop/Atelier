@@ -58,21 +58,32 @@ class ProductDetails extends React.Component {
     return(<div style={{border: '1px solid blue',
     display: 'flex',
     justifyContent: 'center' }}>
-      <div style={{border: '1px solid red'}}>
-        <ImageGallery/></div>
+      <div style={{
+        border: '1px solid red',
+        width: '130%'
+        }}>
+        <ImageGallery style={this.state.currentStyle}/></div>
       <div>
-      <ProductInfo currentProduct={this.props.currentProduct}
+        <div style={{
+          float: 'right',
+          width: '70%'
+
+        }}>
+        <ProductInfo currentProduct={this.props.currentProduct}
       styles={this.state.styles}
       currentStyle={this.state.currentStyle}
       click={this.handleStyleChange.bind(this)}
       id={this.props.id}/>
       <Cart currentStyle={this.state.currentStyle}
       currentProduct={this.props.currentProduct}/>
-      <p>social media buttons</p>
-      <div style={{border: '1px solid green'}}>
+      <div style={{
+        border: '1px solid green'
+        }}>
         <h5>{this.props.currentProduct.slogan}</h5>
         <p>{this.props.currentProduct.description}</p></div>
       </div>
+
+        </div>
 
     </div>
 
