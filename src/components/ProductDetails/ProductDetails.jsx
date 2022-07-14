@@ -25,7 +25,8 @@ class ProductDetails extends React.Component {
       data.data.results.forEach((result) => {
         if (result["default?"]) {
           // console.log('enter default')
-          this.setState({currentStyle: result})
+          this.setState({currentStyle: result});
+          this.props.updateStyle(result)
         }
       })
     })
@@ -40,7 +41,10 @@ class ProductDetails extends React.Component {
       data.data.results.forEach((result) => {
         if (result["default?"]) {
           // console.log('enter default')
-          this.setState({currentStyle: result})
+          this.setState({currentStyle: result});
+          this.props.updateStyle(result)
+        } else {
+          this.props.updateStyle(data.data.results[0])
         }
       })
     })

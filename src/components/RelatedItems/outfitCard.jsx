@@ -7,12 +7,21 @@ class OutfitCard extends React.Component {
     };
     // this.onProdClick = this.onProdClick.bind(this);
     // this.onActionClick = this.onActionClick.bind(this)
-    this.onRemove = this.onRemove.bind(this)
+    this.onRemove = this.onRemove.bind(this);
+    this.mouseover = this.mouseover.bind(this);
+    this.mouseout = this.mouseout.bind(this);
   }
 
   onRemove(e) {
     e.preventDefault();
     this.props.onRemove(this.props.product)
+  }
+  mouseover() {
+    document.getElementById(`star${this.props.product.name}`).style.color = 'darkgrey';
+  }
+
+  mouseout() {
+    document.getElementById(`star${this.props.product.name}`).style.color = 'lightgrey';
   }
   // onProdClick(e) {
   //   e.preventDefault();
@@ -47,8 +56,8 @@ class OutfitCard extends React.Component {
 
         }
         }>
-          <div style={{display: 'flex', justifyContent: 'right'}}>
-          <button product={this.props.product} onClick={this.onRemove}>*</button>
+          <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>
+          <span id={`star${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
           </div>
           <div onClick={this.onProdClick} style={{
             display: 'flex',
