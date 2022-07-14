@@ -22,9 +22,6 @@ export default function ReviewsList ({reviewsToShow, reviews, more, setMore, set
       <option value="">{sort.option2}</option>
       <option value="">{sort.option3}</option>
     </select>
-    <select>
-      <option value="">TEST2</option>
-    </select>
     <div>
       <ul>
         {reviews.slice(0, reviewsToShow).map((review, i) => <ReviewsListEntry review={review} key={i}/>)}
