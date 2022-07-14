@@ -11,11 +11,15 @@ const Footer = (props) => {
   }
 
   const formatUsername = (str) => {
-    return str === "Seller" ? "" : str;
+    if (str ===  "Seller" || str === "seller" ) {
+      return ""
+    } else {
+      return str;
+    }
   }
 
   const isSeller = (str) => {
-    return str === "Seller";
+    return str === "Seller" || str === "seller" ;
   }
 
   return (

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import config from '../../../config.js';
 import RelatedList from './relatedList.jsx';
+import OutfitList from './outfitList.jsx';
 
 
 class RelatedItems extends React.Component {
@@ -57,6 +58,7 @@ class RelatedItems extends React.Component {
     })
     //filter results from GET requests
     .then((data) => {
+
       var newData = data.map((product) => {
         // console.log(product.results)
         var filtered = product.results.filter(style => style['default?']
@@ -104,11 +106,20 @@ class RelatedItems extends React.Component {
 
   render() {
     return (
+      <>
+
         <div className="related-list" style={
-          {display: 'flex', overflow: 'auto', justifyContent: 'center', border: '1px solid blue'}
+          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', border: '1px solid blue', alignItems: 'center'}
         }>
         {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts}/> : null }
         </div>
+
+        <div className="related-list" style={
+          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', border: '1px solid blue', alignText: 'center'}
+        }>
+          <OutfitList currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove}/>
+        </div>
+        </>
     )
   }
 }
