@@ -105,23 +105,26 @@ class RelatedItems extends React.Component {
 
 
   render() {
+
+
     return (
       <>
 
         <div className="related-list" style={
-          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', border: '1px solid blue', alignItems: 'center'}
+          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center'}
         }>
         {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts}/> : null }
         </div>
 
         <div className="related-list" style={
-          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', border: '1px solid blue', alignText: 'center'}
+          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignText: 'center'}
         }>
-          <OutfitList currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove}/>
+          <OutfitList currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle}/>
         </div>
         </>
     )
   }
-}
+  }
+
 
 export default RelatedItems;
