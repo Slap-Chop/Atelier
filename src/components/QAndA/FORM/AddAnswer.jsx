@@ -73,7 +73,7 @@ const AddAnswer = (props) => {
   const submitHandler = (event) => {
     //alert("explore backdrop and overlay", props.productId)
     event.preventDefault();
-    if (Question === "") {
+    if (Answer === "") {
       setErrorStatus(true);
       setErrorField( "Answer");
     } else if (Name === "") {

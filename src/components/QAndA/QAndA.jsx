@@ -14,7 +14,8 @@ class QAndA extends React.Component {
       qnaData: [],
       searchText: "",
       showItem:2,
-      addQuestion: false
+      addQuestion: false,
+      productId: 0
     }
     //inside constructor
     this.onSearchHandler = this.onSearchHandler.bind(this);
@@ -25,26 +26,54 @@ class QAndA extends React.Component {
     this.addFormHandler = this.addQuestionHandler.bind(this);
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     let options = {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
       headers: {
         'User-Agent': 'request',
          //"params": {product_id: "40348"}
          //uncomment this line 28 for group test
-         "params": {product_id:this.props.productId}
+         "params": {product_id:this.state.productId}
       }
     };
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     axios.get(options.url, options.headers)
     .then( res => {
-      //console.log("this is from res",res.data.results)
       this.setState({
         qnaData:res.data.results
       })
-      //console.log("this is after setstate", this.state.qnaData)
     })
   }
+
+  componentDidUpdate() {
+    if(this.state.productId !== this.props.productId) {
+      this.setState({
+        productId: this.props.productId
+      })
+
+      let options = {
+        url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
+        headers: {
+          'User-Agent': 'request',
+           "params": {product_id:this.props.productId}
+        }
+      };
+      axios.defaults.headers.common['Authorization'] = config.TOKEN;
+      axios.get(options.url, options.headers)
+      .then( res => {
+        this.setState({
+          qnaData:res.data.results
+        })
+      })
+
+    }
+  }
+
+
+
+
+
+
 
   //update user input searchtext
   onSearchHandler(searchText) {
@@ -103,7 +132,7 @@ class QAndA extends React.Component {
       <div className="qnaSearch" >
         <QnaSearch onSearchHandler={this.onSearchHandler} />
       </div>
-        <QnaList qnaData={this.filterItems(this.state.searchText,this.sortQuestions(this.state.qnaData))} qnaLength={this.state.showItem} productId={this.props.productId}/>
+        <QnaList qnaData={this.filterItems(this.state.searchText,this.sortQuestions(this.state.qnaData))} qnaLength={this.state.showItem} productId={this.state.productId}/>
       <div className="qna-function">
           {this.questionLength(this.state.qnaData) && <button style={{"fontWeight": "bold"}} onClick={event => this.loadMoreHandler(event)}>MORE ANSWERED QUESTIONS</button>}
           <button onClick={() => this.addQuestionHandler(true)}>Add Question +</button>
