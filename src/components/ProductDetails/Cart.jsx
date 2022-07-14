@@ -71,7 +71,11 @@ class Cart extends React.Component {
 
 
     return(
-      <div style={{border: '1px solid yellow'}}>{this.props.currentProduct?.name} > {this.props.currentStyle?.name}
+      <div style={{
+        border: '1px solid yellow',
+        }}>
+
+        {this.props.currentProduct?.name} > {this.props.currentStyle?.name}
       <div style={{
         display: 'flex',
         paddingBottom: '20px'
@@ -108,7 +112,7 @@ class Cart extends React.Component {
         onChange={this.handleQuantChange.bind(this)}
         disabled={this.state.currentSize === 'Select Size'}>
         {this.state.currentSize === 'Select Size' && <option>-</option>}
-        {this.state.inStock && quantArray.map((number, index) => {
+        {this.state.currentSize !== 'Select Size' && quantArray.map((number, index) => {
           return <option key={index} value={number}>{number}</option>
         })}
         </select>
