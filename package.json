@@ -9,6 +9,11 @@
     "test": "jest",
     "postinstall": "webpack --config ./webpack.config.js --progress"
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupEnzyme.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Slap-Chop/Atelier.git"
@@ -21,6 +26,7 @@
   },
   "homepage": "https://github.com/Slap-Chop/Atelier#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.18.6",
     "css-loader": "^6.7.1",
     "nodemon": "^2.0.19",
     "style-loader": "^3.3.1",
@@ -29,15 +35,21 @@
   },
   "dependencies": {
     "@babel/core": "^7.18.6",
-    "@babel/preset-env": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@zarconontol/enzyme-adapter-react-18": "^0.7.3",
     "axios": "^0.27.2",
+    "babel-jest": "^28.1.3",
     "babel-loader": "^8.2.5",
     "body-parser": "^1.20.0",
+    "enzyme": "^3.11.0",
     "express": "^4.18.1",
     "jest": "^28.1.2",
     "path": "^0.12.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "ts-jest": "^28.0.5"
   }
 }

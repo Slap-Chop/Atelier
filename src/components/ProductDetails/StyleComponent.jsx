@@ -2,7 +2,7 @@ import React from 'react';
 
 const StyleComponent = (props) => {
   return(
-    <div onClick={() => {props.click(props.style)}}
+    <div
     style={{fontWeight: props.weight || 100,
     width: '100px',
     height: '100px',
@@ -13,11 +13,14 @@ const StyleComponent = (props) => {
     padding: '5px'
     }}>
     {/* {props.style.name} */}
-    <img style={{float: 'right',
+    <img
+    onClick={() => {props.click(props.style)}}
+    className='thumbnail' style={{float: 'right',
     transformOrigin: '50% 50%',
     borderRadius: '50%',
-    height: '80%',
-    width: '80%',
+    height: '50px',
+    width: '50px',
+    objectFit: 'cover'
     }}
     src={`${props.style.photos[0].thumbnail_url}`}
     alt='Image N/A'/>
