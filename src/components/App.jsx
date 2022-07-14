@@ -19,6 +19,7 @@ class App extends React.Component {
     this.relatedProdClick = this.relatedProdClick.bind(this);
     this.addOutfitClick = this.addOutfitClick.bind(this);
     this.removeOutfitLick = this.removeOutfitLick.bind(this);
+    this.updateStyle = this.updateStyle.bind(this);
   }
 
   componentDidMount() {
@@ -36,6 +37,10 @@ class App extends React.Component {
         console.log('App currentId on mount:', this.state.currentId)
       }
     })
+  }
+
+  updateStyle(style) {
+    this.setState({defaultStyle: style})
   }
 
   relatedProdClick(id, product) {
@@ -71,7 +76,7 @@ class App extends React.Component {
       Hi friends!
       npm run react-dev should open a live listener of webpack,
       in another terminal do npm run server-dev and navigate to localhost:8000 to view the app!
-      <div><ProductDetails
+      <div><ProductDetails updateStyle={this.updateStyle}
       products={this.state.productList}
       id={this.state.currentId}
       currentProduct={this.state.currentProduct}/></div>
