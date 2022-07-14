@@ -5,7 +5,9 @@ const ProductInfo = (props) => {
   // console.log('currentProduct:', props.currentProduct)
   // console.log('product infostyles', props.styles)
   return (
-  <div style={{border: '1px solid blue'}}>
+  <div style={{
+    border: '1px solid blue'
+    }}>
     <p>Review star component</p>
     {/* product name and category */}
     <div>{props.currentProduct.category}</div>
