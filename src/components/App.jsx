@@ -50,7 +50,7 @@ class App extends React.Component {
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
       <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick}/></div>
-      <div><Reviews id={this.state.currentId}/></div>
+      <div><Reviews key={this.state.currentId} id={this.state.currentId}/></div>
     </div>
 
     )
