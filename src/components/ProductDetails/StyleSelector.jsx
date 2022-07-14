@@ -42,10 +42,12 @@ class StyleSelector extends React.Component {
           {thumbailRows.map((row, index) => (
             <div style={{display:'flex'}} key={index}>{row.map((style, index) => {
             //highlight the style if it is selected
-              if (this.state.currentStyle === style) {
+              if (this.props.currentStyle === style) {
+                console.log('found highlight style')
                 return (<StyleComponent style={style}
                 click={this.props.click}
                 key={index}
+                current={'65px'}
                 weight={600}/>)
               } else {
                 return (<StyleComponent click={this.props.click}
