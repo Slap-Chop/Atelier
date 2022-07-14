@@ -38,8 +38,10 @@ class OutfitCard extends React.Component {
         <div  className="card"  style={
           {display: 'inline-block',
           border: '1px solid blue',
-         margin: '2%',
-          width: '160px',
+          margin: '2%',
+          marginLeft: '10px',
+          marginRight: '10px',
+          minWidth: '160px',
           height: '195px',
           justifyContent: 'center'
 
