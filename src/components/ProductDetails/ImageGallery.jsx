@@ -7,7 +7,7 @@ class ImageGallery extends React.Component {
     this.state = {
       expanded: false,
       photos: [],
-      photoIndex: 0
+      photoIndex: 0,
     }
   }
 
