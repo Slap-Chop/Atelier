@@ -31,6 +31,22 @@ class ImageGallery extends React.Component {
     this.setState({photoIndex: index})
   }
 
+  handleRightClick() {
+    let index = this.state.photoIndex;
+    if (index < this.state.photos.length - 1) {
+      index++;
+      this.setState({photoIndex: index})
+    }
+  }
+
+  handleLeftClick() {
+    let index = this.state.photoIndex;
+    if (index > 0) {
+      index--;
+      this.setState({photoIndex: index})
+    }
+  }
+
   render() {
     // make sure props have been passed before trying to render
     if (this.state.photos && this.state.photos[this.state.photoIndex]) {
@@ -69,16 +85,24 @@ class ImageGallery extends React.Component {
               )
             })}
           </div>
-          <div style={{
+          {/* hide arrow if on first image */}
+          { this.state.photoIndex !== 0 &&
+            <div style={{
             position: 'absolute',
             top: '50%',
             left: '10%'
-          }}>left Arrow</div>
-          <div style={{
+            }}
+            onClick={this.handleLeftClick.bind(this)}
+          >left Arrow</div>}
+          {/* hide right arrow if on last image */}
+          { this.state.photoIndex !== this.state.photos.length - 1 &&
+            <div style={{
             position: 'absolute',
             top: '50%',
             right: '0%'
-          }}>right arrow</div>
+            }}
+            onClick={this.handleRightClick.bind(this)}
+          >right arrow</div>}
 
       </div>
       )
