@@ -7,9 +7,13 @@ class OutfitCard extends React.Component {
     };
     // this.onProdClick = this.onProdClick.bind(this);
     // this.onActionClick = this.onActionClick.bind(this)
+    this.onRemove = this.onRemove.bind(this)
   }
 
-
+  onRemove(e) {
+    e.preventDefault();
+    this.props.onRemove(this.props.product)
+  }
   // onProdClick(e) {
   //   e.preventDefault();
   //   this.props.onClick(this.props.product.id, this.props.product)
@@ -34,7 +38,7 @@ class OutfitCard extends React.Component {
         <div  className="card"  style={
           {display: 'inline-block',
           border: '1px solid blue',
-          margin: '2%',
+         margin: '2%',
           width: '160px',
           height: '195px',
           justifyContent: 'center'
@@ -42,7 +46,7 @@ class OutfitCard extends React.Component {
         }
         }>
           <div style={{display: 'flex', justifyContent: 'right'}}>
-          <button onClick={this.onActionClick}>*</button>
+          <button product={this.props.product} onClick={this.onRemove}>*</button>
           </div>
           <div onClick={this.onProdClick} style={{
             display: 'flex',
@@ -54,7 +58,8 @@ class OutfitCard extends React.Component {
           </div>
 
           <div onClick={this.onProdClick} className="container" style={{
-            textAlign: 'center'
+            textAlign: 'center',
+
           }}>
           <div className="category">{this.props.product.category}</div>
           <div className="name">{this.props.product.name}</div>

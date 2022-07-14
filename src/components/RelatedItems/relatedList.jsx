@@ -14,14 +14,15 @@ var RelatedList = (props) => {
   return (
     <>
    <div id="scroll" style={{
-    width: '40%',
-    height: '100%',
+    display: 'inline-flex',
+    width: '60%',
+    maxHeight: '100%',
     border: '1px solid red',
     whiteSpace: 'nowrap',
     overflow: 'auto',
    }}
    >{props.relatedProducts.map((product, index) => {
-      return <ProductCard class="card" key= {product.id} product={product} onClick={props.onClick}/>
+      return <ProductCard class="card" key= {index} product={product} onClick={props.onClick}/>
    })}
     {/* <div style={{position: 'relative', float: 'right', bottom: '100px'}}>
       <FontAwesomeIcon icon={faArrowTurnRight} /> */}
