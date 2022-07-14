@@ -7,6 +7,8 @@ class ProductCard extends React.Component {
     };
     this.onProdClick = this.onProdClick.bind(this);
     this.onActionClick = this.onActionClick.bind(this)
+    this.mouseover = this.mouseover.bind(this);
+    this.mouseout = this.mouseout.bind(this);
   }
 
 
@@ -18,6 +20,14 @@ class ProductCard extends React.Component {
   onActionClick(e) {
     e.preventDefault();
     console.log(this.props.product)
+  }
+
+  mouseover() {
+    document.getElementById(`star${this.props.product.name}`).style.color = 'gold';
+  }
+
+  mouseout() {
+    document.getElementById(`star${this.props.product.name}`).style.color = 'lightgrey';
   }
 
   render() {
@@ -39,10 +49,11 @@ class ProductCard extends React.Component {
           {display: 'inline-block',
           border: '1px solid blue',
           margin: '10px',
-          width: '160px',}
+          width: '160px',
+          minWidth: '160px',}
         }>
-          <div style={{display: 'flex', justifyContent: 'right'}}>
-          <button onClick={this.onActionClick}>*</button>
+          <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>
+          <span id={`star${this.props.product.name}`} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onActionClick}>&#9733;   </span>
           </div>
           <div onClick={this.onProdClick} style={{
             display: 'flex',
