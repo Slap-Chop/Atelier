@@ -1,7 +1,7 @@
 import React from 'react';
 import GalleryThumbnail from './GalleryThumbnail.jsx';
-// import leftArrow from './Images/leftArrow.png';
-// import rightArrow from './Images/rightArrow.png';
+import leftArrow from './Images/leftArrow.png';
+import rightArrow from './Images/rightArrow.png';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -93,16 +93,28 @@ class ImageGallery extends React.Component {
             left: '10%'
             }}
             onClick={this.handleLeftClick.bind(this)}
-          >left Arrow</div>}
+          ><img src={leftArrow}
+              style={{
+                width: '20px',
+                height: '20px',
+                objectFit: 'cover'
+          }}
+          /></div>}
           {/* hide right arrow if on last image */}
           { this.state.photoIndex !== this.state.photos.length - 1 &&
             <div style={{
-            position: 'absolute',
-            top: '50%',
-            right: '0%'
-            }}
+              position: 'absolute',
+              top: '50%',
+              right: '0%'
+              }}
             onClick={this.handleRightClick.bind(this)}
-          >right arrow</div>}
+          ><img src={rightArrow}
+          style={{
+            width: '20px',
+            height: '20px',
+            objectFit: 'cover'
+          }}
+          /></div>}
 
       </div>
       )
