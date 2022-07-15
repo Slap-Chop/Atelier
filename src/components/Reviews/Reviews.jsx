@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import config from '../../../config.js';
 import ReviewsList from './ReviewsList.jsx';
+import styled from 'styled-components';
 
 
 export default function Reviews ({id}) {
@@ -12,16 +13,28 @@ export default function Reviews ({id}) {
   const [more, setMore] = useState(true);
   const [reviewsToShow, setReviewsToShow] = useState(2);
 
-  const ReviewsListStyle = {
-    overflow: 'auto',
-    maxLength: '50%'
+  const reviewsListStyle = {
+    'scroll-behavior': 'smooth',
+    overflow: 'scroll'
   }
 
   const reviewsStyleContainer = {
-    display:'block',
+    display: 'flex',
+    height: 500,
     maxLength: 200,
     padding: 40,
-    align: 'right'}
+    border: '3px solid black',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+  }
+
+  const reviewsCardStyle = {
+
+  }
+
+  const reviewsStarStyle = {
+
+  }
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
@@ -32,9 +45,7 @@ export default function Reviews ({id}) {
       params: {product_id: productId}
     })
     .then((response) => {
-      console.log('reponse', response);
       setReviews(response.data.results);
-      console.log('REVIEWS:', reviews);
     })
     .catch((err) => console.log('err', err));
   }, [productId]);
@@ -42,10 +53,10 @@ export default function Reviews ({id}) {
 
   return (
     <>
-      <div className="reviews-container" style={{display:'block', maxLength: 200, padding: 40, align: 'right'}}>
+      <div className="reviews-container" style={reviewsStyleContainer}>
         Reviews:
         <ReviewsList reviews={reviews} more={more} setMore={setMore} reviewsToShow={reviewsToShow}
-          setReviewsToShow={setReviewsToShow}
+          setReviewsToShow={setReviewsToShow} style={reviewsListStyle}
         />
       </div>
     </>

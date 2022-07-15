@@ -5,10 +5,12 @@ const ReviewsListEntry = ({review}) => {
     <div className="reviews-card">
       <div className="review">
         Review:
-        <p>{review.body}</p>
-        <p>{review.helpfulness}</p>
-        <p>{review.reviewer_name}</p>
-        <p>{review.summary}</p>
+        <div className="review-helpfulness">{review.helpfulness}</div>
+        <div className="review-name">Rating: {review.rating}</div>
+        <div className="review-date">Date: {review.date}</div>
+        <div className="review-body">Body: {review.body}</div>
+        <div className="review-summary">{review.reviewer_name}</div>
+        <div className="">{review.summary}</div>
       </div>
     </div>
   )
