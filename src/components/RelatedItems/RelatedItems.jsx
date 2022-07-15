@@ -113,7 +113,7 @@ class RelatedItems extends React.Component {
         <div className="related-list" style={
           {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center'}
         }>
-        {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts}/> : null }
+        {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} currentProduct={this.props.products.currentProduct}/> : null }
         </div>
 
         <div className="related-list" style={
