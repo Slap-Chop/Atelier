@@ -2,6 +2,8 @@ import React from 'react';
 import GalleryThumbnail from './GalleryThumbnail.jsx';
 import leftArrow from './Images/leftArrow.png';
 import rightArrow from './Images/rightArrow.png';
+import upArrow from './Images/upArrow.png';
+import downArrow from './Images/downArrow.png';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -10,23 +12,40 @@ class ImageGallery extends React.Component {
       expanded: false,
       photos: [],
       photoIndex: 0,
+      thumbnails: [],
+      offset: 0,
     }
   }
 
   componentDidMount() {
     this.setState({
       photos: this.props.style.photos})
+    if (this.props.style.photos?.length > 7) {
+      let array = this.props.style.photos?.slice(0 + this.state.offset, 7 + this.state.offset);
+      this.setState({thumbnails: array})
+    } else {
+      this.setState({thumbnails: this.props.style.photos})
+    }
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.photos !== this.props.style.photos && this.props.style.photos) {
       this.setState({photos:this.props.style.photos})
+      if (this.props.style.photos.length > 7) {
+        let thumbnailArray = this.props.style.photos.slice(0,7);
+        this.setState({thumbnails: thumbnailArray})
+      } else {
+        this.setState({thumbnails: this.props.style.photos})
+      }
     }
     if (this.props.id !== prevProps.id) {
       this.setState({photoIndex: 0})
     }
+    if (this.state.offset !== prevState.offset) {
+      let thumbArray = this.props.style.photos.slice(0 + this.state.offset, 7 + this.state.offset);
+      this.setState({thumbnails: thumbArray})
+    }
 
-    return true;
   }
 
   handleThumbnailClick(index) {
@@ -49,6 +68,22 @@ class ImageGallery extends React.Component {
     }
   }
 
+  handleDownClick() {
+    let offset = this.state.offset;
+    if (offset + 7 < this.state.photos.length) {
+      offset++;
+      this.setState({offset: offset})
+    }
+  }
+
+  handleUpClick() {
+    let offset = this.state.offset;
+    if (offset > 0) {
+      offset--;
+      this.setState({offset: offset})
+    }
+  }
+
   render() {
     // make sure props have been passed before trying to render
     if (this.state.photos && this.state.photos[this.state.photoIndex]) {
@@ -66,7 +101,20 @@ class ImageGallery extends React.Component {
         }}
         >
           <div>
-            {this.state.photos.map((photo, index) => {
+            {this.state.photos.length > 7 && this.state.offset > 0 &&
+            <img src={upArrow}
+              onClick={this.handleUpClick.bind(this)}
+              style={{
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              textAlign: 'center',
+              textAlignVertical: 'center',
+              paddingLeft: '5px'
+              }}
+            />
+            }
+            {this.state.thumbnails.map((photo, index) => {
               if (index === this.state.photoIndex) {
                 //return a highlighted component if it is the current photo
                 return(
@@ -86,6 +134,18 @@ class ImageGallery extends React.Component {
                   key={index}/>
               )
             })}
+            {this.state.photos?.length > 7 && this.state.offset + 7 < this.state.photos?.length &&
+              <img src={downArrow}
+              onClick={this.handleDownClick.bind(this)}
+              style={{
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              textAlign: 'center',
+              textAlignVertical: 'center',
+              paddingLeft: '5px'
+              }}
+            />}
           </div>
           {/* hide arrow if on first image */}
           { this.state.photoIndex !== 0 &&
@@ -97,6 +157,8 @@ class ImageGallery extends React.Component {
             onClick={this.handleLeftClick.bind(this)}
           ><img src={leftArrow}
               style={{
+                borderRadius: '50%',
+                backgroundColor: 'grey',
                 width: '20px',
                 height: '20px',
                 objectFit: 'cover'
@@ -112,6 +174,8 @@ class ImageGallery extends React.Component {
             onClick={this.handleRightClick.bind(this)}
           ><img src={rightArrow}
           style={{
+            borderRadius: '50%',
+            backgroundColor: 'grey',
             width: '20px',
             height: '20px',
             objectFit: 'cover'
