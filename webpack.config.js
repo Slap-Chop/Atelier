@@ -9,6 +9,18 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 50000,
+            }
+          },
+        ],
+       type: 'javascript/auto'
+      },
 
       {
         test: /\.(jsx|js)$/,
