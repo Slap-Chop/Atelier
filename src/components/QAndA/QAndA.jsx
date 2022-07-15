@@ -69,12 +69,6 @@ class QAndA extends React.Component {
     }
   }
 
-
-
-
-
-
-
   //update user input searchtext
   onSearchHandler(searchText) {
     //console.log(searchText);
@@ -96,7 +90,6 @@ class QAndA extends React.Component {
       addQuestion: status
     })
   }
-
 
   //bc compoenent setstate with fetched data
   //if use filter function setstate with updated value will be over-written
