@@ -224,6 +224,11 @@ class ImageGallery extends React.Component {
           thumbnails={this.state.thumbnails}
           offset={this.state.offset}
           LRClick={this.state.LRClick}
+          handleLeft={this.handleLeftClick.bind(this)}
+          handleRight={this.handleRightClick.bind(this)}
+          handleUp={this.handleUpClick.bind(this)}
+          handleDown={this.handleDownClick.bind(this)}
+          handleThumb={this.handleThumbnailClick.bind(this)}
 
           />
       </div>
