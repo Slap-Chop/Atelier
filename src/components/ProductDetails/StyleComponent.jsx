@@ -4,14 +4,11 @@ import checkmark from './Images/checkmark.png';
 const StyleComponent = (props) => {
   return(
     <div
-    style={{fontWeight: props.weight || 100,
-    width: '100px',
-    height: '100px',
+    style={{
+    width: '75px',
+    height: '75px',
     borderRadius: '100%',
     display: 'flex',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    padding: '5px'
     }}>
     {/* {props.style.name} */}
     <img

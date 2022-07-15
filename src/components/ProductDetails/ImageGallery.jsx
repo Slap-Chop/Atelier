@@ -18,13 +18,15 @@ class ImageGallery extends React.Component {
       photos: this.props.style.photos})
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     if (this.state.photos !== this.props.style.photos && this.props.style.photos) {
       this.setState({photos:this.props.style.photos})
     }
-    // if (this.state.photos[this.state.photoIndex] === undefined) {
-    //   this.setState({photoIndex: 0})
-    // }
+    if (this.props.id !== prevProps.id) {
+      this.setState({photoIndex: 0})
+    }
+
+    return true;
   }
 
   handleThumbnailClick(index) {
