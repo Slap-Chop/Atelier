@@ -57,18 +57,18 @@ class App extends React.Component {
     let totalReviews = Object.values(this.state.reviewsMeta.ratings);
     let ratingsObj = this.state.reviewsMeta.ratings;
     console.log(ratingsObj);
-    let total = 0;
+    let totalCountOfAllReviews = 0;
 
     let numScores = [];
     // Need to convert all the number strings into integers
     // push converted values into our numScores array
     totalReviews.forEach((score) => numScores.push(Math.floor(score)));
     // Add to total count of ratings
-    numScores.forEach((rating) => total+=rating);
+    numScores.forEach((rating) => totalCountOfAllReviews+=rating);
     console.log(numScores)
 
     // round the average to the nearest tenth decimal place
-    let avg = Math.round(((1*numScores[0] + 2*numScores[1] + 3*numScores[2] + 4*numScores[3] + 5*numScores[4]) / total) * 10) / 10;
+    let avg = Math.round(((1*numScores[0] + 2*numScores[1] + 3*numScores[2] + 4*numScores[3] + 5*numScores[4]) / totalCountOfAllReviews) * 10) / 10;
 
     this.setState({reviewsAvgScore: avg});
   }
