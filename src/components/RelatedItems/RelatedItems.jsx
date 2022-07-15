@@ -74,7 +74,9 @@ class RelatedItems extends React.Component {
     .then((newData) => {
       //extend the old related products state to include default keys with the product's default style as the value
     var relatedProducts = this.state.relatedProducts;
-    relatedProducts = relatedProducts.map((product) => {
+    // console.log(relatedProducts, 'line77')
+    //possibly fixed mapping bug here
+    relatedProducts = this.state.relatedProducts.map((product) => {
       for (let i = 0; i < newData.length; i++) {
         if (product.id === Number(Object.keys(newData[i])[0])) {
           product.default = newData[i][product.id]
@@ -113,7 +115,7 @@ class RelatedItems extends React.Component {
         <div className="related-list" style={
           {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center'}
         }>
-        {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts}/> : null }
+        {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} currentProduct={this.props.products.currentProduct}/> : null }
         </div>
 
         <div className="related-list" style={
