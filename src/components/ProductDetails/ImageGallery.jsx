@@ -117,19 +117,26 @@ class ImageGallery extends React.Component {
     // make sure props have been passed before trying to render
     if (this.state.photos && this.state.photos[this.state.photoIndex]) {
       return(
-        <div
-        onClick={this.toggleExpanded.bind(this)}
-        style={{
-          position: 'relative',
-          display: 'table',
-          backgroundImage:`url(${this.props.style.photos[this.state.photoIndex]?.url})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          height: '100%',
-          width: '100%',
-          backgroundSize: 'contain'
-        }}
-        >
+        <div style={{position: 'relative',
+          }}>
+          <div style={{
+          display: 'flex',
+          allignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <img onClick={this.toggleExpanded.bind(this)}
+          src={this.props.style.photos[this.state.photoIndex]?.url}
+          style={{
+          position: 'absolute',
+          display: 'flex',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          objectFit: 'contain',
+          justifyContent: 'center',
+        }}/>
+
+        </div>
+
           <div>
             {this.state.photos.length > 7 && this.state.offset > 0 &&
             <img src={upArrow}

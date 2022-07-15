@@ -43,7 +43,8 @@ class ExpandedGallery extends React.Component {
         height: '90%',
         backgroundImage:`url(${this.props.photos[this.props.photoIndex]?.url})`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
       }}>
         <div className='modal-header'>
         <img
