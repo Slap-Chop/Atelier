@@ -30,27 +30,36 @@ class ImageGallery extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    //make sure photo list updates accordingly to props
     if (this.state.photos !== this.props.style.photos && this.props.style.photos) {
       this.setState({photos:this.props.style.photos})
+      // cut the 7 thumbnail images out
       if (this.props.style.photos.length > 7) {
-        let thumbnailArray = this.props.style.photos.slice(0,7);
-        this.setState({thumbnails: thumbnailArray})
+        let thumbArray = this.props.style.photos.slice(0 + this.state.offset, 7 + this.state.offset);
+        this.setState({thumbnails: thumbArray})
       } else {
         this.setState({thumbnails: this.props.style.photos})
       }
     }
+    //reset photoindex if product changes to not index into undefined
     if (this.props.id !== prevProps.id) {
       this.setState({photoIndex: 0})
     }
+    // update thumbnail list if the offset changes
     if (this.state.offset !== prevState.offset) {
       let thumbArray = this.props.style.photos.slice(0 + this.state.offset, 7 + this.state.offset);
       this.setState({thumbnails: thumbArray})
     }
+    //snap the offset(thumbnail list) to the current picture if the left right arrow goes to something out of range
     if (this.state.photoIndex > this.state.offset + 6 && this.state.LRClick) {
       this.setState({offset: this.state.photoIndex - 6, LRClick: false})
     }
     if (this.state.photoIndex < this.state.offset && this.state.LRClick) {
       this.setState({offset: this.state.photoIndex, LRClick: false})
+    }
+    //if going to index out of bounds, reset
+    if (prevState.photoIndex > this.state.photos?.length) {
+      this.setState({photoIndex:0, offset: 0})
     }
   }
 
@@ -100,7 +109,7 @@ class ImageGallery extends React.Component {
         style={{
           position: 'relative',
           display: 'table',
-          backgroundImage:`url(${this.props.style.photos[this.state.photoIndex].url})`,
+          backgroundImage:`url(${this.props.style.photos[this.state.photoIndex]?.url})`,
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           height: '100%',
@@ -165,10 +174,9 @@ class ImageGallery extends React.Component {
             onClick={this.handleLeftClick.bind(this)}
           ><img src={leftArrow}
               style={{
-                borderRadius: '50%',
-                backgroundColor: 'grey',
-                width: '20px',
-                height: '20px',
+                background: 'rgba(105, 105, 105, .5)',
+                width: '25px',
+                height: '60px',
                 objectFit: 'cover'
           }}
           /></div>}
@@ -182,10 +190,9 @@ class ImageGallery extends React.Component {
             onClick={this.handleRightClick.bind(this)}
           ><img src={rightArrow}
           style={{
-            borderRadius: '50%',
-            backgroundColor: 'grey',
-            width: '20px',
-            height: '20px',
+            background: 'rgba(105, 105, 105, .5)',
+            width: '25px',
+            height: '60px',
             objectFit: 'cover'
           }}
           /></div>}
