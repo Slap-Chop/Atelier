@@ -8,7 +8,7 @@ const QnaList = (props) => {
   return (
     <div  className="qnaList" style={{maxHeight: 300, overflow: 'auto'}}>
       {qnaData.map( (item) => {
-        return <QnaItem data={item} key={item.question_id}/>
+        return <QnaItem data={item} key={item.question_id} productId={props.productId}/>
       })}
     </div>
   )

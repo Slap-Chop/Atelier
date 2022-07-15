@@ -114,7 +114,7 @@ const AddQuestion = (props) => {
             <input type="text" value={Name} onChange={nameChangeHandler} placeholder="Example: jackson11!"/>
             <div>For privacy reasons, do not use your full name or email address</div>
             <div>Your email (mandatory)</div>
-            <input type="email" value={Email} onChange={emailChangeHandler} placeholder="Why did you like the product or not?"/>
+            <input type="email" value={Email} onChange={emailChangeHandler} placeholder="Example: jack@email.com"/>
             <div>For authentication reasons, you will not be emailed</div>
         </div>
 
