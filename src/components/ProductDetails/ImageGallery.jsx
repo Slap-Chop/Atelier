@@ -4,6 +4,7 @@ import leftArrow from './Images/leftArrow.png';
 import rightArrow from './Images/rightArrow.png';
 import upArrow from './Images/upArrow.png';
 import downArrow from './Images/downArrow.png';
+import ExpandedGallery from './ExpandedGallery.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class ImageGallery extends React.Component {
       photoIndex: 0,
       thumbnails: [],
       offset: 0,
-      LRClick: false
+      LRClick: false,
+      expanded: false
     }
   }
 
@@ -63,6 +65,16 @@ class ImageGallery extends React.Component {
     }
   }
 
+  toggleExpanded() {
+    if (this.state.expanded === false) {
+      this.setState({expanded: true})
+    }
+  }
+
+  closeExpanded() {
+    this.setState({expanded: false})
+  }
+
   handleThumbnailClick(index) {
     this.setState({photoIndex: index + this.state.offset})
   }
@@ -106,6 +118,7 @@ class ImageGallery extends React.Component {
     if (this.state.photos && this.state.photos[this.state.photoIndex]) {
       return(
         <div
+        onClick={this.toggleExpanded.bind(this)}
         style={{
           position: 'relative',
           display: 'table',
@@ -196,7 +209,16 @@ class ImageGallery extends React.Component {
             objectFit: 'cover'
           }}
           /></div>}
+        <ExpandedGallery
+          open={this.state.expanded}
+          xClick={this.closeExpanded.bind(this)}
+          photos={this.state.photos}
+          photoIndex={this.state.photoIndex}
+          thumbnails={this.state.thumbnails}
+          offset={this.state.offset}
+          LRClick={this.state.LRClick}
 
+          />
       </div>
       )
     }
