@@ -14,6 +14,7 @@ class ImageGallery extends React.Component {
       photoIndex: 0,
       thumbnails: [],
       offset: 0,
+      LRClick: false
     }
   }
 
@@ -45,18 +46,23 @@ class ImageGallery extends React.Component {
       let thumbArray = this.props.style.photos.slice(0 + this.state.offset, 7 + this.state.offset);
       this.setState({thumbnails: thumbArray})
     }
-
+    if (this.state.photoIndex > this.state.offset + 6 && this.state.LRClick) {
+      this.setState({offset: this.state.offset + 1, LRClick: false})
+    }
+    if (this.state.photoIndex < this.state.offset && this.state.LRClick) {
+      this.setState({offset: this.state.offset - 1, LRClick: false})
+    }
   }
 
   handleThumbnailClick(index) {
-    this.setState({photoIndex: index})
+    this.setState({photoIndex: index + this.state.offset})
   }
 
   handleRightClick() {
     let index = this.state.photoIndex;
     if (index < this.state.photos.length - 1) {
       index++;
-      this.setState({photoIndex: index})
+      this.setState({photoIndex: index, LRClick: true})
     }
   }
 
@@ -64,13 +70,14 @@ class ImageGallery extends React.Component {
     let index = this.state.photoIndex;
     if (index > 0) {
       index--;
-      this.setState({photoIndex: index})
+      this.setState({photoIndex: index, LRClick: true})
     }
   }
 
   handleDownClick() {
     let offset = this.state.offset;
     if (offset + 7 < this.state.photos.length) {
+      console.log('clickdown', this.state.offset)
       offset++;
       this.setState({offset: offset})
     }
@@ -79,6 +86,7 @@ class ImageGallery extends React.Component {
   handleUpClick() {
     let offset = this.state.offset;
     if (offset > 0) {
+      console.log('clickup', this.state.offset)
       offset--;
       this.setState({offset: offset})
     }
@@ -115,13 +123,13 @@ class ImageGallery extends React.Component {
             />
             }
             {this.state.thumbnails.map((photo, index) => {
-              if (index === this.state.photoIndex) {
+              if (index + this.state.offset === this.state.photoIndex) {
                 //return a highlighted component if it is the current photo
                 return(
                 <GalleryThumbnail
                   click={this.handleThumbnailClick.bind(this)}
                   photo={photo}
-                  index={index}
+                  index={index + this.state.offset}
                   key={index}
                   selected={1}
                   />)

@@ -9,6 +9,7 @@ const StyleComponent = (props) => {
     height: '75px',
     borderRadius: '100%',
     display: 'flex',
+    padding: '5px'
     }}>
     {/* {props.style.name} */}
     <img
