@@ -17,7 +17,6 @@ var RelatedList = (props) => {
     display: 'inline-flex',
     width: '60%',
     maxHeight: '100%',
-    border: '1px solid red',
     whiteSpace: 'nowrap',
     overflow: 'auto',
    }}

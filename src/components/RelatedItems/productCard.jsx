@@ -9,6 +9,8 @@ class ProductCard extends React.Component {
     this.onActionClick = this.onActionClick.bind(this)
     this.mouseover = this.mouseover.bind(this);
     this.mouseout = this.mouseout.bind(this);
+    this.cardOver= this.cardOver.bind(this);
+    this.cardOut = this.cardOut.bind(this);
   }
 
 
@@ -30,28 +32,39 @@ class ProductCard extends React.Component {
     document.getElementById(`star${this.props.product.name}`).style.color = 'lightgrey';
   }
 
+  cardOver() {
+    document.getElementById(`S${this.props.product.name}`).style.boxShadow = '0 8px 16px 0 rgba(0,0,0,0.4)'
+  }
+
+  cardOut() {
+    document.getElementById(`S${this.props.product.name}`).style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
+  }
+
   render() {
     if (this.props.product.default === undefined) {
       return (
         <></>
       )
     } else {
-      let price = <div className="price">{this.props.product.default_price}</div>
+      let price = <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price">{this.props.product.default_price}</div>
       //check to see if default style is currently for sale, if so, strike through default price and list current sale price instead
       if (this.props.product.default.sale_price) {
-        price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
+        price = <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
       }
 
       return (
         <>
 
-        <div  className="card" id={this.props.product.name}  style={
+        <div  className="card" id={`S${this.props.product.name}`}  style={
           {display: 'inline-block',
-          border: '1px solid blue',
           margin: '10px',
           width: '160px',
-          minWidth: '160px',}
-        }>
+          minWidth: '160px',
+          boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+          tansition: '0.5s',
+          borderRadius: '5%'
+        }
+        } onMouseOver={this.cardOver} onMouseOut={this.cardOut}>
           <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>
           <span id={`star${this.props.product.name}`} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onActionClick}>&#9733;   </span>
           </div>
@@ -67,12 +80,11 @@ class ProductCard extends React.Component {
           <div onClick={this.onProdClick} className="container" style={{
             textAlign: 'center'
           }}>
-          <div className="category">{this.props.product.category}</div>
-          <div className="prodName" id={this.props.product.name}>{this.props.product.name}</div>
+          <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="category">{this.props.product.category}</div>
+          <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="prodName" id={this.props.product.name}>{this.props.product.name}</div>
           {price}
-          <div className="rating">star rating to go here</div>
+          <div  style={{marginBottom:'5px'}} className="rating">star rating to go here</div>
           </div>
-
         </div>
         </>
       )

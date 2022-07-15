@@ -12,8 +12,11 @@ class OutfitList extends React.Component {
 
   onAdd(e) {
     e.preventDefault();
+    var productObj = this.props.currentProduct;
+    productObj.defaultStyle = this.props.defaultStyle
     this.props.onAddOutfit(this.props.currentProduct)
   }
+
 
 
 
@@ -22,7 +25,7 @@ class OutfitList extends React.Component {
       var outfitCards = this.props.currentOutfit.map((product, index) => {
         return <OutfitCard key={index} product={product} onRemove={this.props.onRemove}/>
      })
-     outfitCards.unshift( <AddOutfit key={outfitCards.length + 1}currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>)
+     outfitCards.unshift( <AddOutfit key={outfitCards.length + 1} currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>)
     } else {
       outfitCards =  [<AddOutfit key="0" currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>]
     }
@@ -32,7 +35,6 @@ class OutfitList extends React.Component {
         display: 'inline-flex',
         width: '60%',
         height: '100%',
-        border: '1px solid red',
         whiteSpace: 'nowrap',
         overflow: 'auto',
        }} >

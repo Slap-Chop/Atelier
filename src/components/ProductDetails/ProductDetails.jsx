@@ -66,7 +66,9 @@ class ProductDetails extends React.Component {
         border: '1px solid red',
         width: '130%'
         }}>
-        <ImageGallery style={this.state.currentStyle}/></div>
+        <ImageGallery style={this.state.currentStyle}
+        id={this.state.id}
+        /></div>
       <div>
         <div style={{
           float: 'right',
