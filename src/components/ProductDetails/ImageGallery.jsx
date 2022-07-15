@@ -122,7 +122,7 @@ class ImageGallery extends React.Component {
           <div style={{
           display: 'flex',
           allignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}>
           {/* main image */}
           <img onClick={this.toggleExpanded.bind(this)}
@@ -130,8 +130,8 @@ class ImageGallery extends React.Component {
           style={{
           position: 'absolute',
           display: 'flex',
-          maxWidth: '100%',
-          maxHeight: '100%',
+          width: '100%',
+          height: '100%',
           objectFit: 'contain',
           justifyContent: 'center',
         }}/>
