@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import Xbutton from './Images/Xbutton.png';
-import GalleryThumbnail from './GalleryThumbnail.jsx';
+import ExpandedIcon from './ExpandedIcon.jsx';
 import leftArrow from './Images/leftArrow.png';
 import rightArrow from './Images/rightArrow.png';
 import upArrow from './Images/upArrow.png';
@@ -80,13 +80,28 @@ class ExpandedGallery extends React.Component {
           textAlign: 'center',
           textAlignVertical: 'center',
           paddingLeft: '5px',
+          zIndex: 1
           }}/>
+          {/* up arrow */}
+          {this.props.photos.length > 7 && this.props.offset > 0 &&
+            <img src={upArrow}
+              onClick={this.props.handleUp}
+              style={{
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              textAlign: 'center',
+              textAlignVertical: 'center',
+              paddingLeft: '5px'
+              }}
+            />
+            }
           {/* icons to swap */}
         {this.props.thumbnails.map((photo, index) => {
               if (index + this.props.offset === this.props.photoIndex) {
                 //return a highlighted component if it is the current photo
                 return(
-                <GalleryThumbnail
+                <ExpandedIcon
                   click={this.props.handleThumb}
                   photo={photo}
                   index={index + this.props.offset}
@@ -95,13 +110,29 @@ class ExpandedGallery extends React.Component {
                   />)
               }
               return(
-                <GalleryThumbnail
+                <ExpandedIcon
                   click={this.props.handleThumb}
                   photo={photo}
                   index={index}
                   key={index}/>
               )
             })}
+            {/* down arrow */}
+            {this.props.photos?.length > 7 && this.props.offset + 7 < this.props.photos?.length &&
+              <img src={downArrow}
+              onClick={this.props.handleDown}
+              style={{
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              textAlign: 'center',
+              textAlignVertical: 'center',
+              paddingLeft: '5px',
+              zIndex: 4,
+              position: 'relative',
+              objectFit: 'contain'
+              }}
+            />}
             {/* left arrow */}
             { this.props.photoIndex !== 0 &&
             <div style={{

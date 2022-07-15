@@ -124,6 +124,7 @@ class ImageGallery extends React.Component {
           allignItems: 'center',
           justifyContent: 'center'
         }}>
+          {/* main image */}
           <img onClick={this.toggleExpanded.bind(this)}
           src={this.props.style.photos[this.state.photoIndex]?.url}
           style={{
@@ -138,7 +139,8 @@ class ImageGallery extends React.Component {
         </div>
 
           <div>
-            {this.state.photos.length > 7 && this.state.offset > 0 &&
+            {/* up arrow, hide if expanded */}
+            {!this.state.expanded && this.state.photos.length > 7 && this.state.offset > 0 &&
             <img src={upArrow}
               onClick={this.handleUpClick.bind(this)}
               style={{
@@ -147,11 +149,14 @@ class ImageGallery extends React.Component {
               display: 'flex',
               textAlign: 'center',
               textAlignVertical: 'center',
-              paddingLeft: '5px'
+              paddingLeft: '5px',
+              zIndex: 3,
+              position: 'relative',
+              objectFit: 'contain'
               }}
             />
             }
-            {this.state.thumbnails.map((photo, index) => {
+            {!this.state.expanded && this.state.thumbnails.map((photo, index) => {
               if (index + this.state.offset === this.state.photoIndex) {
                 //return a highlighted component if it is the current photo
                 return(
@@ -171,7 +176,8 @@ class ImageGallery extends React.Component {
                   key={index}/>
               )
             })}
-            {this.state.photos?.length > 7 && this.state.offset + 7 < this.state.photos?.length &&
+            {/* down arrow, hide on expand */}
+            {!this.state.expanded && this.state.photos?.length > 7 && this.state.offset + 7 < this.state.photos?.length &&
               <img src={downArrow}
               onClick={this.handleDownClick.bind(this)}
               style={{
@@ -180,12 +186,15 @@ class ImageGallery extends React.Component {
               display: 'flex',
               textAlign: 'center',
               textAlignVertical: 'center',
-              paddingLeft: '5px'
+              paddingLeft: '5px',
+              zIndex: 4,
+              position: 'relative',
+              objectFit: 'contain'
               }}
             />}
           </div>
-          {/* hide arrow if on first image */}
-          { this.state.photoIndex !== 0 &&
+          {/* left arrow, hide arrow if on first image, hide on expand */}
+          { this.state.photoIndex !== 0 && !this.state.expanded &&
             <div style={{
             position: 'absolute',
             top: '50%',
@@ -197,11 +206,12 @@ class ImageGallery extends React.Component {
                 background: 'rgba(105, 105, 105, .5)',
                 width: '25px',
                 height: '60px',
-                objectFit: 'cover'
+                objectFit: 'cover',
+                zIndex: 3
           }}
           /></div>}
-          {/* hide right arrow if on last image */}
-          { this.state.photoIndex !== this.state.photos.length - 1 &&
+          {/* hide right arrow if on last image, hide on expand */}
+          { this.state.photoIndex !== this.state.photos.length - 1 && !this.state.expanded &&
             <div style={{
               position: 'absolute',
               top: '50%',
@@ -213,7 +223,8 @@ class ImageGallery extends React.Component {
             background: 'rgba(105, 105, 105, .5)',
             width: '25px',
             height: '60px',
-            objectFit: 'cover'
+            objectFit: 'cover',
+            zIndex: 3,
           }}
           /></div>}
         <ExpandedGallery
