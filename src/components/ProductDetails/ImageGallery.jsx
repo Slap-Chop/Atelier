@@ -47,10 +47,10 @@ class ImageGallery extends React.Component {
       this.setState({thumbnails: thumbArray})
     }
     if (this.state.photoIndex > this.state.offset + 6 && this.state.LRClick) {
-      this.setState({offset: this.state.offset + 1, LRClick: false})
+      this.setState({offset: this.state.photoIndex - 6, LRClick: false})
     }
     if (this.state.photoIndex < this.state.offset && this.state.LRClick) {
-      this.setState({offset: this.state.offset - 1, LRClick: false})
+      this.setState({offset: this.state.photoIndex, LRClick: false})
     }
   }
 
