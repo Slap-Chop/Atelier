@@ -4,6 +4,7 @@ import leftArrow from './Images/leftArrow.png';
 import rightArrow from './Images/rightArrow.png';
 import upArrow from './Images/upArrow.png';
 import downArrow from './Images/downArrow.png';
+import ExpandedGallery from './ExpandedGallery.jsx';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class ImageGallery extends React.Component {
       photoIndex: 0,
       thumbnails: [],
       offset: 0,
-      LRClick: false
+      LRClick: false,
+      expanded: false
     }
   }
 
@@ -30,28 +32,47 @@ class ImageGallery extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    //make sure photo list updates accordingly to props
     if (this.state.photos !== this.props.style.photos && this.props.style.photos) {
       this.setState({photos:this.props.style.photos})
+      // cut the 7 thumbnail images out
       if (this.props.style.photos.length > 7) {
-        let thumbnailArray = this.props.style.photos.slice(0,7);
-        this.setState({thumbnails: thumbnailArray})
+        let thumbArray = this.props.style.photos.slice(0 + this.state.offset, 7 + this.state.offset);
+        this.setState({thumbnails: thumbArray})
       } else {
         this.setState({thumbnails: this.props.style.photos})
       }
     }
+    //reset photoindex if product changes to not index into undefined
     if (this.props.id !== prevProps.id) {
       this.setState({photoIndex: 0})
     }
+    // update thumbnail list if the offset changes
     if (this.state.offset !== prevState.offset) {
       let thumbArray = this.props.style.photos.slice(0 + this.state.offset, 7 + this.state.offset);
       this.setState({thumbnails: thumbArray})
     }
+    //snap the offset(thumbnail list) to the current picture if the left right arrow goes to something out of range
     if (this.state.photoIndex > this.state.offset + 6 && this.state.LRClick) {
       this.setState({offset: this.state.photoIndex - 6, LRClick: false})
     }
     if (this.state.photoIndex < this.state.offset && this.state.LRClick) {
       this.setState({offset: this.state.photoIndex, LRClick: false})
     }
+    //if going to index out of bounds, reset
+    if (prevState.photoIndex > this.state.photos?.length) {
+      this.setState({photoIndex:0, offset: 0})
+    }
+  }
+
+  toggleExpanded() {
+    if (this.state.expanded === false) {
+      this.setState({expanded: true})
+    }
+  }
+
+  closeExpanded() {
+    this.setState({expanded: false})
   }
 
   handleThumbnailClick(index) {
@@ -96,20 +117,30 @@ class ImageGallery extends React.Component {
     // make sure props have been passed before trying to render
     if (this.state.photos && this.state.photos[this.state.photoIndex]) {
       return(
-        <div
-        style={{
-          position: 'relative',
-          display: 'table',
-          backgroundImage:`url(${this.props.style.photos[this.state.photoIndex].url})`,
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          height: '100%',
+        <div style={{position: 'relative',
+          }}>
+          <div style={{
+          display: 'flex',
+          allignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          {/* main image */}
+          <img onClick={this.toggleExpanded.bind(this)}
+          src={this.props.style.photos[this.state.photoIndex]?.url}
+          style={{
+          position: 'absolute',
+          display: 'flex',
           width: '100%',
-          backgroundSize: 'contain'
-        }}
-        >
+          height: '100%',
+          objectFit: 'contain',
+          justifyContent: 'center',
+        }}/>
+
+        </div>
+
           <div>
-            {this.state.photos.length > 7 && this.state.offset > 0 &&
+            {/* up arrow, hide if expanded */}
+            {!this.state.expanded && this.state.photos.length > 7 && this.state.offset > 0 &&
             <img src={upArrow}
               onClick={this.handleUpClick.bind(this)}
               style={{
@@ -118,11 +149,14 @@ class ImageGallery extends React.Component {
               display: 'flex',
               textAlign: 'center',
               textAlignVertical: 'center',
-              paddingLeft: '5px'
+              paddingLeft: '5px',
+              zIndex: 3,
+              position: 'relative',
+              objectFit: 'contain'
               }}
             />
             }
-            {this.state.thumbnails.map((photo, index) => {
+            {!this.state.expanded && this.state.thumbnails.map((photo, index) => {
               if (index + this.state.offset === this.state.photoIndex) {
                 //return a highlighted component if it is the current photo
                 return(
@@ -142,7 +176,8 @@ class ImageGallery extends React.Component {
                   key={index}/>
               )
             })}
-            {this.state.photos?.length > 7 && this.state.offset + 7 < this.state.photos?.length &&
+            {/* down arrow, hide on expand */}
+            {!this.state.expanded && this.state.photos?.length > 7 && this.state.offset + 7 < this.state.photos?.length &&
               <img src={downArrow}
               onClick={this.handleDownClick.bind(this)}
               style={{
@@ -151,12 +186,15 @@ class ImageGallery extends React.Component {
               display: 'flex',
               textAlign: 'center',
               textAlignVertical: 'center',
-              paddingLeft: '5px'
+              paddingLeft: '5px',
+              zIndex: 4,
+              position: 'relative',
+              objectFit: 'contain'
               }}
             />}
           </div>
-          {/* hide arrow if on first image */}
-          { this.state.photoIndex !== 0 &&
+          {/* left arrow, hide arrow if on first image, hide on expand */}
+          { this.state.photoIndex !== 0 && !this.state.expanded &&
             <div style={{
             position: 'absolute',
             top: '50%',
@@ -165,15 +203,15 @@ class ImageGallery extends React.Component {
             onClick={this.handleLeftClick.bind(this)}
           ><img src={leftArrow}
               style={{
-                borderRadius: '50%',
-                backgroundColor: 'grey',
-                width: '20px',
-                height: '20px',
-                objectFit: 'cover'
+                background: 'rgba(105, 105, 105, .5)',
+                width: '25px',
+                height: '60px',
+                objectFit: 'cover',
+                zIndex: 3
           }}
           /></div>}
-          {/* hide right arrow if on last image */}
-          { this.state.photoIndex !== this.state.photos.length - 1 &&
+          {/* hide right arrow if on last image, hide on expand */}
+          { this.state.photoIndex !== this.state.photos.length - 1 && !this.state.expanded &&
             <div style={{
               position: 'absolute',
               top: '50%',
@@ -182,14 +220,28 @@ class ImageGallery extends React.Component {
             onClick={this.handleRightClick.bind(this)}
           ><img src={rightArrow}
           style={{
-            borderRadius: '50%',
-            backgroundColor: 'grey',
-            width: '20px',
-            height: '20px',
-            objectFit: 'cover'
+            background: 'rgba(105, 105, 105, .5)',
+            width: '25px',
+            height: '60px',
+            objectFit: 'cover',
+            zIndex: 3,
           }}
           /></div>}
+        <ExpandedGallery
+          open={this.state.expanded}
+          xClick={this.closeExpanded.bind(this)}
+          photos={this.state.photos}
+          photoIndex={this.state.photoIndex}
+          thumbnails={this.state.thumbnails}
+          offset={this.state.offset}
+          LRClick={this.state.LRClick}
+          handleLeft={this.handleLeftClick.bind(this)}
+          handleRight={this.handleRightClick.bind(this)}
+          handleUp={this.handleUpClick.bind(this)}
+          handleDown={this.handleDownClick.bind(this)}
+          handleThumb={this.handleThumbnailClick.bind(this)}
 
+          />
       </div>
       )
     }
