@@ -87,10 +87,17 @@ const AddAnswer = (props) => {
         body: Answer,
         name: Name,
         email: Email,
-        product_id: props.productId
+        photos: []
       }
       console.log("post this input", userInput)
       //post
+      let url = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${props.q_data.question_id}/answers`;
+      axios.defaults.headers.common['Authorization'] = config.TOKEN;
+      axios.post(url, userInput)
+      .then( (res) => {
+        console.log("answer form is submited", res)
+      })
+      props.addAnswerHandler(false)
     }
   }
 

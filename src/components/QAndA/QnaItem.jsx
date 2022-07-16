@@ -17,10 +17,7 @@ const QnaItem = ({data,productId}) => {
     return "Q: " + str[0].toUpperCase() + str.substring(1).toLowerCase();
   }
 
-  //not working
-  const qHelpHandler = (event) => {
-    console.log("inside quaItem.jsx", num);
-  }
+
 
   const addAnswerHandler = (status) => {
     setAddAnswer(status)
@@ -30,9 +27,11 @@ const QnaItem = ({data,productId}) => {
     <div className="qnaItem">
       <div className="question" >
         <span id="question-body" style={{"fontWeight": "bold"}}>{formatString(data.question_body)}</span>
-        <span id="question-helpCounter"><HelpCounter help={data.question_helpfulness} onHelpHandler={qHelpHandler}/></span> <span>|</span>
-        <span id="add-answer" onClick={() => addAnswerHandler(true)}>Add Answer</span>
-        {addAnswer && <AddAnswer q_data={data} addAnswerHandler={addAnswerHandler} productId={productId}/>}
+        <div className="q-bar">
+          <span id="question-helpCounter"><HelpCounter help={data.question_helpfulness} questionId={data.question_id}/></span> <span>{'  |  '}</span>
+          <span id="add-answer" onClick={() => addAnswerHandler(true)}>Add Answer</span>
+          {addAnswer && <AddAnswer q_data={data} addAnswerHandler={addAnswerHandler} productId={productId}/>}
+        </div>
       </div>
       <div className="answer-list"><AnswerList answerData={answerData} reportStatus={data.reported}/></div>
     </div>
