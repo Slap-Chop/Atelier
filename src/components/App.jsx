@@ -144,6 +144,8 @@ class App extends React.Component {
       <div><ProductDetails updateStyle={this.updateStyle}
       products={this.state.productList}
       id={this.state.currentId}
+      calculateStars={this.calculateStars}
+      reviewsAvgScore={this.state.reviewsAvgScore}
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
       <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>

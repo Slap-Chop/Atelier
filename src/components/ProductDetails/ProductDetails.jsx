@@ -69,6 +69,8 @@ class ProductDetails extends React.Component {
         <div className='productInfoBody'>
         <ProductInfo currentProduct={this.props.currentProduct}
       styles={this.state.styles}
+      calculateStars={this.props.calculateStars}
+      reviewsAvgScore={this.props.reviewsAvgScore}
       currentStyle={this.state.currentStyle}
       click={this.handleStyleChange.bind(this)}
       id={this.props.id}/>

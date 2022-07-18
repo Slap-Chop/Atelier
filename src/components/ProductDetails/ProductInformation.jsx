@@ -4,9 +4,13 @@ import StyleSelector from './StyleSelector.jsx';
 const ProductInfo = (props) => {
   // console.log('currentProduct:', props.currentProduct)
   // console.log('product infostyles', props.styles)
+  let stars = props.calculateStars(props.reviewsAvgScore);
+  console.log(stars)
   return (
   <div className='productBorder'>
-    <p>Review star component</p>
+    <div>
+      {stars.map(star => star)} Read all reviews
+    </div>
     {/* product name and category */}
     <div>{props.currentProduct.category}</div>
     <div className='productName'>
