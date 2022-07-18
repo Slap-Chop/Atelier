@@ -15,15 +15,17 @@
 
 .productInfoBody {
   float: right;
-  width: 70%;
-}
-
-.productBorder {
+  width: 95%;
   border: 1px solid black;
 }
 
+/* .productBorder {
+  border: 1px solid black;
+} */
+
 .imageGalleryContainer {
   position: relative;
+  background-color: lightgrey;
 }
 
 .imageContainer {
