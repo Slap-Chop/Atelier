@@ -117,24 +117,12 @@ class ImageGallery extends React.Component {
     // make sure props have been passed before trying to render
     if (this.state.photos && this.state.photos[this.state.photoIndex]) {
       return(
-        <div style={{position: 'relative',
-          }}>
-          <div style={{
-          display: 'flex',
-          allignItems: 'center',
-          justifyContent: 'center',
-        }}>
+        <div className='imageGalleryContainer'>
+          <div className='imageContainer'>
           {/* main image */}
           <img onClick={this.toggleExpanded.bind(this)}
           src={this.props.style.photos[this.state.photoIndex]?.url}
-          style={{
-          position: 'absolute',
-          display: 'flex',
-          width: '100%',
-          height: '100%',
-          objectFit: 'contain',
-          justifyContent: 'center',
-        }}/>
+          className='mainImage'/>
 
         </div>
 
@@ -143,18 +131,7 @@ class ImageGallery extends React.Component {
             {!this.state.expanded && this.state.photos.length > 7 && this.state.offset > 0 &&
             <img src={upArrow}
               onClick={this.handleUpClick.bind(this)}
-              style={{
-              width: '50px',
-              height: '50px',
-              display: 'flex',
-              textAlign: 'center',
-              textAlignVertical: 'center',
-              paddingLeft: '5px',
-              zIndex: 3,
-              position: 'relative',
-              objectFit: 'contain'
-              }}
-            />
+              className='vertArrow'/>
             }
             {!this.state.expanded && this.state.thumbnails.map((photo, index) => {
               if (index + this.state.offset === this.state.photoIndex) {
@@ -180,52 +157,23 @@ class ImageGallery extends React.Component {
             {!this.state.expanded && this.state.photos?.length > 7 && this.state.offset + 7 < this.state.photos?.length &&
               <img src={downArrow}
               onClick={this.handleDownClick.bind(this)}
-              style={{
-              width: '50px',
-              height: '50px',
-              display: 'flex',
-              textAlign: 'center',
-              textAlignVertical: 'center',
-              paddingLeft: '5px',
-              zIndex: 4,
-              position: 'relative',
-              objectFit: 'contain'
-              }}
+              className='vertArrow'
             />}
           </div>
           {/* left arrow, hide arrow if on first image, hide on expand */}
           { this.state.photoIndex !== 0 && !this.state.expanded &&
-            <div style={{
-            position: 'absolute',
-            top: '50%',
-            left: '10%'
-            }}
+            <div
+              className='leftArrowContainer'
             onClick={this.handleLeftClick.bind(this)}
           ><img src={leftArrow}
-              style={{
-                background: 'rgba(105, 105, 105, .5)',
-                width: '25px',
-                height: '60px',
-                objectFit: 'cover',
-                zIndex: 3
-          }}
+              className='horzArrow'
           /></div>}
           {/* hide right arrow if on last image, hide on expand */}
           { this.state.photoIndex !== this.state.photos.length - 1 && !this.state.expanded &&
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              right: '0%'
-              }}
+            <div className='rightArrowContainer'
             onClick={this.handleRightClick.bind(this)}
           ><img src={rightArrow}
-          style={{
-            background: 'rgba(105, 105, 105, .5)',
-            width: '25px',
-            height: '60px',
-            objectFit: 'cover',
-            zIndex: 3,
-          }}
+              className='horzArrow'
           /></div>}
         <ExpandedGallery
           open={this.state.expanded}
