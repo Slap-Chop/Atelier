@@ -148,16 +148,8 @@ class ExpandedGallery extends React.Component {
           {/* up arrow */}
           {this.props.photos.length > 7 && this.props.offset > 0 &&
             <img src={upArrow}
+              className='vertArrow expandedUp'
               onClick={this.props.handleUp}
-              style={{
-              width: '50px',
-              height: '50px',
-              display: 'flex',
-              position: 'absolute',
-              top: '12%',
-              left: '5%',
-              paddingLeft: '5px'
-              }}
             />
             }
           {/* icons to swap */}
@@ -192,16 +184,7 @@ class ExpandedGallery extends React.Component {
             {this.props.photos?.length > 7 && this.props.offset + 7 < this.props.photos?.length &&
               <img src={downArrow}
               onClick={this.props.handleDown}
-              style={{
-              width: '50px',
-              height: '50px',
-              display: 'flex',
-              paddingLeft: '5px',
-              zIndex: 4,
-              position: 'absolute',
-              top:'60%',
-              left: '5%',
-              }}
+              className='vertArrow expandedDown'
             />}
             {/* left arrow */}
             { this.props.photoIndex !== 0 &&

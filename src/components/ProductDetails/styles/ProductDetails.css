@@ -1,0 +1,137 @@
+.productDetailsBody {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.imageGalleryBody {
+  border: 1px solid black;
+  width: 130%;
+}
+
+.productInfoBody {
+  float: right;
+  width: 70%;
+}
+
+.productBorder {
+  border: 1px solid black;
+}
+
+.imageGalleryContainer {
+  position: relative;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.mainImage {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  justify-content: center;
+}
+
+.vertArrow {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  padding-left: 5px;
+  z-index: 3;
+  position: relative;
+  object-fit: contain;
+}
+
+.expandedUp {
+  top: 12%;
+  left: 5%;
+  position: absolute;
+  padding-left: 5px;
+}
+
+.expandedDown {
+  top: 60%;
+  left: 5%;
+  position: absolute;
+  padding-left: 5px;
+}
+
+.leftArrowContainer {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+}
+
+.rightArrowContainer {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+}
+
+.horzArrow{
+  background: rgba(105, 105, 105, .5);
+  width: 25px;
+  height: 60px;
+  object-fit: cover;
+  z-index: 3;
+}
+
+.productName {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.salePrice{
+  padding-left: 10px;
+}
+
+.styleComponentContainer{
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+  display: flex;
+  padding: 5px;
+}
+
+.styleThumbnail{
+  float: right;
+  transform-origin: 50% 50%;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+}
+
+.thumbnailCheck {
+  width: 15px;
+  height: 15px;
+  background-color:white;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.galleryThumbnailContainer {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  padding: 1px;
+}
+
+.galleryThumbnail {
+  float: right;
+  transform-origin: 50% 50%;
+  border-radius: 10%;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  opacity: .5;
+  z-index: 3;
+}
