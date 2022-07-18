@@ -1,11 +1,11 @@
 import React from 'react';
 
-const GalleryThumbnail = (props) => {
+const ExpandedIcon = (props) => {
   return (
     <div
     style={{fontWeight: props.weight || 100,
-      width: '100px',
-      height: '100px',
+      width: '50px',
+      height: '50px',
       display: 'flex',
       textAlign: 'center',
       textAlignVertical: 'center',
@@ -18,9 +18,9 @@ const GalleryThumbnail = (props) => {
         }}
         style={{float: 'right',
           transformOrigin: '50% 50%',
-          borderRadius: '10%',
-          height: '60px',
-          width: '60px',
+          borderRadius: '50%',
+          height: '40px',
+          width: '40px',
           objectFit: 'cover',
           opacity: props.selected || .5,
           zIndex: 3
@@ -31,4 +31,4 @@ const GalleryThumbnail = (props) => {
   )
 }
 
-export default GalleryThumbnail;
+export default ExpandedIcon;

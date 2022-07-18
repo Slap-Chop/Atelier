@@ -1,15 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 //take helpfull ness and return Helpful? Yes (7)
 const HelpCounter = (props) => {
 
-  // const clickHandler = (event) => {
-  //   //event.preventDefault()
-  //   alert("in helpcounter")
-  //   props.helpHandler()
-  // //   //shoud do axios patch and update helpful counter for 1
-  // //   //track user with cookies, each user can only vote one
-  // }
+  const [helpness, setHelpness] = useState(props.help);
+  const [clicked, setClicked] = useState(false);
+
+  const clickHandler = (event) => {
+    if (!clicked) {
+      setHelpness(helpness + 1)
+      setClicked(true)
+      if (props.questionId) {
+        alert("post question help")
+      }
+      if (props.answerId) {
+        alert("post answer help")
+      }
+    }
+    return null;
+  }
 
   const formatHelp = (num) => {
     return "(" + num.toString() + ")";
@@ -17,7 +26,7 @@ const HelpCounter = (props) => {
 
   return(
     <React.Fragment>
-      <span>Helpful? <span style={{"textDecoration": "underline"}}>Yes </span>{formatHelp(props.help)}</span>
+      <span onClick={(event) => {clickHandler(event)}}>Helpful? <span style={{"textDecoration": "underline"}}>Yes </span>{formatHelp(helpness)}</span>
     </React.Fragment>
   )
 }
