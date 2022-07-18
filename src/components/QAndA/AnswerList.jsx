@@ -48,8 +48,10 @@ const AnswerList = (props) => {
         return <AnswerItem key={ans.id} data={ans} reportStatus={props.reportStatus}/>
       })}
     </div>
-    {(checkAnswerLength(props.answerData) && !collapse) && <button style={{"fontWeight": "bold"}} onClick={onLoadHandler}>LOAD MORE ANSWERS</button>}
-    {collapse &&  <button style={{"fontWeight": "bold"}} onClick={onCollapseHandler}>COLLAPSE ANSWERS</button>}
+    <div className="ans-button">
+      {(checkAnswerLength(props.answerData) && !collapse) && <div style={{"fontWeight": "bold"}} onClick={onLoadHandler}>LOAD MORE ANSWERS</div>}
+      {collapse &&  <div style={{"fontWeight": "bold"}} onClick={onCollapseHandler}>COLLAPSE ANSWERS</div>}
+    </div>
     </>
   )
 }

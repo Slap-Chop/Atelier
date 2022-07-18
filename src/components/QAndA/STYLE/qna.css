@@ -1,0 +1,48 @@
+.qna-section {
+  color: rgb(86, 81, 81);
+  border: solid 2px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.qnaList {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#header {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+}
+
+#qnaSearchEntry {
+  width: 100%;
+  font-weight: bold;
+}
+
+.question {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.q-bar {
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.answer-list {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}

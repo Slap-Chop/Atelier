@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import QnaList from './QnaList.jsx';
 import QnaSearch from './QnaSearch.jsx';
 import AddQuestion from './FORM/AddQuestion.jsx';
+import './STYLE/qna.css';
 const axios = require('axios');
 const config = require('../../../config.js');
 
@@ -69,12 +70,6 @@ class QAndA extends React.Component {
     }
   }
 
-
-
-
-
-
-
   //update user input searchtext
   onSearchHandler(searchText) {
     //console.log(searchText);
@@ -96,7 +91,6 @@ class QAndA extends React.Component {
       addQuestion: status
     })
   }
-
 
   //bc compoenent setstate with fetched data
   //if use filter function setstate with updated value will be over-written
@@ -127,8 +121,8 @@ class QAndA extends React.Component {
 
   render () {
     return(
-    <div className="qna-section" style={{color:"blue", border: "solid 2px"}}>
-        <h3>QUESTIONS & ANSWERS </h3>
+    <div className="qna-section" >
+        <div id="header">QUESTIONS & ANSWERS </div>
       <div className="qnaSearch" >
         <QnaSearch onSearchHandler={this.onSearchHandler} />
       </div>

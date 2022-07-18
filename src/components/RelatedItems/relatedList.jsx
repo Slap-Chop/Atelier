@@ -21,7 +21,7 @@ var RelatedList = (props) => {
     overflow: 'auto',
    }}
    >{props.relatedProducts.map((product, index) => {
-      return <ProductCard class="card" key= {index} product={product} onClick={props.onClick}/>
+      return <ProductCard class="card" key= {index} product={product} onClick={props.onClick} currentProduct={props.currentProduct}/>
    })}
     {/* <div style={{position: 'relative', float: 'right', bottom: '100px'}}>
       <FontAwesomeIcon icon={faArrowTurnRight} /> */}

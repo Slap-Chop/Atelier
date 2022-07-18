@@ -1,9 +1,11 @@
 import React from 'react';
+import ComparisonModal from './comparisonModal.jsx';
 
 class ProductCard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      comparisonState: false
     };
     this.onProdClick = this.onProdClick.bind(this);
     this.onActionClick = this.onActionClick.bind(this)
@@ -21,7 +23,8 @@ class ProductCard extends React.Component {
 
   onActionClick(e) {
     e.preventDefault();
-    console.log(this.props.product)
+    let compState = this.state.comparisonState;
+    this.setState({comparisonState: !compState})
   }
 
   mouseover() {
@@ -55,7 +58,7 @@ class ProductCard extends React.Component {
       return (
         <>
 
-        <div  className="card" id={`S${this.props.product.name}`}  style={
+        <div id={`S${this.props.product.name}`}  style={
           {display: 'inline-block',
           margin: '10px',
           width: '160px',
@@ -86,6 +89,7 @@ class ProductCard extends React.Component {
           <div  style={{marginBottom:'5px'}} className="rating">star rating to go here</div>
           </div>
         </div>
+        {this.state.comparisonState ? <ComparisonModal changeCompState={this.onActionClick} products={this.props}/> : null}
         </>
       )
     }
