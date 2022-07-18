@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component, createRef} from 'react';
 import ReactDOM from 'react-dom';
 import Xbutton from './Images/Xbutton.png';
 import ExpandedIcon from './ExpandedIcon.jsx';
@@ -10,25 +10,85 @@ import downArrow from './Images/downArrow.png';
 class ExpandedGallery extends React.Component {
   constructor(props){
     super(props);
-    const overlayStyle = {
-      position: 'fixed', /* Stay in place */
-      zIndex: 1, /* Sit on top */
-      left: 0,
-      top: 0,
-      width: '100%', /* Full width */
-      height: '100%', /* Full height */
-      justifyContent: 'center',
-      display: 'flex',
-      backgroundColor: 'rgb(0,0,0)', /* Fallback color */
-      backgroundColor: 'rgba(0,0,0,0.4)' /* Black w/ opacity */
+    this.state={
+      zoomed: false,
+      x: null,
+      y: null,
     }
+    this.imageRef = createRef();
+    this.handleMousePan = this.handleMousePan.bind(this);
+    this.handleExpandedClick = this.handleExpandedClick.bind(this);
   }
 
+  handleExpandedClick() {
+    this.setState({zoomed: !this.state.zoomed})
+  }
 
+  handleMousePan(event) {
+    const {
+      left: offsetLeft,
+      top: offsetTop
+    } = this.imageRef.current.getBoundingClientRect()
+
+
+
+    let x = ((event.pageX - offsetLeft))/2.3;
+    let y = ((event.pageY - offsetTop))/2.3;
+    console.log('xy', x, y)
+    this.setState({x: x, y: y})
+  }
 
   render() {
     if (!this.props.open) {
       return null;
+    }
+    if (this.state.zoomed) {
+
+      return (
+        <div className='modal' style ={{
+          position: 'fixed',
+          zIndex: 1,
+          left: 0,
+          top: 0,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          display: 'flex',
+          backgroundColor: 'rgb(0,0,0)',
+          backgroundColor: 'rgba(0,0,0,0.4)'
+        }}>
+          <div className='modal-content' style={{
+          width: '90%',
+          height: '90%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center',
+          backgroundSize: 'contain',
+          }}>
+            {/* main center image */}
+            <div style={{
+
+            allignItems: 'center',
+            justifyContent: 'center',
+            display: 'flex'
+            }}>
+              <img src={this.props.photos[this.props.photoIndex]?.url}
+              onClick={this.handleExpandedClick}
+              onMouseMove={this.handleMousePan}
+              ref={this.imageRef}
+              style={{
+              transformOrigin: `${this.state.x}px ${this.state.y}px`,
+              position: 'absolute',
+              display: 'flex',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              objectFit: 'contain',
+              justifyContent: 'center',
+              transform: 'scale(2.5)'
+              }}/>
+            </div>
+          </div>
+        </div>
+      )
     }
     return (
       // background fade out
@@ -55,9 +115,11 @@ class ExpandedGallery extends React.Component {
         <div style={{
           allignItems: 'center',
           justifyContent: 'center',
-          display: 'flex'
+          display: 'flex',
+          overflow: 'hidden',
           }}>
         <img src={this.props.photos[this.props.photoIndex]?.url}
+          onClick={this.handleExpandedClick}
           style={{
           position: 'absolute',
           display: 'flex',
@@ -74,13 +136,14 @@ class ExpandedGallery extends React.Component {
         src={Xbutton}
         onClick={(e) => this.props.xClick && this.props.xClick(e)}
         style={{
+          position: 'absolute',
+          top: '3%',
+          left: '5%',
           width: '50px',
           height: '50px',
           display: 'flex',
-          textAlign: 'center',
-          textAlignVertical: 'center',
           paddingLeft: '5px',
-          zIndex: 1
+          zIndex: 3,
           }}/>
           {/* up arrow */}
           {this.props.photos.length > 7 && this.props.offset > 0 &&
@@ -90,14 +153,20 @@ class ExpandedGallery extends React.Component {
               width: '50px',
               height: '50px',
               display: 'flex',
-              textAlign: 'center',
-              textAlignVertical: 'center',
+              position: 'absolute',
+              top: '12%',
+              left: '5%',
               paddingLeft: '5px'
               }}
             />
             }
           {/* icons to swap */}
-        {this.props.thumbnails.map((photo, index) => {
+          <div style ={{
+            position: 'absolute',
+            top: '18%',
+            left: '5.5%'
+          }}>
+            {this.props.thumbnails.map((photo, index) => {
               if (index + this.props.offset === this.props.photoIndex) {
                 //return a highlighted component if it is the current photo
                 return(
@@ -117,6 +186,8 @@ class ExpandedGallery extends React.Component {
                   key={index}/>
               )
             })}
+          </div>
+
             {/* down arrow */}
             {this.props.photos?.length > 7 && this.props.offset + 7 < this.props.photos?.length &&
               <img src={downArrow}
@@ -125,12 +196,11 @@ class ExpandedGallery extends React.Component {
               width: '50px',
               height: '50px',
               display: 'flex',
-              textAlign: 'center',
-              textAlignVertical: 'center',
               paddingLeft: '5px',
               zIndex: 4,
-              position: 'relative',
-              objectFit: 'contain'
+              position: 'absolute',
+              top:'60%',
+              left: '5%',
               }}
             />}
             {/* left arrow */}
