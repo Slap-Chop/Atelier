@@ -17,6 +17,7 @@ class RelatedItems extends React.Component {
 
 
   componentDidMount() {
+    var specData;
     let ID = this.props.products.currentId
     var relatedProds = [];
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
@@ -38,7 +39,7 @@ class RelatedItems extends React.Component {
       //map through axios responses , transform full response object to just the data we want, set related products in state to an array of our related products data
       .then((data) => {data = data.map((res) => { return res.data});
 
-      this.setState({relatedProducts: data}); const specDatareturn = data; data})
+      this.setState({relatedProducts: data}); specData = data; return data})
       .catch((err) => console.log(err))
     })
     .then(() => {
@@ -75,7 +76,7 @@ class RelatedItems extends React.Component {
     .then((newData) => {
       //extend the old related products state to include default keys with the product's default style as the value
     var relatedProducts;
-    relatedProducts = this.state.relatedProducts.map((product) => {
+    relatedProducts = specData.map((product) => {
       for (let i = 0; i < newData.length; i++) {
         if (product.id === Number(Object.keys(newData[i])[0])) {
           product.default = newData[i][product.id]
@@ -105,18 +106,21 @@ class RelatedItems extends React.Component {
   }
 
 
+
+
   render() {
 
 
     return (
       <>
+      <div style={{display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center'}}>Related Items</div>
 
         <div className="related-list" style={
-          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center'}
+          {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center', margin: '15px'}
         }>
         {this.state.relatedProducts ?  <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} currentProduct={this.props.products.currentProduct}/> : null }
         </div>
-
+        <div style={{display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center', margin: '15px'}}>My Outfit</div>
         <div className="related-list" style={
           {display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignText: 'center'}
         }>

@@ -5,11 +5,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTurnRight } from '@fortawesome/free-solid-svg-icons'
 
 var RelatedList = (props) => {
-
-  var listDiv = document.getElementById('scroll');
-  if (listDiv) {
-    listDiv.scroll = true;
+  var duplicateObj = {
+    [props.currentProduct.id]: true
   }
+  // console.log(props.relatedProducts, 'relProds')
+  var relObj = props.relatedProducts;
+  var dupChecker = (productsArray) => {
+    productsArray.forEach((product, i) => {
+      if (duplicateObj[product.id]) {
+        relObj.splice(i, 1);
+      } else {
+        duplicateObj[product.id] = true;
+      }
+    })
+    return relObj;
+  }
+
+  var prodArray = dupChecker(relObj);
+
 
   return (
     <>
@@ -21,7 +34,7 @@ var RelatedList = (props) => {
     whiteSpace: 'nowrap',
     overflow: 'auto',
    }}
-   >{props.relatedProducts.map((product, index) => {
+   >{prodArray.map((product, index) => {
       return <ProductCard class="card" key= {index} product={product} onClick={props.onClick} currentProduct={props.currentProduct}/>
    })}
     {/* <div style={{position: 'relative', float: 'right', bottom: '100px'}}>
