@@ -135,3 +135,96 @@
   opacity: .5;
   z-index: 3;
 }
+
+.expandedIconContainer {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  padding: 1px;
+}
+
+.expandedIcon {
+  float: right;
+  transform-origin: 50% 50%;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  opacity:.5;
+  z-index: 3;
+}
+
+.cartContainer {
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.sizeContainer{
+  padding-right: 30px;
+}
+
+.sizeMenu {
+  width: 200px;
+  height: 40px;
+}
+
+.quantityMenu {
+  width: 80px;
+  height: 40px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modalContent {
+  width: 90%;
+  height: 90%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.modalImageContainer {
+  justify-content: center;
+  display: flex;
+}
+
+.modalImage {
+  position: absolute;
+  display: flex;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  justify-content: center;
+}
+
+.zoomedImage {
+  transform: scale(2.5);
+}
+
+.XButton {
+  position: absolute;
+  top: 3%;
+  left: 5%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  padding-left: 5px;
+  z-index: 3;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 18%;
+  left: 5.5%;
+}

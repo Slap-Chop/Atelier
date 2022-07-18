@@ -71,27 +71,18 @@ class Cart extends React.Component {
 
 
     return(
-      <div style={{
-        border: '1px solid yellow',
-        }}>
+      <div className='productBorder'>
 
         {this.props.currentProduct?.name} > {this.props.currentStyle?.name}
-      <div style={{
-        display: 'flex',
-        paddingBottom: '20px'
-
-      }}>
-      <div style ={{paddingRight: '30px'}}>
+      <div className='cartContainer'>
+      <div className='sizeContainer'>
       {/* Size dropdown menu */}
       <select onChange={this.handleSizeChange.bind(this)}
       ref={this.sizeRef}
       //look into material UI or something to open, instead of focus
       // onFocus={(e) =>(e.target.size='6')}
       // onBlur={(e) =>(e.target.size='0')}
-      style={{
-        width: '200px',
-        height: '40px',
-      }}
+      className='sizeMenu'
       disabled={!this.state.inStock}>
       {/* check if item is in stock*/}
         <option value={'N/A'}>{this.state.stockMessage}</option>
@@ -105,10 +96,7 @@ class Cart extends React.Component {
       </div>
       <div>
         {/* Quantity dropdown menu */}
-        <select style={{
-          width: '80px',
-          height: '40px',
-        }}
+        <select className='quantityMenu'
         onChange={this.handleQuantChange.bind(this)}
         disabled={this.state.currentSize === 'Select Size'}>
         {this.state.currentSize === 'Select Size' && <option>-</option>}
