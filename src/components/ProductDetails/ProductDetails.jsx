@@ -67,13 +67,15 @@ class ProductDetails extends React.Component {
         /></div>
       <div>
         <div className='productInfoBody'>
-        <ProductInfo currentProduct={this.props.currentProduct}
-      styles={this.state.styles}
-      calculateStars={this.props.calculateStars}
-      reviewsAvgScore={this.props.reviewsAvgScore}
-      currentStyle={this.state.currentStyle}
-      click={this.handleStyleChange.bind(this)}
-      id={this.props.id}/>
+        <ProductInfo
+        currentProduct={this.props.currentProduct}
+        scrollReview={this.props.scrollReview}
+        styles={this.state.styles}
+        calculateStars={this.props.calculateStars}
+        reviewsAvgScore={this.props.reviewsAvgScore}
+        currentStyle={this.state.currentStyle}
+        click={this.handleStyleChange.bind(this)}
+        id={this.props.id}/>
       <Cart currentStyle={this.state.currentStyle}
       currentProduct={this.props.currentProduct}/>
       <div className='productBorder'>

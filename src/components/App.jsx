@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, createRef} from 'react';
 import ReactDOM from 'react-dom';
 import ProductDetails from './ProductDetails/ProductDetails.jsx';
 import QAndA from './QAndA/QAndA.jsx';
@@ -19,6 +19,8 @@ class App extends React.Component {
       reviewsMeta: {},
       reviewsAvgScore: null
     }
+    this.reviewRef = createRef();
+
     this.relatedProdClick = this.relatedProdClick.bind(this);
     this.addOutfitClick = this.addOutfitClick.bind(this);
     this.removeOutfitLick = this.removeOutfitLick.bind(this);
@@ -132,8 +134,10 @@ class App extends React.Component {
       }
     }
     this.setState({currentOutfit: outfit})
+  }
 
-
+  scrollToReviews() {
+    this.reviewRef.current.scrollIntoView()
   }
 
   render() {
@@ -144,12 +148,13 @@ class App extends React.Component {
       <div><ProductDetails updateStyle={this.updateStyle}
       products={this.state.productList}
       id={this.state.currentId}
+      scrollReview={this.scrollToReviews.bind(this)}
       calculateStars={this.calculateStars}
       reviewsAvgScore={this.state.reviewsAvgScore}
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
       <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
-      <div><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore}/></div>
+      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore}/></div>
     </div>
 
     )

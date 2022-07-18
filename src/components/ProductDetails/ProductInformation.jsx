@@ -5,10 +5,11 @@ const ProductInfo = (props) => {
   // console.log('currentProduct:', props.currentProduct)
   // console.log('product infostyles', props.styles)
   let stars = props.calculateStars(props.reviewsAvgScore);
-  console.log(stars)
   return (
   <div className='productBorder'>
-    <div>
+    <div
+      onClick={props.scrollReview}
+    >
       {stars.map(star => star)} Read all reviews
     </div>
     {/* product name and category */}
