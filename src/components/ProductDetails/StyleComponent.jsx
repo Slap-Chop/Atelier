@@ -4,22 +4,13 @@ import checkmark from './Images/checkmark.png';
 const StyleComponent = (props) => {
   return(
     <div
-    style={{
-    width: '75px',
-    height: '75px',
-    borderRadius: '100%',
-    display: 'flex',
-    padding: '5px'
-    }}>
+    className='styleComponentContainer'>
     {/* {props.style.name} */}
     <img
     onClick={() => {props.click(props.style)}}
-    className='thumbnail' style={{float: 'right',
-    transformOrigin: '50% 50%',
-    borderRadius: '50%',
-    height: props.current || '50px',
-    width: props.current || '50px',
-    objectFit: 'cover'
+    className='styleThumbnail' style={{
+    height: props.current,
+    width: props.current,
     }}
     src={`${props.style.photos[0].thumbnail_url}`}
     alt='Image N/A'/>
@@ -27,13 +18,7 @@ const StyleComponent = (props) => {
     {/* {console.log(props.style)} */}
     {props.current ? <img
       src={checkmark}
-      style={{
-        width: '15px',
-        height: '15px',
-        backgroundColor:'white',
-        borderRadius: '50%',
-        objectFit: 'cover'
-      }}/>: null
+      className='thumbnailCheck'/>: null
 
     }
   </div>
