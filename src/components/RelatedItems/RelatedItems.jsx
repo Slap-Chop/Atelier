@@ -37,7 +37,8 @@ class RelatedItems extends React.Component {
       axios.all(data.map((endpoint) => axios.get(endpoint)))
       //map through axios responses , transform full response object to just the data we want, set related products in state to an array of our related products data
       .then((data) => {data = data.map((res) => { return res.data});
-      this.setState({relatedProducts: data}); return data})
+
+      this.setState({relatedProducts: data}); const specDatareturn = data; data})
       .catch((err) => console.log(err))
     })
     .then(() => {

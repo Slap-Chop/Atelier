@@ -15,7 +15,8 @@ var RelatedList = (props) => {
     <>
    <div id="scroll" style={{
     display: 'inline-flex',
-    width: '60%',
+    marginLeft: '50px',
+    marginRight: '50px',
     maxHeight: '100%',
     whiteSpace: 'nowrap',
     overflow: 'auto',
