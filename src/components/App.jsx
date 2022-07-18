@@ -6,7 +6,7 @@ import RelatedItems from './RelatedItems/RelatedItems.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import Star from './Stars.jsx';
 import axios from 'axios';
-import config from '../../config.js'
+import config from '../../config.js';
 
 class App extends React.Component {
   constructor(props) {
