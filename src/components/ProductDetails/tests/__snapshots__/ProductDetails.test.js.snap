@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component should render properly and stay consistent 1`] = `
+<div
+  className="productDetailsBody"
+>
+  <div
+    className="imageGalleryBody"
+  >
+    <ImageGallery
+      id={0}
+      style={Object {}}
+    />
+  </div>
+  <div>
+    <div
+      className="productInfoBody"
+    >
+      <ProductInfo
+        calculateStars={[MockFunction]}
+        click={[Function]}
+        currentProduct={
+          Object {
+            "category": "Jackets",
+            "default_price": "140.00",
+            "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+            "id": 40344,
+            "name": "Camo Onesie",
+            "slogan": "Blend in to your crowd",
+          }
+        }
+        currentStyle={Object {}}
+        id={40344}
+        reviewsAvgScore={[MockFunction]}
+        scrollReview={[MockFunction]}
+        styles={Array []}
+      />
+      <Cart
+        currentProduct={
+          Object {
+            "category": "Jackets",
+            "default_price": "140.00",
+            "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+            "id": 40344,
+            "name": "Camo Onesie",
+            "slogan": "Blend in to your crowd",
+          }
+        }
+        currentStyle={Object {}}
+      />
+      <div
+        className="productBorder"
+      >
+        <h5>
+          Blend in to your crowd
+        </h5>
+        <p>
+          The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
