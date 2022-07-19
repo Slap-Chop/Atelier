@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart should render properly 1`] = `
+<div
+  className="productBorder"
+>
+  Camo Onesie
+   &gt; 
+  Forest Green & Black
+  <div
+    className="cartContainer"
+  >
+    <div
+      className="sizeContainer"
+    >
+      <select
+        className="sizeMenu"
+        disabled={true}
+        onChange={[Function]}
+      >
+        <option
+          value="N/A"
+        >
+          Out of Stock
+        </option>
+      </select>
+    </div>
+    <div>
+      <select
+        className="quantityMenu"
+        disabled={true}
+        onChange={[Function]}
+      >
+        <option>
+          -
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;
