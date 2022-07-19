@@ -126,7 +126,7 @@ class App extends React.Component {
       return;
     } else {
       let outFit = this.state.currentOutfit;
-      outFit.push(product)
+      outFit.unshift(product)
       this.setState({currentOutfit: outFit})
     }
   }
