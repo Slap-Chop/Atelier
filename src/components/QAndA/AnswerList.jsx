@@ -45,7 +45,9 @@ const AnswerList = (props) => {
     <>
     <div  className="answerList" style={{maxHeight: 150, overflow: 'auto'}}>
       {displayData(props.answerData).map( (ans) => {
-        return <AnswerItem key={ans.id} data={ans} reportStatus={props.reportStatus}/>
+        return <div className="answers" key={ans.id}>
+                <div style={{"fontWeight": "bold", "fontSize":"1rem"}}>A:</div> <AnswerItem  data={ans} reportStatus={props.reportStatus}/>
+              </div>
       })}
     </div>
     <div className="ans-button">

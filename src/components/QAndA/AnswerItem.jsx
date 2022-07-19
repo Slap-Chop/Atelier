@@ -14,9 +14,10 @@ const AnswerItem = (props) => {
 
   return (
     <div className="answerItem">
-      <div><span style={{"fontWeight": "bold"}}>A:</span>{formatBody(props.data.body)}</div>
-      <div><Footer name={props.data.answerer_name} data={props.data.date}/><span> | </span>
-      <HelpCounter answerId={props.data.id} help={props.data.helpfulness}/> <span> | </span> <ReportToggle reportStatus={props.reportStatus} />
+      <div>{formatBody(props.data.body)}</div>
+      <div className="answer-footer">
+        <Footer name={props.data.answerer_name} data={props.data.date}/><span> | </span>
+        <HelpCounter answerId={props.data.id} help={props.data.helpfulness}/> <span> | </span> <ReportToggle reportStatus={props.reportStatus} />
       </div>
     </div>
   )
