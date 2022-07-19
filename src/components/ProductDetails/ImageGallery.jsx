@@ -32,6 +32,7 @@ class ImageGallery extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    console.log(this.state.photos, this.state.thumbnails)
     //make sure photo list updates accordingly to props
     if (this.state.photos !== this.props.style.photos && this.props.style.photos) {
       this.setState({photos:this.props.style.photos})
