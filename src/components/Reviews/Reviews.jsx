@@ -20,6 +20,13 @@ const Container = styled.div`
   overflow: scroll;
 `
 
+const RatingsScore = styled.div`
+  height: 50;
+  padding: 50;
+  font-size: 150px;
+  weight: bold;
+`
+
 const reviewsCardStyle = {
 
 }
@@ -59,10 +66,11 @@ export default function Reviews ({id, calculateStars, reviewsAvgScore}) {
   return (
     <>
       <Container>
-        Reviews:
+        <div>Ratings & Reviews</div>
+        <RatingsScore>{reviewsAvgScore}</RatingsScore>
         {stars.map(star => star)}
         <ReviewsList reviews={reviews} more={more} setMore={setMore} reviewsToShow={reviewsToShow}
-          setReviewsToShow={setReviewsToShow} style={reviewsListStyle}
+          setReviewsToShow={setReviewsToShow} style={reviewsListStyle} calculateStars={calculateStars}
         />
       </Container>
     </>
