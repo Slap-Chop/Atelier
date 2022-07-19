@@ -28,7 +28,7 @@ const AddAnswer = (props) => {
           }
         }
       })
-  });
+  }, [props.productId]);
 
   const ansChangeHandler = (event) => {
     setAnswer(event.target.value);

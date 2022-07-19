@@ -40,6 +40,7 @@
   height: 100%;
   object-fit: contain;
   justify-content: center;
+  cursor: zoom-in;
 }
 
 .vertArrow {
@@ -208,10 +209,12 @@
   max-height: 100%;
   object-fit: contain;
   justify-content: center;
+  cursor: zoom-in;
 }
 
 .zoomedImage {
   transform: scale(2.5);
+  cursor: zoom-out;
 }
 
 .XButton {
