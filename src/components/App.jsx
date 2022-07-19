@@ -49,41 +49,39 @@ class App extends React.Component {
       var updateCurrent = this.state.currentProduct;
       updateCurrent.features = response.data.features;
       this.setState({currentProduct: updateCurrent})
-    }).then(() => {
-      return axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta", {params: {product_id: this.state.currentId}})
-      .then((response) => {
-        this.setState({reviewsMeta: response.data})
-      })
-      .then(() => {
-        console.log('Calculating reviews');
-        this.calculateAverageReviews();
-      })
-      .catch((err) => console.log('Error getting reviews meta data', err))
-    })
+    }).catch((err) => console.log('Error getting reviews meta data', err))
   }
 
   calculateAverageReviews() {
-    let totalReviews = Object.values(this.state.reviewsMeta.ratings);
-    let ratingsObj = this.state.reviewsMeta.ratings;
-    let totalCountOfAllReviews = 0;
 
-    let numScores = [];
-    // Need to convert all the number strings into integers
-    // push converted values into our numScores array
-    totalReviews.forEach((score) => numScores.push(Math.floor(score)));
-    // Add to total count of ratings
-    numScores.forEach((rating) => totalCountOfAllReviews+=rating);
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta",
+    {params: {product_id: this.state.currentId}})
+    .then((response) =>
+      this.setState({reviewsMeta: response.data}))
+    .then(() => {
+      let totalReviews = Object.values(this.state.reviewsMeta.ratings);
+      let ratingsObj = this.state.reviewsMeta.ratings;
+      let totalCountOfAllReviews = 0;
 
-    // round the average to the nearest tenth decimal place
-    let avg = Math.round(((1*numScores[0] + 2*numScores[1] + 3*numScores[2] + 4*numScores[3] + 5*numScores[4]) / totalCountOfAllReviews) * 10) / 10;
+      let numScores = [];
+      // Need to convert all the number strings into integers
+      // push converted values into our numScores array
+      totalReviews.forEach((score) => numScores.push(Math.floor(score)));
+      // Add to total count of ratings
+      numScores.forEach((rating) => totalCountOfAllReviews+=rating);
 
-    this.setState({reviewsAvgScore: avg});
+      // round the average to the nearest tenth decimal place
+      let avg = Math.round(((1*numScores[0] + 2*numScores[1] + 3*numScores[2] + 4*numScores[3] + 5*numScores[4]) / totalCountOfAllReviews) * 10) / 10;
+
+      this.setState({reviewsAvgScore: avg});
+    })
+    .catch((err) => console.log('Error in getting reviews meta data', err));
+
   }
 
   calculateStars(size = '100', reviewsAvg=this.state.reviewsAvgScore) {
     // The visual for rating should be representative of up to a quarter of a review point.
     let scoreDecimal = (reviewsAvg % 1).toFixed(1);
-    // console.log('reviewsScore', this.state.reviewsAvgScore);
     let starFilledPercentage = 0;
     // if score is 0
     scoreDecimal <= .1 ? starFilledPercentage = 0
@@ -94,8 +92,7 @@ class App extends React.Component {
      // display empty stars
     // if score is 0.5-0.75
 
-    let wholeStarCount = reviewsAvg - scoreDecimal;
-
+    let wholeStarCount = (reviewsAvg - scoreDecimal).toFixed(1);
     // create an array of Stars
     const allStarsArray = [];
 
@@ -118,6 +115,7 @@ class App extends React.Component {
 
   relatedProdClick(id, product) {
     this.setState({currentId: id, currentProduct: product})
+    this.calculateAverageReviews()
   }
 
   addOutfitClick(product) {
