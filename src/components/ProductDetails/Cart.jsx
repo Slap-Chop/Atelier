@@ -14,6 +14,7 @@ class Cart extends React.Component {
       quantity: 0,
       skuId: 0,
       skuObj: {},
+      notSelected: false,
     }
     this.sizeRef = React.createRef();
   }
@@ -32,11 +33,9 @@ class Cart extends React.Component {
   }
 
   handleSizeChange(event) {
-    let skuId = event.value
-    let skuObj = this.state.stock[skuId]
-
-    console.log(event)
-
+    let skuId = event?.value
+    let skuObj = this.state.stock[skuId] || {quantity: 0, size: 'Select Size'}
+    this.setState({notSelected: false});
     // setting state to have the select sku information
     if (skuId === 'N/A') {
       this.setState({sku: 0,
@@ -67,6 +66,7 @@ class Cart extends React.Component {
     };
     // console.log(productObj)
     if (this.state.currentSize === 'Select Size') {
+      this.setState({notSelected: true})
       this.sizeRef.current?.focus();
     } else {
       axios.defaults.headers.common['Authorization'] = config.TOKEN;
@@ -102,21 +102,20 @@ class Cart extends React.Component {
       <div className='cartContainer'>
       <div className='sizeContainer'>
       {/* Size dropdown menu */}
+      {this.state.notSelected && 'Please select a size'}
       <Select onChange={this.handleSizeChange.bind(this)}
-      classNamePrefix='select'
       openMenuOnFocus={true}
       defaultValue={{label: 'Select Size', value: 'N/A'}}
       options={options}
       ref={this.sizeRef}
       className='sizeMenu'
-      isDisabled={!this.state.inStock}>
+      isDisabled={!this.state.inStock}/>
       {/* check if item is in stock*/}
         {/* <option value={'N/A'}>{this.state.stockMessage}</option> */}
       {/* map and add sizes to the dropdown */}
         {/* {this.state.stock && Object.entries(this.state.stock)?.map((sku, index) => {
         return (<option value={sku[0]} key={index}>{sku[1].size}</option>)
       })} */}
-      </Select>
 
 
       </div>

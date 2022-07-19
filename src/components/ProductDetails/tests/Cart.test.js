@@ -1,5 +1,4 @@
 import React from 'react';
-import Select from 'react-select';
 import {shallow} from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Cart from '../Cart.jsx';
@@ -77,9 +76,9 @@ test('Changing size from dropdown should call handleSizeChange', () => {
   const spy = jest.spyOn(Cart.prototype, "handleSizeChange");
   const wrapper = shallow(<Cart currentStyle={diffTestStyle} currentProduct={testProduct}/>)
   expect(spy).not.toHaveBeenCalled();
-  expect(wrapper.find('Select')).toHaveLength(1);
+  expect(wrapper.find('.sizeMenu')).toHaveLength(1);
   wrapper.instance().state.stock = {1394771: {quantity: 100, size: 'M'}}
-  wrapper.find('Select').at(0).simulate('change', {
+  wrapper.find('.sizeMenu').at(0).simulate('change', {
     target: {value: 1394771}
   })
   expect(spy).toHaveBeenCalled();
@@ -103,7 +102,7 @@ test('Clicking Add Cart should call handleAddCart', () => {
   const wrapper = shallow(<Cart currentStyle={diffTestStyle} currentProduct={testProduct}/>)
   expect(spy).not.toHaveBeenCalled();
   wrapper.instance().state.stock = {1394771: {quantity: 100, size: 'M'}}
-  wrapper.find('Select').simulate('change')
+  wrapper.find('.sizeMenu').simulate('change')
   wrapper.find('button').simulate('click');
   expect(spy).toHaveBeenCalled();
 })
