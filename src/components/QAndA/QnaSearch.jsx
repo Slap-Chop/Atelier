@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import logo from "./UI/Search.png";
 
 const QnaSearch = (props) => {
 
@@ -12,7 +13,10 @@ const QnaSearch = (props) => {
 
   return(
     <>
-      <input id="qnaSearchEntry"  placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS…" onChange={(event) =>searchHandler(event)} ></input>
+      <input id="qnaSearchEntry" type="search" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS…" onChange={(event) =>searchHandler(event)} ></input>
+      <button id="search-button">
+        <img id="s-img" src={logo}></img>
+      </button>
     </>
   )
 }

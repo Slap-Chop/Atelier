@@ -1,10 +1,12 @@
 .qna-section {
   color: rgb(86, 81, 81);
-  border: solid 2px;
+  /* border: solid 2px; */
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .qnaList {
@@ -21,11 +23,6 @@
   margin-bottom: 15px;
 }
 
-#qnaSearchEntry {
-  width: 100%;
-  font-weight: bold;
-}
-
 .question {
   width: 100%;
   display: flex;
@@ -37,6 +34,7 @@
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
+  gap:10px;
 }
 
 .answer-list {
@@ -45,4 +43,65 @@
   font-size: 0.8rem;
   display: flex;
   flex-direction: column;
+}
+
+.answers {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+}
+
+.answer-footer {
+  display: flex;
+  font-size: 0.8rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  gap:10px;
+}
+
+.qna-function {
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+
+#add-btn {
+  border: solid 1px;
+  padding: 5px;
+}
+
+#more-btn {
+  border: solid 1px;
+  padding: 5px;
+}
+
+
+/* search bar css  */
+.qnaSearch {
+  display: flex;
+  flex-direction: row;
+  border: 1px;
+}
+
+#qnaSearchEntry {
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+}
+
+#search-button {
+  background: transparent;
+  border:none;
+  outline: none;
+  margin-left: -33px;
+}
+
+#s-img {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
 }
