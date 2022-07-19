@@ -5,24 +5,50 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTurnRight } from '@fortawesome/free-solid-svg-icons'
 
 var RelatedList = (props) => {
-
-  var listDiv = document.getElementById('scroll');
-  if (listDiv) {
-    listDiv.scroll = true;
+  if (props.relatedProducts[0] === undefined) {
+    var relObj = props.relatedProductsBackUp;
+  } else {
+    var relObj = props.relatedProducts;
   }
+    var duplicateObj = {
+      [props.currentProduct.id]: true
+    }
+    // console.log(relObj, 'relProds')
+
+    var dupChecker = (productsArray) => {
+      productsArray.forEach((product, i) => {
+        if (duplicateObj[product.id]) {
+          relObj.splice(i, 1);
+        } else {
+          duplicateObj[product.id] = true;
+        }
+      })
+      return relObj;
+    }
+
+    var prodArray = dupChecker(relObj);
+    // console.log(prodArray)
+    var list = prodArray.map((product, index) => {
+      return <ProductCard class="card" key= {index} product={product} onClick={props.onClick} currentProduct={props.currentProduct}/>
+   })
+
+
+
+
+
 
   return (
     <>
    <div id="scroll" style={{
     display: 'inline-flex',
-    width: '60%',
+    marginLeft: '50px',
+    marginRight: '50px',
     maxHeight: '100%',
     whiteSpace: 'nowrap',
     overflow: 'auto',
+    marginTop: '0px'
    }}
-   >{props.relatedProducts.map((product, index) => {
-      return <ProductCard class="card" key= {index} product={product} onClick={props.onClick} currentProduct={props.currentProduct}/>
-   })}
+   >{list}
     {/* <div style={{position: 'relative', float: 'right', bottom: '100px'}}>
       <FontAwesomeIcon icon={faArrowTurnRight} /> */}
      {/* </div> */}

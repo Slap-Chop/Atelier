@@ -44,10 +44,12 @@ class App extends React.Component {
         console.log('App currentId on mount:', this.state.currentId)
       }
     }).then(() => {
-        console.log('Calculating reviews');
-        this.calculateAverageReviews();
-      })
-      .catch((err) => console.log('Error getting reviews meta data', err))
+      return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.currentId}`, {params: {product_id: this.state.currentId}})
+    }).then((response) => {
+      var updateCurrent = this.state.currentProduct;
+      updateCurrent.features = response.data.features;
+      this.setState({currentProduct: updateCurrent})
+    }).catch((err) => console.log('Error getting reviews meta data', err))
   }
 
   calculateAverageReviews() {
@@ -122,7 +124,7 @@ class App extends React.Component {
       return;
     } else {
       let outFit = this.state.currentOutfit;
-      outFit.push(product)
+      outFit.unshift(product)
       this.setState({currentOutfit: outFit})
     }
   }
