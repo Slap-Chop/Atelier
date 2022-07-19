@@ -3,51 +3,68 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import config from '../../../config.js';
 import ReviewsList from './ReviewsList.jsx';
+import styled from 'styled-components';
+
+const reviewsListStyle = {
+  'scroll-behavior': 'smooth',
+  overflow: 'scroll'
+}
+
+const Container = styled.div`
+  display: flex;
+  max-height: 200;
+  padding: 40;
+  border: 3px solid black;
+  justify-content: space-between;
+  ${'' /* align-items: flex-start; */}
+  overflow: scroll;
+`
+
+const reviewsCardStyle = {
+
+}
+
+const reviewsStarStyle = {
+
+}
 
 
-export default function Reviews ({id}) {
+export default function Reviews ({id, calculateStars, reviewsAvgScore}) {
 
   const [productId, setProductId] = useState(id);
+  // const [avgScore, setAvgScore] = useState(reviewsAvgScore);
   const [reviews, setReviews] = useState([]);
   const [more, setMore] = useState(true);
   const [reviewsToShow, setReviewsToShow] = useState(2);
+  const [stars, setStars] = useState([]);
 
-  const ReviewsListStyle = {
-    overflow: 'auto',
-    maxLength: '50%'
-  }
-
-  const reviewsStyleContainer = {
-    display:'block',
-    maxLength: 200,
-    padding: 40,
-    align: 'right'}
 
   useEffect(() => {
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
 
-    console.log('id', id);
-    console.log('id', productId);
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews', {
       params: {product_id: productId}
     })
     .then((response) => {
-      console.log('reponse', response);
       setReviews(response.data.results);
-      console.log('REVIEWS:', reviews);
     })
+    .then(() => setStars(calculateStars()))
     .catch((err) => console.log('err', err));
-  }, [productId]);
+
+    setStars(calculateStars());
+    console.log('reviews average score', reviewsAvgScore);
+  }, [reviewsAvgScore]);
 
 
   return (
     <>
-      <div className="reviews-container" style={{display:'block', maxLength: 200, padding: 40, align: 'right'}}>
+      <Container>
         Reviews:
+        {stars.map(star => star)}
         <ReviewsList reviews={reviews} more={more} setMore={setMore} reviewsToShow={reviewsToShow}
-          setReviewsToShow={setReviewsToShow}
+          setReviewsToShow={setReviewsToShow} style={reviewsListStyle}
         />
-      </div>
+      </Container>
     </>
   )
 

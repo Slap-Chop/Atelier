@@ -5,6 +5,7 @@ import ImageGallery from './ImageGallery.jsx';
 import Cart from './Cart.jsx';
 import axios from 'axios';
 import config from '../../../config.js';
+import './styles/ProductDetails.css';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -59,32 +60,25 @@ class ProductDetails extends React.Component {
 
 
   render() {
-    return(<div style={{border: '1px solid blue',
-    display: 'flex',
-    justifyContent: 'center' }}>
-      <div style={{
-        border: '1px solid red',
-        width: '130%'
-        }}>
+    return(<div className='productDetailsBody'>
+      <div className='imageGalleryBody'>
         <ImageGallery style={this.state.currentStyle}
         id={this.state.id}
         /></div>
       <div>
-        <div style={{
-          float: 'right',
-          width: '70%'
-
-        }}>
-        <ProductInfo currentProduct={this.props.currentProduct}
-      styles={this.state.styles}
-      currentStyle={this.state.currentStyle}
-      click={this.handleStyleChange.bind(this)}
-      id={this.props.id}/>
+        <div className='productInfoBody'>
+        <ProductInfo
+        currentProduct={this.props.currentProduct}
+        scrollReview={this.props.scrollReview}
+        styles={this.state.styles}
+        calculateStars={this.props.calculateStars}
+        reviewsAvgScore={this.props.reviewsAvgScore}
+        currentStyle={this.state.currentStyle}
+        click={this.handleStyleChange.bind(this)}
+        id={this.props.id}/>
       <Cart currentStyle={this.state.currentStyle}
       currentProduct={this.props.currentProduct}/>
-      <div style={{
-        border: '1px solid green'
-        }}>
+      <div className='productBorder'>
         <h5>{this.props.currentProduct.slogan}</h5>
         <p>{this.props.currentProduct.description}</p></div>
       </div>
