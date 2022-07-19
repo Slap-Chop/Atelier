@@ -141,6 +141,7 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.state.productList, this.state.currentId, this.state.currentProduct)
     return(<div>
       Hi friends!
       npm run react-dev should open a live listener of webpack,
