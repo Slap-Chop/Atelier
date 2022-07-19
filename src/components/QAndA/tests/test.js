@@ -1,8 +1,23 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import AnswerList from '../AnswerList.jsx';
+import QAndA from '../QAndA.jsx';
 
-test('Answers with seller will be displayed first regardless helpfullness', () => {
+let wrapper;
+
+beforeEach(() => {
+  wrapper = shallow(<QAndA />);
+});
+
+describe('<QAndA /> should render following elements', () => {
+
+  it('should render one QnaSearch', () => {
+    expect(wrapper.find(QnaSearch)).toHaveLength(1);
+});
+
+  it('should render one QnaSearch', () => {
+    expect(wrapper.find(QnaList)).toHaveLength(1);
+  });
+
 
 
 });
