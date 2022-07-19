@@ -11,7 +11,7 @@ const Container = styled.div`
   max-width: 900px;
 `
 
-export default function ReviewsList ({reviewsToShow, reviews, more, setMore, setReviewsToShow, }) {
+export default function ReviewsList ({reviewsToShow, reviews, more, setMore, setReviewsToShow, calculateStars}) {
 
   const [sort, setSort] = useState({option1: 'Helpful', option2: 'Newest', option3: 'Relevant'})
 
@@ -37,7 +37,7 @@ export default function ReviewsList ({reviewsToShow, reviews, more, setMore, set
         </select>
         <div>
           <ul>
-            {reviews.slice(0, reviewsToShow).map((review, i) => <ReviewsListEntry review={review} key={i}/>)}
+            {reviews.slice(0, reviewsToShow).map((review, i) => <ReviewsListEntry review={review} calculateStars={calculateStars} key={i}/>)}
           </ul>
         </div>
 
