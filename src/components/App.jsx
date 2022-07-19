@@ -49,7 +49,9 @@ class App extends React.Component {
       var updateCurrent = this.state.currentProduct;
       updateCurrent.features = response.data.features;
       this.setState({currentProduct: updateCurrent})
-    }).catch((err) => console.log('Error getting reviews meta data', err))
+    })
+    .then(() => this.calculateAverageReviews())
+    .catch((err) => console.log('Error getting reviews meta data', err))
   }
 
   calculateAverageReviews() {
