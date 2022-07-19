@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select';
 import axios from 'axios';
 import config from '../../../config.js';
 
@@ -12,7 +13,8 @@ class Cart extends React.Component {
       stockMessage: 'Out of Stock',
       quantity: 0,
       skuId: 0,
-      skuObj: {}
+      skuObj: {},
+      notSelected: false,
     }
     this.sizeRef = React.createRef();
   }
@@ -31,9 +33,9 @@ class Cart extends React.Component {
   }
 
   handleSizeChange(event) {
-    let skuId = event?.target?.value
-    let skuObj = this.state.stock[skuId]
-
+    let skuId = event?.value
+    let skuObj = this.state.stock[skuId] || {quantity: 0, size: 'Select Size'}
+    this.setState({notSelected: false});
     // setting state to have the select sku information
     if (skuId === 'N/A') {
       this.setState({sku: 0,
@@ -64,11 +66,12 @@ class Cart extends React.Component {
     };
     // console.log(productObj)
     if (this.state.currentSize === 'Select Size') {
+      this.setState({notSelected: true})
       this.sizeRef.current?.focus();
     } else {
       axios.defaults.headers.common['Authorization'] = config.TOKEN;
       axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart/', productObj).then((response) => {
-        // console.log(`product ${this.props.currentStyle.name} added to cart with size ${this.state.currentSize}, quantity ${this.state.quantity}, sku ${this.state.sku} and response status ${response.status}`)
+        console.log(`product ${this.props.currentStyle.name} added to cart with size ${this.state.currentSize}, quantity ${this.state.quantity}, sku ${this.state.sku} and response status ${response.status}`)
       })
     }
     // console.log('skus', this.props.currentStyle?.skus)
@@ -82,6 +85,16 @@ class Cart extends React.Component {
       quantArray.push(i)
     }
 
+    let options = [{value: 'N/A', label: this.state.stockMessage}]
+
+    if (this.state.inStock && this.state.stock) {
+      let newoptions = [];
+      newoptions.push({value: 'N/A', label: 'Select Size'})
+      Object.entries(this.state.stock).forEach((sku, index) => {
+        newoptions.push({value: sku[0], label: sku[1].size})
+      })
+      options = newoptions
+    }
 
     return(
       <div className='productBorder'>
@@ -89,20 +102,20 @@ class Cart extends React.Component {
       <div className='cartContainer'>
       <div className='sizeContainer'>
       {/* Size dropdown menu */}
-      <select onChange={this.handleSizeChange.bind(this)}
+      {this.state.notSelected && 'Please select a size'}
+      <Select onChange={this.handleSizeChange.bind(this)}
+      openMenuOnFocus={true}
+      defaultValue={{label: 'Select Size', value: 'N/A'}}
+      options={options}
       ref={this.sizeRef}
-      //look into material UI or something to open, instead of focus
-      // onFocus={(e) =>(e.target.size='6')}
-      // onBlur={(e) =>(e.target.size='0')}
       className='sizeMenu'
-      disabled={!this.state.inStock}>
+      isDisabled={!this.state.inStock}/>
       {/* check if item is in stock*/}
-        <option value={'N/A'}>{this.state.stockMessage}</option>
+        {/* <option value={'N/A'}>{this.state.stockMessage}</option> */}
       {/* map and add sizes to the dropdown */}
-        {this.state.stock && Object.entries(this.state.stock)?.map((sku, index) => {
+        {/* {this.state.stock && Object.entries(this.state.stock)?.map((sku, index) => {
         return (<option value={sku[0]} key={index}>{sku[1].size}</option>)
-      })}
-      </select>
+      })} */}
 
 
       </div>
