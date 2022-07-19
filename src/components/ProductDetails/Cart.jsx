@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import config from '../../../config.js';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -55,11 +57,22 @@ class Cart extends React.Component {
   }
 
   handleAddCart() {
-    console.log(this.props.currentStyle.name, this.state.quantity, this.state.currentSize)
+    // console.log(this.props.currentStyle.name, this.state.quantity, this.state.currentSize)
+    let productObj = {
+      sku_id: this.state.sku,
+      count: this.state.quantity
+    };
+    console.log(productObj)
     if (this.state.currentSize === 'Select Size') {
       this.sizeRef.current?.focus();
+    } else {
+      axios.defaults.headers.common['Authorization'] = config.TOKEN;
+      axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart/', productObj).then((response) => {
+        console.log(`product ${this.props.currentStyle.name} added to cart with size ${this.state.currentSize}, quantity ${this.state.quantity}, sku ${this.state.sku} and response status ${response.status}`)
+      })
     }
     // console.log('skus', this.props.currentStyle?.skus)
+
   }
 
   render() {
@@ -71,27 +84,17 @@ class Cart extends React.Component {
 
 
     return(
-      <div style={{
-        border: '1px solid yellow',
-        }}>
-
+      <div className='productBorder'>
         {this.props.currentProduct?.name} > {this.props.currentStyle?.name}
-      <div style={{
-        display: 'flex',
-        paddingBottom: '20px'
-
-      }}>
-      <div style ={{paddingRight: '30px'}}>
+      <div className='cartContainer'>
+      <div className='sizeContainer'>
       {/* Size dropdown menu */}
       <select onChange={this.handleSizeChange.bind(this)}
       ref={this.sizeRef}
       //look into material UI or something to open, instead of focus
       // onFocus={(e) =>(e.target.size='6')}
       // onBlur={(e) =>(e.target.size='0')}
-      style={{
-        width: '200px',
-        height: '40px',
-      }}
+      className='sizeMenu'
       disabled={!this.state.inStock}>
       {/* check if item is in stock*/}
         <option value={'N/A'}>{this.state.stockMessage}</option>
@@ -105,10 +108,7 @@ class Cart extends React.Component {
       </div>
       <div>
         {/* Quantity dropdown menu */}
-        <select style={{
-          width: '80px',
-          height: '40px',
-        }}
+        <select className='quantityMenu'
         onChange={this.handleQuantChange.bind(this)}
         disabled={this.state.currentSize === 'Select Size'}>
         {this.state.currentSize === 'Select Size' && <option>-</option>}

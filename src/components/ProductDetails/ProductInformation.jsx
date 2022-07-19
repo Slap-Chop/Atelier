@@ -4,15 +4,17 @@ import StyleSelector from './StyleSelector.jsx';
 const ProductInfo = (props) => {
   // console.log('currentProduct:', props.currentProduct)
   // console.log('product infostyles', props.styles)
+  let stars = props.calculateStars(props.reviewsAvgScore);
   return (
-  <div style={{
-    border: '1px solid blue'
-    }}>
-    <p>Review star component</p>
+  <div className='productBorder'>
+    <div
+      onClick={props.scrollReview}
+    >
+      {stars.map(star => star)} Read all reviews
+    </div>
     {/* product name and category */}
     <div>{props.currentProduct.category}</div>
-    <div className="ProductName" style={{fontSize: 24,
-      fontWeight: 600}}>
+    <div className='productName'>
       {props.currentProduct.name}</div>
     {/* product Styles */}
     {/* {console.log('product info props',props)} */}

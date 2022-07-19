@@ -29,18 +29,18 @@ class StyleSelector extends React.Component {
 
 
     return(
-      <div style={{border: '1px solid green'}}>
+      <div className='productBorder'>
         {/* price and sale price */}
-        <div style={{display:'flex'}}>
+        <div className='flex'>
           <p style={priceStyle}>${defaultPrice}</p>
-          <p style={{paddingLeft: '10px'}}>{salePrice}</p>
+          <p className='salePrice'>{salePrice}</p>
         </div>
 
           <div>Style > {this.props.currentStyle?.name}</div>
           {/* style thumbnails */}
 
           {thumbailRows.map((row, index) => (
-            <div style={{display:'flex'}} key={index}>{row.map((style, index) => {
+            <div className='flex' key={index}>{row.map((style, index) => {
             //highlight the style if it is selected
               if (this.props.currentStyle === style) {
                 return (<StyleComponent style={style}
