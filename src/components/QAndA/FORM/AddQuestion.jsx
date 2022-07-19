@@ -14,7 +14,7 @@ const AddQuestion = (props) => {
 
   useEffect( () => {
     let options = {
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${props.productId}`,
       headers: {
         'User-Agent': 'request',
       }
@@ -22,13 +22,10 @@ const AddQuestion = (props) => {
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     axios.get(options.url, options.headers)
     .then( res => {
-        for (let item of res.data) {
-          if (item["id"] === props.productId) {
-            setProductName(item["name"])
-          }
-        }
+      console.log("this is the id",props.productId, res.data)
+      setProductName(res.data["name"])
       })
-  });
+  },[props.productId]);
 
   const questionChangeHandler = (event) => {
     setQuestion(event.target.value);
