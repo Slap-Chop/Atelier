@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expandedGallery should render 1`] = `
+<div
+  className="modal"
+>
+  <div
+    className="modalContent"
+  >
+    <div
+      className="modalImageContainer"
+    >
+      <img
+        className="modalImage"
+        onClick={[Function]}
+        src="https://images.unsplash.com/photo-1534011546717-40…cHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80"
+      />
+    </div>
+    <div
+      className="modalHeader"
+    >
+      <img
+        className="XButton"
+        onClick={[Function]}
+        src=""
+      />
+      <div
+        className="iconContainer"
+      >
+        <ExpandedIcon
+          click={[MockFunction]}
+          index={0}
+          key="0"
+          photo={
+            Object {
+              "thumbnail_url": "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+              "url": "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2734&q=80",
+            }
+          }
+          selected={1}
+        />
+      </div>
+    </div>
+    <div
+      className="modal-body"
+    />
+  </div>
+</div>
+`;

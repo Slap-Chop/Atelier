@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Icons should render properly 1`] = `
+<div
+  className="expandedIconContainer"
+>
+  <img
+    className="expandedIcon"
+    onClick={[Function]}
+    src="https://images.unsplash.com/photo-1534011546717-40…hcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+    style={
+      Object {
+        "opacity": undefined,
+      }
+    }
+  />
+</div>
+`;

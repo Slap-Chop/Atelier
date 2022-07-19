@@ -48,11 +48,11 @@ class Cart extends React.Component {
         quantity: this.state.quantity > skuObj.quantity ? 1 : this.state.quantity ? this.state.quantity : 1
       })
     }
-    console.log(skuId, this.state.stock[skuId], skuObj?.size)
+    // console.log(skuId, this.state.stock[skuId], skuObj?.size)
   }
 
   handleQuantChange(event) {
-    console.log(event?.target?.value)
+    // console.log(event?.target?.value)
     this.setState({quantity: event?.target?.value})
   }
 
@@ -62,13 +62,13 @@ class Cart extends React.Component {
       sku_id: this.state.sku,
       count: this.state.quantity
     };
-    console.log(productObj)
+    // console.log(productObj)
     if (this.state.currentSize === 'Select Size') {
       this.sizeRef.current?.focus();
     } else {
       axios.defaults.headers.common['Authorization'] = config.TOKEN;
       axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart/', productObj).then((response) => {
-        console.log(`product ${this.props.currentStyle.name} added to cart with size ${this.state.currentSize}, quantity ${this.state.quantity}, sku ${this.state.sku} and response status ${response.status}`)
+        // console.log(`product ${this.props.currentStyle.name} added to cart with size ${this.state.currentSize}, quantity ${this.state.quantity}, sku ${this.state.sku} and response status ${response.status}`)
       })
     }
     // console.log('skus', this.props.currentStyle?.skus)
