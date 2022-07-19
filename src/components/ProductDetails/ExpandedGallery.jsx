@@ -28,12 +28,10 @@ class ExpandedGallery extends React.Component {
     const {
       left: offsetLeft,
       top: offsetTop
-    } = this.imageRef.current.getBoundingClientRect()
-
-
-
-    let x = ((event.pageX - offsetLeft))/2.3;
-    let y = ((event.pageY - offsetTop))/2.3;
+    } = this.imageRef?.current?.getBoundingClientRect() || {left: 0, top: 0}
+    // console.log(this.imageRef.current.getBoundingClientRect())
+    let x = ((event?.pageX - offsetLeft))/2.3;
+    let y = ((event?.pageY - offsetTop))/2.3;
     this.setState({x: x, y: y})
   }
 

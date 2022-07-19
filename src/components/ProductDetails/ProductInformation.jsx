@@ -8,6 +8,7 @@ const ProductInfo = (props) => {
   return (
   <div className='productBorder'>
     <div
+      className='reviews'
       onClick={props.scrollReview}
     >
       {stars.map(star => star)} Read all reviews

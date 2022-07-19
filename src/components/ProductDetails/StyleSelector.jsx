@@ -2,28 +2,21 @@ import React from 'react';
 
 import StyleComponent from './StyleComponent.jsx';
 
-class StyleSelector extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    }
-  }
+const StyleSelector = (props) => {
 
-
-  render() {
-    let salePrice = this.props.currentStyle?.sale_price;
-    let defaultPrice = this.props.currentStyle?.original_price;
+    let salePrice = props.currentStyle?.sale_price;
+    let defaultPrice = props.currentStyle?.original_price;
     let priceStyle, styleError;
 
     // breaking up the styles into groups of 4
-    const rows = [...Array(Math.ceil(this.props.styles.length / 4))];
-    const thumbailRows = rows.map((row, index) => (this.props.styles.slice(index*4, index*4 + 4)))
+    const rows = [...Array(Math.ceil(props.styles.length / 4))];
+    const thumbailRows = rows.map((row, index) => (props.styles.slice(index*4, index*4 + 4)))
 
     if (salePrice) {
       priceStyle = {color: 'red', textDecorationLine: 'line-through'};
       salePrice = `$${salePrice}`
     }
-    if (this.props.styles.length === 0) {
+    if (props.styles.length === 0) {
       styleError = 'Something went wrong! Click this message to reload.'
     }
 
@@ -36,20 +29,20 @@ class StyleSelector extends React.Component {
           <p className='salePrice'>{salePrice}</p>
         </div>
 
-          <div>Style > {this.props.currentStyle?.name}</div>
+          <div>Style > {props.currentStyle?.name}</div>
           {/* style thumbnails */}
 
           {thumbailRows.map((row, index) => (
             <div className='flex' key={index}>{row.map((style, index) => {
             //highlight the style if it is selected
-              if (this.props.currentStyle === style) {
+              if (props.currentStyle === style) {
                 return (<StyleComponent style={style}
-                click={this.props.click}
+                click={props.click}
                 key={index}
                 current={'65px'}
                 weight={600}/>)
               } else {
-                return (<StyleComponent click={this.props.click}
+                return (<StyleComponent click={props.click}
                   key={index}
                   style={style}/>)
         }
@@ -60,8 +53,6 @@ class StyleSelector extends React.Component {
     </div>
     )
   }
-
-}
 
 
 
