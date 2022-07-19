@@ -44,6 +44,12 @@ class App extends React.Component {
         console.log('App currentId on mount:', this.state.currentId)
       }
     }).then(() => {
+      return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.currentId}`, {params: {product_id: this.state.currentId}})
+    }).then((response) => {
+      var updateCurrent = this.state.currentProduct;
+      updateCurrent.features = response.data.features;
+      this.setState({currentProduct: updateCurrent})
+    }).then(() => {
       return axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta", {params: {product_id: this.state.currentId}})
       .then((response) => {
         this.setState({reviewsMeta: response.data})
@@ -120,7 +126,7 @@ class App extends React.Component {
       return;
     } else {
       let outFit = this.state.currentOutfit;
-      outFit.push(product)
+      outFit.unshift(product)
       this.setState({currentOutfit: outFit})
     }
   }

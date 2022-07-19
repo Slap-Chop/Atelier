@@ -65,7 +65,8 @@ class ProductCard extends React.Component {
           minWidth: '160px',
           boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
           tansition: '0.5s',
-          borderRadius: '5%'
+          borderRadius: '5%',
+          marginBottom: '20px'
         }
         } onMouseOver={this.cardOver} onMouseOut={this.cardOut}>
           <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>

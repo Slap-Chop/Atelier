@@ -46,8 +46,8 @@ var ComparisonModal = (props) => {
 
   const modalStyle = {
     position: "fixed",
-    top: "40%",
-    left: "40%",
+    top: "30%",
+    left: "30%",
     backgroundColor: "#FFF",
     padding: "50px",
     zIndex: 1000,
@@ -55,6 +55,7 @@ var ComparisonModal = (props) => {
   }
 
   const overlayStyle = {
+    display: 'flex',
     position: "fixed",
     top: 0,
     left: 0,
@@ -65,11 +66,38 @@ var ComparisonModal = (props) => {
   }
 
   const textstyle = {
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: '20px',
+    paddingLeft: '40px',
+    paddingRight: '40px',
+    border: '1px solid black'
+  }
+
+  const noFeatStyle = {
+    textAlign: 'center',
+    color: 'white',
+    padding: '20px',
+    paddingLeft: '40px',
+    paddingRight: '40px',
+    border: '1px solid black'
+  }
+
+  const innerStyle = {
+    textAlign: 'center',
+    padding: '20px',
+    paddingLeft: '40px',
+    paddingRight: '40px',
+    border: '1px solid black',
+    borderLeft: '0px',
+    borderRight: '0px'
+
   }
 
   const containerStyle = {
-    margin: '10px'
+    marginTop: '30px',
+    marginBottom: '30px',
+    border: '1px solid black'
+
   }
 
   return ReactDOM.createPortal(
@@ -77,29 +105,29 @@ var ComparisonModal = (props) => {
     <div onClick={props.changeCompState}style={overlayStyle}>
       <div style={modalStyle}>
         <div style={containerStyle}>
-          <div>CurrentProduct</div>
+          <div style={textstyle}>{props.products.currentProduct.name}</div>
           {Object.keys(featuresObj).map((feature, i) => {
             if (featuresObj[feature][curID]) {
               return <div style={textstyle} key={i}>{featuresObj[feature][curID]}</div>
             } else {
-              return <div style={textstyle} key={i}>n/a</div>
+              return <div style={noFeatStyle} key={i}>n/a</div>
             }
           })}
         </div>
         <div style={containerStyle}>
-         <div style={textstyle}>FEATURES</div>
+         <div style={innerStyle} >FEATURES</div>
           {Object.keys(featuresObj).map((feature, i) => {
-          return <div style={textstyle}key={i}>{feature}
+          return <div style={innerStyle}key={i}>{feature}
           </div>
           })}
         </div>
         <div style={containerStyle}>
-          <div>RelatedProduct</div>
+          <div style={textstyle}>{props.products.product.name}</div>
           {Object.keys(featuresObj).map((feature, i) => {
             if (featuresObj[feature][relID]) {
               return <div style={textstyle} key={i}>{featuresObj[feature][relID]}</div>
             } else {
-              return <div style={textstyle} key={i}>n/a</div>
+              return <div style={noFeatStyle} key={i}>n/a</div>
             }
           })}
         </div>

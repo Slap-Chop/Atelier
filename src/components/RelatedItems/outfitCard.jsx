@@ -37,10 +37,10 @@ class OutfitCard extends React.Component {
   render() {
 
       let price = <div className="name">{this.props.product.default_price}</div>
-      //check to see if default style is currently for sale, if so, strike through default price and list current sale price instead
-      // if (this.props.product.default.sale_price) {
-      //   price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
-      // }
+      // check to see if default style is currently for sale, if so, strike through default price and list current sale price instead
+      if (this.props.product.default.sale_price) {
+        price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
+      }
 
       return (
         <>
