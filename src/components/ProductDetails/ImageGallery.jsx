@@ -32,7 +32,7 @@ class ImageGallery extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.photos, this.state.thumbnails)
+    // console.log(this.state.photos, this.state.thumbnails)
     //make sure photo list updates accordingly to props
     if (this.state.photos !== this.props.style.photos && this.props.style.photos) {
       this.setState({photos:this.props.style.photos})
@@ -99,7 +99,7 @@ class ImageGallery extends React.Component {
   handleDownClick() {
     let offset = this.state.offset;
     if (offset + 7 < this.state.photos.length) {
-      console.log('clickdown', this.state.offset)
+      // console.log('clickdown', this.state.offset)
       offset++;
       this.setState({offset: offset})
     }
@@ -108,7 +108,7 @@ class ImageGallery extends React.Component {
   handleUpClick() {
     let offset = this.state.offset;
     if (offset > 0) {
-      console.log('clickup', this.state.offset)
+      // console.log('clickup', this.state.offset)
       offset--;
       this.setState({offset: offset})
     }
