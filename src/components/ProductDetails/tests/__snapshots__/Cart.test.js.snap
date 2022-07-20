@@ -13,17 +13,26 @@ exports[`Cart should render properly 1`] = `
     <div
       className="sizeContainer"
     >
-      <select
+      <ForwardRef
         className="sizeMenu"
-        disabled={true}
+        defaultValue={
+          Object {
+            "label": "Select Size",
+            "value": "N/A",
+          }
+        }
+        isDisabled={true}
         onChange={[Function]}
-      >
-        <option
-          value="N/A"
-        >
-          Out of Stock
-        </option>
-      </select>
+        openMenuOnFocus={true}
+        options={
+          Array [
+            Object {
+              "label": "Out of Stock",
+              "value": "N/A",
+            },
+          ]
+        }
+      />
     </div>
     <div>
       <select
