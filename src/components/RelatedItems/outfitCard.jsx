@@ -17,9 +17,8 @@ class OutfitCard extends React.Component {
   }
 
   componentDidMount() {
-    var stars = this.props.calculateStars(undefined, this.props.reviewsAvgScore)
+    var stars = this.props.calculateStars(undefined, this.props.product.reviews)
     this.setState({setReview: stars})
-
   }
 
 
@@ -56,6 +55,7 @@ class OutfitCard extends React.Component {
 
 
       return (
+
         <>
 
         <div  className="card"  id={`J${this.props.product.name}`} style={
