@@ -36,11 +36,11 @@ class OutfitCard extends React.Component {
 
   render() {
 
-      let price = <div className="name">{this.props.product.default_price}</div>
+      let price = <div className="price">{this.props.product.default_price}</div>
       // check to see if default style is currently for sale, if so, strike through default price and list current sale price instead
-      if (this.props.product.default.sale_price) {
-        price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
-      }
+      // if ((this.props.product.default.sale_price)) {
+      //   price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
+      // }
 
       return (
         <>
@@ -59,7 +59,7 @@ class OutfitCard extends React.Component {
         }
         } onMouseOver={this.cardOver} onMouseOut={this.cardOut}>
           <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>
-          <span id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
+          <span className="deletebtn" id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
           </div>
           <div onClick={this.onProdClick} style={{
             display: 'flex',

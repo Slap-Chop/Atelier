@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart should render properly 1`] = `
+<div
+  className="productBorder"
+>
+  Camo Onesie
+   &gt; 
+  Forest Green & Black
+  <div
+    className="cartContainer"
+  >
+    <div
+      className="sizeContainer"
+    >
+      <ForwardRef
+        className="sizeMenu"
+        defaultValue={
+          Object {
+            "label": "Select Size",
+            "value": "N/A",
+          }
+        }
+        isDisabled={true}
+        onChange={[Function]}
+        openMenuOnFocus={true}
+        options={
+          Array [
+            Object {
+              "label": "Out of Stock",
+              "value": "N/A",
+            },
+          ]
+        }
+      />
+    </div>
+    <div>
+      <select
+        className="quantityMenu"
+        disabled={true}
+        onChange={[Function]}
+      >
+        <option>
+          -
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;

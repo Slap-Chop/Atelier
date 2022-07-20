@@ -10,6 +10,10 @@
     "postinstall": "webpack --config ./webpack.config.js --progress"
   },
   "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/fileMock.js"
+    },
     "setupFilesAfterEnv": [
       "<rootDir>/setupEnzyme.js"
     ]
@@ -54,6 +58,7 @@
     "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-select": "^5.4.0",
     "styled-components": "^5.3.5",
     "ts-jest": "^28.0.5",
     "url-loader": "^4.1.1"
