@@ -59,7 +59,7 @@ class OutfitCard extends React.Component {
         }
         } onMouseOver={this.cardOver} onMouseOut={this.cardOut}>
           <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>
-          <span id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
+          <span className="deletebtn" id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
           </div>
           <div onClick={this.onProdClick} style={{
             display: 'flex',

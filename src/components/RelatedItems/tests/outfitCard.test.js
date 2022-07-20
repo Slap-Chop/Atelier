@@ -1,5 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
+import toJSON from 'enzyme-to-json';
 import OutfitCard from '../outfitCard.jsx';
 
 
@@ -26,9 +27,14 @@ name: "Black Lenses & Gold Frame",
 category: "Accessories"
 }
 
-var outfitCard = shallow(<OutfitCard product={testProduct}/>)
+
 
 test('OutfitCard component renders with product attributes', () => {
+
+var fakeClick = jest.fn();
+var spy = jest.spyOn(OutfitCard.prototype,
+  "cardOver")
+  var outfitCard = shallow(<OutfitCard product={testProduct} onClick={fakeClick}/>)
 
   expect(outfitCard.find('div.name').text()).toEqual("Black Lenses & Gold Frame")
   expect(outfitCard.find('div.price').text()).toEqual("69.00")

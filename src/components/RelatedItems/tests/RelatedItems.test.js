@@ -12,8 +12,16 @@ var testData = {
     id: 'test'
   }
 }
-var wrapper = shallow(<RelatedItems products={testData}/>)
+var wrapper = shallow(<RelatedItems key={1234}
+  products={testData}
+  onClick={jest.fn()}
+  onRemove={jest.fn()}
+  onAddOutfit={jest.fn()}
+/>)
 
 test('Lists Mount', () => {
-  expect(wrapper.exists()).toEqual(true)
+  var spy = jest.spyOn(RelatedItems.prototype, "componentDidMount");
+  expect(wrapper.exists()).toEqual(true);
+  wrapper.instance().componentDidMount();
+  expect(spy).toHaveBeenCalled();
 })
