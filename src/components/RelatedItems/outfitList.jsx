@@ -23,11 +23,11 @@ class OutfitList extends React.Component {
   render() {
     if (this.props.currentOutfit.length > 0) {
       var outfitCards = this.props.currentOutfit.map((product, index) => {
-        return <OutfitCard key={index} product={product} onRemove={this.props.onRemove}/>
+        return <OutfitCard reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} key={index} product={product} onRemove={this.props.onRemove}/>
      })
-     outfitCards.unshift( <AddOutfit key={outfitCards.length + 1} currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>)
+     outfitCards.unshift( <AddOutfit reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} key={outfitCards.length + 1} currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>)
     } else {
-      outfitCards =  [<AddOutfit key="0" currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>]
+      outfitCards =  [<AddOutfit reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} key="0" currentProduct={this.props.currentProduct}onAdd={this.onAdd}/>]
     }
     return (
       <>
