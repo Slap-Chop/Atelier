@@ -105,7 +105,7 @@ var ComparisonModal = (props) => {
     <div onClick={props.changeCompState}style={overlayStyle}>
       <div style={modalStyle}>
         <div style={containerStyle}>
-          <div style={textstyle}>{props.products.currentProduct.name}</div>
+          <div className="comparison" style={textstyle}>{props.products.currentProduct.name}</div>
           {Object.keys(featuresObj).map((feature, i) => {
             if (featuresObj[feature][curID]) {
               return <div style={textstyle} key={i}>{featuresObj[feature][curID]}</div>
@@ -115,7 +115,7 @@ var ComparisonModal = (props) => {
           })}
         </div>
         <div style={containerStyle}>
-         <div style={innerStyle} >FEATURES</div>
+         <div className="features"style={innerStyle} >FEATURES</div>
           {Object.keys(featuresObj).map((feature, i) => {
           return <div style={innerStyle}key={i}>{feature}
           </div>
