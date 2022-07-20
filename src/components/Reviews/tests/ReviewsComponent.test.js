@@ -9,7 +9,6 @@ import toJson from 'enzyme-to-json'
 
 describe('<Reviews/>', () => {
 
-  //const reviewComponent = shallow(<Reviews className="reviews-container" style={testStyle}/>)
 
   const shallowReviews = shallow(<Reviews/>);
   console.log('SHALLOW', shallowReviews)
@@ -24,17 +23,5 @@ describe('<Reviews/>', () => {
     expect(div.text()).toEqual('Ratings & Reviews');
   })
 
-  // it('should have my styling rule', () => {
-  //   expect(shallowReviews.Container).toHaveStyleRule('display', 'flex');
-  //   expect(shallowReviews.Container).toHaveStyleRule('padding', '40');
-  // });
-
-  // it('should display a reviews list', () => {
-  //   expect(shallowReviews.exists(<ReviewsList/>)).toBe(true);
-  // })
-
-  // it('should render styled', () => {
-  //   expect(shallow(<Reviews/>)).toMatchSnapshot();
-  // })
 });
 

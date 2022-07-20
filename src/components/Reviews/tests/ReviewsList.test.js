@@ -18,27 +18,21 @@ describe('<ReviewsList/>', () => {
 
   it('should display a reviews score', () => {
     const wrapper = shallow(<ReviewsList reviews={[]}/>);
-    const div = wrapper.find('select');
-    expect(div.exists()).toBe(true);
+    const select = wrapper.find('select');
+    expect(select.exists()).toBe(true);
   })
 
-  // it('should have my styling rule', () => {
-  //   expect(shallowReviewsList.Container).toHaveStyleRule('display', 'flex');
-  //   expect(shallowReviewsList.Container).toHaveStyleRule('padding', '40');
-  // });
+  it('should display a reviews score', () => {
+    const wrapper = shallow(<ReviewsList reviews={[]}/>);
+    const option = wrapper.find('option');
+    expect(option.exists()).toBe(true);
+  })
 
-  // it('should have options', () => {
-  //   const wrapper = shallow(<ReviewsList reviews={[]}/>);
-  //   console.log('SHALLOW', wrapper)
-  // })
+  it('should display a reviews score', () => {
+    const wrapper = shallow(<ReviewsList reviews={[]}/>);
+    const ul = wrapper.find('ul');
+    expect(ul.exists()).toBe(true);
+  })
 
-  // it('should display a reviews list', () => {
-  //   const wrapper = shallow(<ReviewsList reviews={[]}/>);
-  //   expect((ReviewsList).exists()).toBe(true);
-  // })
-
-  // it('should render styled', () => {
-  //   expect(shallow(<Reviews/>)).toMatchSnapshot();
-  // })
 });
 
