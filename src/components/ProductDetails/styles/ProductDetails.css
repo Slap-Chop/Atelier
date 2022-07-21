@@ -46,6 +46,8 @@
   object-fit: contain;
   justify-content: center;
   cursor: zoom-in;
+  max-width: 80%;
+
 }
 
 .vertArrow {
