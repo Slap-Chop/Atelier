@@ -116,8 +116,8 @@ class App extends React.Component {
   }
 
   relatedProdClick(id, product) {
-    this.setState({currentId: id, currentProduct: product})
-    this.calculateAverageReviews()
+    this.setState({currentId: id, currentProduct: product}, () => this.calculateAverageReviews())
+
   }
 
   addOutfitClick(product) {

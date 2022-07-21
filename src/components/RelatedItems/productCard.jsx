@@ -18,7 +18,7 @@ class ProductCard extends React.Component {
 
   onProdClick(e) {
     e.preventDefault();
-    this.props.onClick(this.props.product.id, this.props.product, this.props.score)
+    this.props.onClick(this.props.product.id, this.props.product)
   }
 
   onActionClick(e) {
