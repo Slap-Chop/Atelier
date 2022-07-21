@@ -36,11 +36,13 @@ class OutfitCard extends React.Component {
     document.getElementById(`X${this.props.product.name}`).style.color = 'lightgrey';
   }
   cardOver() {
-    document.getElementById(`J${this.props.product.name}`).style.boxShadow = '0 8px 16px 0 rgba(0,0,0,0.4)'
+    document.getElementById(`J${this.props.product.name}`).style.boxShadow = '0 2px 4px 0 rgba(0,0,0,0.4)';
+    document.getElementById(`J${this.props.product.name}`).style.opacity = '100%'
   }
 
   cardOut() {
-    document.getElementById(`J${this.props.product.name}`).style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
+    document.getElementById(`J${this.props.product.name}`).style.boxShadow = '0 1px 3px 0 rgba(0,0,0,0.2)';
+    document.getElementById(`J${this.props.product.name}`).style.opacity = '90%'
   }
 
   render() {
@@ -60,26 +62,33 @@ class OutfitCard extends React.Component {
 
         <div  className="card"  id={`J${this.props.product.name}`} style={
           {display: 'inline-block',
-          margin: '2%',
-          marginLeft: '10px',
-          marginRight: '10px',
+          margin: '3px',
+          width: '160px',
           minWidth: '160px',
-          height: '195px',
-          justifyContent: 'center',
-          boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-          tansition: '0.5s',
-          borderRadius: '5%'
+          boxShadow: '0 1px 3px 0 rgba(0,0,0,0.2)',
+          transition: 'all 0.1s linear',
+          marginBottom: '3px',
+          borderRadius: '2%',
+          backgroundColor: 'lightgrey',
+          opacity: '90%'
         }
         } onMouseOver={this.cardOver} onMouseOut={this.cardOut}>
-          <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>
-          <span className="deletebtn" id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
-          </div>
-          <div onClick={this.onProdClick} style={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}>
 
-          <img  src={this.props.product.defaultStyle.photos[0].thumbnail_url} style={{height: '100px'}} alt="Image N/A"/>
+          <div onClick={this.onProdClick} style={{
+            justifyContent: 'center',
+            backgroundImage: `url(${this.props.product.defaultStyle.photos[0].thumbnail_url})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            minHeight: '200px',
+            borderRadius: '1%',
+          }}>
+             <div style={{
+              display: 'flex',
+              justifyContent: 'right',
+              marginRight: '5px'}}>
+          <span className="deletebtn" id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer', transition: '0.1s'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
+          </div>
+
 
           </div>
 
@@ -87,8 +96,8 @@ class OutfitCard extends React.Component {
             textAlign: 'center',
 
           }}>
-          <div className="category">{this.props.product.category}</div>
-          <div className="name">{this.props.product.name}</div>
+          <div style={{cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="category">{this.props.product.category}</div>
+          <div style={{cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="name">{this.props.product.name}</div>
           {price}
           <div className="rating">{this.state.setReview ? this.state.setReview.map(star => star) : null}</div>
           </div>
