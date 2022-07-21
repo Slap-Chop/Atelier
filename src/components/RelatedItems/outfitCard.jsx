@@ -4,6 +4,7 @@ class OutfitCard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      setReview: null
     };
     // this.onProdClick = this.onProdClick.bind(this);
     // this.onActionClick = this.onActionClick.bind(this)
@@ -12,7 +13,15 @@ class OutfitCard extends React.Component {
     this.mouseout = this.mouseout.bind(this);
     this.cardOver= this.cardOver.bind(this);
     this.cardOut = this.cardOut.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
+
+  componentDidMount() {
+    var stars = this.props.calculateStars(undefined, this.props.product.reviews)
+    this.setState({setReview: stars})
+  }
+
+
 
 
   onRemove(e) {
@@ -36,13 +45,17 @@ class OutfitCard extends React.Component {
 
   render() {
 
-      let price = <div className="name">{this.props.product.default_price}</div>
+      let price = <div className="price">{this.props.product.default_price}</div>
       // check to see if default style is currently for sale, if so, strike through default price and list current sale price instead
-      if (this.props.product.default.sale_price) {
-        price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
-      }
+      // if ((this.props.product.default.sale_price)) {
+      //   price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
+      // }
+
+
+
 
       return (
+
         <>
 
         <div  className="card"  id={`J${this.props.product.name}`} style={
@@ -59,7 +72,7 @@ class OutfitCard extends React.Component {
         }
         } onMouseOver={this.cardOver} onMouseOut={this.cardOut}>
           <div style={{display: 'flex', justifyContent: 'right', marginRight: '5px'}}>
-          <span id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
+          <span className="deletebtn" id={`X${this.props.product.name}`} product={this.props.product} style={{color: 'lightgrey', cursor: 'pointer'}} onMouseOver={this.mouseover} onMouseOut={this.mouseout} onClick={this.onRemove}>&#10005;   </span>
           </div>
           <div onClick={this.onProdClick} style={{
             display: 'flex',
@@ -77,7 +90,7 @@ class OutfitCard extends React.Component {
           <div className="category">{this.props.product.category}</div>
           <div className="name">{this.props.product.name}</div>
           {price}
-          <div className="rating">star rating to go here</div>
+          <div className="rating">{this.state.setReview ? this.state.setReview.map(star => star) : null}</div>
           </div>
 
         </div>
