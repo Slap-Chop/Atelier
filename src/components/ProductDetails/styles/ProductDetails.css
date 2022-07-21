@@ -17,6 +17,7 @@
   float: right;
   width: 95%;
   border: 1px solid black;
+  height: 100%
 }
 
 /* .productBorder {
@@ -44,10 +45,10 @@
 }
 
 .vertArrow {
-  width: 50px;
-  height: 50px;
+  width: 3%;
+  height: 3%;
   display: flex;
-  padding-left: 5px;
+  padding-left: 1%;
   z-index: 3;
   position: relative;
   object-fit: contain;
@@ -76,13 +77,13 @@
 .rightArrowContainer {
   position: absolute;
   top: 50%;
-  right: 0%;
+  right: 5%;
 }
 
 .horzArrow{
   background: rgba(105, 105, 105, .5);
   width: 25px;
-  height: 60px;
+  height: 15%;
   object-fit: cover;
   z-index: 3;
 }
