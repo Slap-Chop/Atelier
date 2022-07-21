@@ -36,11 +36,11 @@ class App extends React.Component {
     axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products").then((data) => {
       this.setState({productList : data.data});
       //if the list contains item, set current item to first item in the list as a default
-      if (this.state.productList.length > 0) {
-        this.setState({currentProduct: this.state.productList[0]})
+      if (data.data.length > 0) {
+        this.setState({currentProduct: data.data[0]})
         console.log('App current product on mount:', this.state.currentProduct)
         //set the id for the current product
-        this.setState({currentId: this.state.currentProduct.id})
+        this.setState({currentId: data.data[0].id})
         console.log('App currentId on mount:', this.state.currentId)
       }
     }).then(() => {
