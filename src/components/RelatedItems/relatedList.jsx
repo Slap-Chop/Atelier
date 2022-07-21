@@ -41,12 +41,12 @@ var RelatedList = (props) => {
     <>
    <div id="scroll" style={{
     display: 'inline-flex',
-    marginLeft: '50px',
+    marginLeft: '0px',
     marginRight: '50px',
     maxHeight: '100%',
     whiteSpace: 'nowrap',
     overflow: 'auto',
-    marginTop: '0px'
+    marginTop: '0px',
    }}
    >{list}
     {/* <div style={{position: 'relative', float: 'right', bottom: '100px'}}>

@@ -3,11 +3,13 @@ import React from 'react';
 const addOutfit = (props) => {
 
   var cardOver = () => {
-    document.getElementById(`O${props.currentProduct.name}`).style.boxShadow = '0 8px 16px 0 rgba(0,0,0,0.4)'
+    document.getElementById(`O${props.currentProduct.name}`).style.boxShadow = '0 2px 4px 0 rgba(0,0,0,0.4)';
+    document.getElementById(`O${props.currentProduct.name}`).style.opacity = '100%'
   }
 
   var cardOut = () => {
-    document.getElementById(`O${props.currentProduct.name}`).style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
+    document.getElementById(`O${props.currentProduct.name}`).style.boxShadow = '0 1px 3px 0 rgba(0,0,0,0.2)';
+    document.getElementById(`O${props.currentProduct.name}`).style.opacity = '90%'
   }
 
 
@@ -16,15 +18,17 @@ const addOutfit = (props) => {
 
     <div  onClick={props.onAdd} id={`O${props.currentProduct.name}`} className="card" onMouseOver={cardOver} onMouseOut= {cardOut}style={
       {display: 'inline-block',
-      margin: '2%',
-      marginLeft: '10px',
-      marginRight: '10px',
+      margin: '3px',
+      marginLeft: '5px',
+      marginRight: '2px',
       minWidth: '160px',
-      height: '195px',
+      minHeight: '260px',
       justifyContent: 'center',
-      boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-      tansition: '0.5s',
-      borderRadius: '5%'
+      boxShadow: '0 1px 3px 0 rgba(0,0,0,0.2)',
+      transition: 'all 0.1s linear',
+      borderRadius: '2%',
+      backgroundColor: 'lightgrey',
+      opacity: '90%'
     }
     }>
 
