@@ -29,7 +29,7 @@ var RelatedList = (props) => {
     var prodArray = dupChecker(relObj);
     // console.log(prodArray)
     var list = prodArray.map((product, index) => {
-      return <ProductCard class="card" key= {index} product={product} onClick={props.onClick} currentProduct={props.currentProduct}/>
+      return <ProductCard class="card" key={index} product={product}  score={product.reviews}onClick={props.onClick} calculateStars={props.calculateStars}currentProduct={props.currentProduct}/>
    })
 
 

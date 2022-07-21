@@ -43,17 +43,28 @@ class ProductCard extends React.Component {
     document.getElementById(`S${this.props.product.name}`).style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
   }
 
+
+
   render() {
-    if (this.props.product.default === undefined) {
+    if (this.props.product.default === undefined || this.props.score === undefined) {
       return (
         <></>
       )
+
     } else {
       let price = <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price">{this.props.product.default_price}</div>
       //check to see if default style is currently for sale, if so, strike through default price and list current sale price instead
       if (this.props.product.default.sale_price) {
         price = <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
       }
+
+      if (this.props.score !== undefined) {
+        var stars = this.props.calculateStars(undefined, this.props.score)
+      }
+
+
+
+
 
       return (
         <>
@@ -87,7 +98,7 @@ class ProductCard extends React.Component {
           <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="category">{this.props.product.category}</div>
           <div style={{fontFamily: 'Georgia, serif', fontSize: '70%'}}className="prodName" id={this.props.product.name}>{this.props.product.name}</div>
           {price}
-          <div  style={{marginBottom:'5px'}} className="rating">star rating to go here</div>
+          <div  style={{marginBottom:'5px'}} className="rating">{stars ? stars.map(star => star) : null}</div>
           </div>
         </div>
         {this.state.comparisonState ? <ComparisonModal changeCompState={this.onActionClick} products={this.props}/> : null}
