@@ -1,4 +1,5 @@
 import React from 'react';
+import noImage from './Images/noImage.png';
 
 const GalleryThumbnail = (props) => {
   return (
@@ -11,7 +12,8 @@ const GalleryThumbnail = (props) => {
           props.click(props.index)
         }}
         style={{opacity: props.selected}}
-      src={`${props.photo.thumbnail_url}`}/>
+      src={`${props.photo.thumbnail_url}` || noImage}
+      alt='Image N/A'/>
 
     </div>
   )

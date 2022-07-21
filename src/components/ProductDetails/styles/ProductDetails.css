@@ -31,6 +31,7 @@
 .imageGalleryContainer {
   position: relative;
   background-color: lightgrey;
+  height: 100%;
 }
 
 .imageContainer {
@@ -46,6 +47,8 @@
   object-fit: contain;
   justify-content: center;
   cursor: zoom-in;
+  max-width: 80%;
+
 }
 
 .vertArrow {
