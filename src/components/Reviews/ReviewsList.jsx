@@ -3,11 +3,11 @@ import ReviewsListEntry from './ReviewsListEntry.jsx';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  flex: 3 200px;
+  flex: 2;
   border: 3px solid red;
   background-color: grey;
-  ${'' /* align-items: left; */}
   overflow: scroll;
+  width: 90%;
   max-width: 900px;
 `
 
