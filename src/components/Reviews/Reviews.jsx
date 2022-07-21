@@ -73,27 +73,42 @@ export default function Reviews ({id, calculateStars, reviewsAvgScore, allRating
       setReviews(response.data.results);
     })
     .then(() => setStars(calculateStars()))
+    .then(() => setBars(generateBars()))
     .catch((err) => console.log('err', err));
 
-    setStars(calculateStars());
+    //setStars(calculateStars());
     console.log('reviews average score', reviewsAvgScore);
   }, [reviewsAvgScore]);
 
   function generateBars() {
 
     let ratingsCounts = Object.values(allRatings);
+
+    let ratingCountValue = [];
     let totalReviewCount = 0;
-    ratingsCounts.forEach(rating => totalReviews+= rating);
+
+    // Convert values from string to int
+    ratingsCounts.forEach((count) => ratingCountValue.push(Math.floor(count)));
+    ratingCountValue.forEach(rating => totalReviewCount+= rating);
 
 
     setTotalReviews(totalReviewCount);
 
     const allBarsArray = [];
 
+
     let barCount = 5;
     while (barCount > 0) {
-      //allBarsArray.push(<RatingsBar number={barCount} starFilledPercentage={}/>)
+      let ratingTotal = ratingsCounts[barCount-1];
+
+      let percentage = (ratingTotal / totalReviewCount) * 100;
+
+      allBarsArray.push(<RatingsBar scoreNumber={barCount} barFilledPercentage={`${percentage}%`} ratingTotalCount={Math.round(ratingTotal)} key={barCount}/>);
+
+      barCount--;
     }
+
+    return allBarsArray;
   }
 
   return (
@@ -109,7 +124,7 @@ export default function Reviews ({id, calculateStars, reviewsAvgScore, allRating
           <RatingsScore>{reviewsAvgScore}</RatingsScore>
           <div>Total: {}</div>
           <RatingsBarsContainer>
-            <RatingsBar number={10} barFilledPercentage={'75%'}/>
+            {bars.map(bar => bar)}
           </RatingsBarsContainer>
         </RatingBreakdownContainer>
 
