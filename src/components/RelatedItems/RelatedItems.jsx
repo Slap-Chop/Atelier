@@ -12,6 +12,7 @@ class RelatedItems extends React.Component {
     this.state = {
       product_id: null
     }
+    this.calcAvg = this.calcAvg.bind(this)
   }
 
 
@@ -104,7 +105,7 @@ class RelatedItems extends React.Component {
             let relObj = this.state.relatedProducts;
             for (let i = 0; i < relObj.length; i++) {
               if (relObj[i].id === Number(res.data.product_id)) {
-                relObj[i].reviews = res.data
+                relObj[i].reviews = this.calcAvg(res.data.ratings)
               }
             }
             this.setState({ relatedProducts: relObj });
@@ -114,6 +115,24 @@ class RelatedItems extends React.Component {
       .catch((err) => console.log(err))
 
       .catch((err) => console.log(err))
+  }
+
+  calcAvg(reviews) {
+    let totalReviews = Object.values(reviews);
+      let ratingsObj = reviews
+      let totalCountOfAllReviews = 0;
+
+      let numScores = [];
+      // Need to convert all the number strings into integers
+      // push converted values into our numScores array
+      totalReviews.forEach((score) => numScores.push(Math.floor(score)));
+      // Add to total count of ratings
+      numScores.forEach((rating) => totalCountOfAllReviews+=rating);
+
+      // round the average to the nearest tenth decimal place
+      let avg = Math.round(((1*numScores[0] + 2*numScores[1] + 3*numScores[2] + 4*numScores[3] + 5*numScores[4]) / totalCountOfAllReviews) * 10) / 10;
+
+      return avg;
   }
 
 
@@ -129,13 +148,13 @@ class RelatedItems extends React.Component {
         <div className="related-list" style={
           { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center' }
         }>
-          {this.state.relatedProducts ? <RelatedList onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
+          {this.state.relatedProducts ? <RelatedList calculateStars={this.props.calculateStars} reviewsAvgScore={this.props.reviewsAvgScore}onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
         </div>
         <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center', marginBottom: '15px', marginTop: '0px' }}>My Outfit</div>
         <div className="related-list" style={
           { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignText: 'center' }
         }>
-          <OutfitList currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle} />
+          <OutfitList  reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle} />
         </div>
       </>
     )

@@ -6,7 +6,7 @@ const ProductInfo = (props) => {
   // console.log('product infostyles', props.styles)
   let stars = props.calculateStars(props.reviewsAvgScore);
   return (
-  <div className='productBorder'>
+  <div className='productBorder info'>
     <div
       className='reviews'
       onClick={props.scrollReview}

@@ -4,6 +4,7 @@ class OutfitCard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      setReview: null
     };
     // this.onProdClick = this.onProdClick.bind(this);
     // this.onActionClick = this.onActionClick.bind(this)
@@ -12,7 +13,15 @@ class OutfitCard extends React.Component {
     this.mouseout = this.mouseout.bind(this);
     this.cardOver= this.cardOver.bind(this);
     this.cardOut = this.cardOut.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
+
+  componentDidMount() {
+    var stars = this.props.calculateStars(undefined, this.props.product.reviews)
+    this.setState({setReview: stars})
+  }
+
+
 
 
   onRemove(e) {
@@ -42,7 +51,11 @@ class OutfitCard extends React.Component {
       //   price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
       // }
 
+
+
+
       return (
+
         <>
 
         <div  className="card"  id={`J${this.props.product.name}`} style={
@@ -77,7 +90,7 @@ class OutfitCard extends React.Component {
           <div className="category">{this.props.product.category}</div>
           <div className="name">{this.props.product.name}</div>
           {price}
-          <div className="rating">star rating to go here</div>
+          <div className="rating">{this.state.setReview ? this.state.setReview.map(star => star) : null}</div>
           </div>
 
         </div>

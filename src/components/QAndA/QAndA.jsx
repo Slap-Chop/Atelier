@@ -16,8 +16,11 @@ class QAndA extends React.Component {
       searchText: "",
       showItem:2,
       addQuestion: false,
-      productId: 0
+      productId: 0,
+      page:1,
+      isLoading: true
     }
+
     //inside constructor
     this.onSearchHandler = this.onSearchHandler.bind(this);
     this.filterItems = this.filterItems.bind(this);
@@ -34,45 +37,76 @@ class QAndA extends React.Component {
         'User-Agent': 'request',
          //"params": {product_id: "40348"}
          //uncomment this line 28 for group test
-         "params": {product_id:this.state.productId}
+         "params": {
+          product_id:this.state.productId,
+          page: this.state.page
+        }
+
       }
     };
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     axios.get(options.url, options.headers)
     .then( res => {
-      this.setState({
-        qnaData:res.data.results
-      })
+      console.log("this is product id", this.state.productId)
+      console.log("this is the data", res.data.results)
+      if (res.data.results.length === 0 && this.state.isLoading) {
+        this.setState({page: this.state.page + 1})
+        if (this.state.page > 6) {
+          this.setState({isLoading: false})
+        }
+      } else {
+        this.setState({
+          qnaData:[...this.state.qnaData, ...res.data.results]
+        })
+      }
     })
   }
 
-  componentDidUpdate() {
-    if(this.state.productId !== this.props.productId) {
-      this.setState({
-        productId: this.props.productId
-      })
 
+
+
+  componentDidUpdate() {
+    if(this.state.productId !== this.props.productId && this.state.isLoading) {
+      //update new product, reset
       this.setState({
-        showItem: 2
+        productId: this.props.productId,
+        qnaData: [],
+        searchText: "",
+        showItem:2,
+        addQuestion: false,
+        page:2,
+        isLoading: true
       })
 
       let options = {
         url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
         headers: {
           'User-Agent': 'request',
-           "params": {product_id:this.props.productId}
+           "params": {
+            product_id:this.props.productId,
+            page: this.state.page
+          }
         }
       };
       axios.defaults.headers.common['Authorization'] = config.TOKEN;
       axios.get(options.url, options.headers)
       .then( res => {
-        this.setState({
-          qnaData:res.data.results
-        })
-      })
+        console.log("this is product id", this.state.productId)
+        console.log("this is the data", res.data.results)
+        if (res.data.results.length === 0 && this.state.isLoading) {
+          this.setState({page: this.state.page + 1})
+          if (this.state.page > 6) {
+            this.setState({isLoading: false})
+          }
+        } else {
+          this.setState({
+            qnaData:[...this.state.qnaData, ...res.data.results]
+          })
+        }
 
-    }
+    })
   }
+}
 
   //update user input searchtext
   onSearchHandler(searchText) {
