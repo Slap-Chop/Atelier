@@ -89,10 +89,10 @@ class ProductDetails extends React.Component {
         <h5>{this.props.currentProduct.slogan}</h5>
         <p>{this.props.currentProduct.description}</p></div>
         <div className='share'>
-        <div class="fb-share-button shareButton" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-        <div class='fb-share-button shareButton'>        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Atelier Slap Chop is really neat! Come check it out!" data-hashtags="Slap-Chop" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+        <div className="fb-share-button shareButton" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
+        <div className='fb-share-button shareButton'>        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-text="Atelier Slap Chop is really neat! Come check it out!" data-hashtags="Slap-Chop" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script></div>
 
-          <div class='fb-share-button share'><img className='shareButton' src={pintrestShare}/></div>
+          <div className='fb-share-button share'><img className='shareButton' src={pintrestShare}/></div>
 
         </div>
       </div>
