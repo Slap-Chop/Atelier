@@ -156,13 +156,8 @@ class App extends React.Component {
       reviewsAvgScore={this.state.reviewsAvgScore}
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
-<<<<<<< HEAD
-      <div><RelatedItems key={this.state.currentId} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
-      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings}/></div>
-=======
       <div><RelatedItems key={this.state.currentId} reviewsAvgScore={this.state.reviewsAvgScore} calculateStars={this.calculateStars} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
-      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore}/></div>
->>>>>>> 43cd017d8b33d194bf331481da30b49c397fbd00
+      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings}/></div>
     </div>
 
     )
