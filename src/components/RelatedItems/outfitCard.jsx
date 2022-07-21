@@ -1,4 +1,5 @@
 import React from 'react';
+import noImage from '../ProductDetails/Images/noImage.png';
 
 class OutfitCard extends React.Component {
   constructor(props) {
@@ -52,6 +53,10 @@ class OutfitCard extends React.Component {
       // if ((this.props.product.default.sale_price)) {
       //   price = <div className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
       // }
+      var photo = this.props.product.defaultStyle.photos[0].thumbnail_url;
+      if (this.props.product.defaultStyle.photos[0].thumbnail_url === null) {
+        photo = noImage;
+      }
 
 
 
@@ -76,7 +81,7 @@ class OutfitCard extends React.Component {
 
           <div onClick={this.onProdClick} style={{
             justifyContent: 'center',
-            backgroundImage: `url(${this.props.product.defaultStyle.photos[0].thumbnail_url})`,
+            backgroundImage: `url(${photo})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             minHeight: '200px',

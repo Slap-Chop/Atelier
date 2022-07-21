@@ -1,5 +1,6 @@
 import React from 'react';
 import ComparisonModal from './comparisonModal.jsx';
+import noImage from '../ProductDetails/Images/noImage.png';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -64,6 +65,11 @@ class ProductCard extends React.Component {
         var stars = this.props.calculateStars(undefined, this.props.score)
       }
 
+      var photo = this.props.product.default.photos[0].thumbnail_url;
+      if (this.props.product.default.photos[0].thumbnail_url === null) {
+        photo = noImage;
+      }
+
 
 
 
@@ -88,7 +94,7 @@ class ProductCard extends React.Component {
 
           <div id="imageDIV"   style={{
             justifyContent: 'center',
-            backgroundImage: `url(${this.props.product.default.photos[0].thumbnail_url})`,
+            backgroundImage: `url(${photo})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             borderRadius: '1%',
