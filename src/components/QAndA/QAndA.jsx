@@ -93,7 +93,7 @@ class QAndA extends React.Component {
       .then( res => {
         console.log("this is product id", this.state.productId)
         console.log("this is the data", res.data.results)
-        if (res.data.results.length === 0 && isLoading) {
+        if (res.data.results.length === 0 && this.state.isLoading) {
           this.setState({page: this.state.page + 1})
           if (this.state.page > 6) {
             this.setState({isLoading: false})
