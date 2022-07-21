@@ -12,20 +12,20 @@ const AddQuestion = (props) => {
   const [Question, setQuestion] = useState("");
   const [Email, setEmail] = useState("");
 
-  // useEffect( () => {
-  //   let options = {
-  //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${props.productId}`,
-  //     headers: {
-  //       'User-Agent': 'request',
-  //     }
-  //   };
-  //   axios.defaults.headers.common['Authorization'] = config.TOKEN;
-  //   axios.get(options.url, options.headers)
-  //   .then( res => {
-  //     console.log("this is the id",props.productId, res.data)
-  //     setProductName(res.data["name"])
-  //     })
-  // },[props.productId]);
+  useEffect( () => {
+    let options = {
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${props.productId}`,
+      headers: {
+        'User-Agent': 'request',
+      }
+    };
+    axios.defaults.headers.common['Authorization'] = config.TOKEN;
+    axios.get(options.url, options.headers)
+    .then( res => {
+      console.log("this is the id",props.productId, res.data)
+      setProductName(res.data["name"])
+      })
+  },[props.productId]);
 
   const questionChangeHandler = (event) => {
     setQuestion(event.target.value);

@@ -12,23 +12,23 @@ const AddAnswer = (props) => {
   const [Answer, setAnswer] = useState("");
   const [Email, setEmail] = useState("");
 
-  // useEffect( () => {
-  //   let options = {
-  //     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`,
-  //     headers: {
-  //       'User-Agent': 'request',
-  //     }
-  //   };
-  //   axios.defaults.headers.common['Authorization'] = config.TOKEN;
-  //   axios.get(options.url, options.headers)
-  //   .then( res => {
-  //       for (let item of res.data) {
-  //         if (item["id"] === props.productId) {
-  //           setProductName(item["name"])
-  //         }
-  //       }
-  //     })
-  // }, [props.productId]);
+  useEffect( () => {
+    let options = {
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products`,
+      headers: {
+        'User-Agent': 'request',
+      }
+    };
+    axios.defaults.headers.common['Authorization'] = config.TOKEN;
+    axios.get(options.url, options.headers)
+    .then( res => {
+        for (let item of res.data) {
+          if (item["id"] === props.productId) {
+            setProductName(item["name"])
+          }
+        }
+      })
+  }, [props.productId]);
 
   const ansChangeHandler = (event) => {
     setAnswer(event.target.value);
