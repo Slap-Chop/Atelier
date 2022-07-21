@@ -60,7 +60,11 @@ class ProductDetails extends React.Component {
 
 
   render() {
-    return(<div className='productDetailsBody'>
+    return(
+    <div>
+      <div className='announcement'>SITE-WIDE ANNOUNCEMENT MESSAGE! SALE/DISCOUNT OFFER</div>
+
+    <div className='productDetailsBody'>
       <div className='imageGalleryBody'>
         <ImageGallery style={this.state.currentStyle}
         id={this.state.id}
@@ -85,6 +89,7 @@ class ProductDetails extends React.Component {
 
         </div>
 
+    </div>
     </div>
 
     )

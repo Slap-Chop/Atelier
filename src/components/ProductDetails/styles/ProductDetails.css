@@ -8,6 +8,10 @@
   display: flex;
 }
 
+.announcement {
+  text-align: center;
+}
+
 .imageGalleryBody {
   border: 1px solid black;
   width: 130%;

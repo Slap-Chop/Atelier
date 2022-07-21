@@ -148,9 +148,9 @@ class App extends React.Component {
 
   render() {
     return(<div>
-      Hi friends!
+      {/* Hi friends!
       npm run react-dev should open a live listener of webpack,
-      in another terminal do npm run server-dev and navigate to localhost:8000 to view the app!
+      in another terminal do npm run server-dev and navigate to localhost:8000 to view the app! */}
       <div><ProductDetails updateStyle={this.updateStyle}
       products={this.state.productList}
       id={this.state.currentId}
