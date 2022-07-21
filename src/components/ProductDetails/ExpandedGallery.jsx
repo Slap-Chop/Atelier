@@ -6,6 +6,7 @@ import leftArrow from './Images/leftArrow.png';
 import rightArrow from './Images/rightArrow.png';
 import upArrow from './Images/upArrow.png';
 import downArrow from './Images/downArrow.png';
+import noImage from './Images/noImage.png';
 
 class ExpandedGallery extends React.Component {
   constructor(props){
@@ -46,7 +47,7 @@ class ExpandedGallery extends React.Component {
           <div className='modalContent'>
             {/* main center image */}
             <div className='modalImageContainer'>
-              <img src={this.props.photos[this.props.photoIndex]?.url}
+              <img src={this.props.photos[this.props.photoIndex]?.url || noImage}
               onClick={this.handleExpandedClick}
               onMouseMove={this.handleMousePan}
               ref={this.imageRef}
