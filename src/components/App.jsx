@@ -49,8 +49,7 @@ class App extends React.Component {
       var updateCurrent = this.state.currentProduct;
       updateCurrent.features = response.data.features;
       this.setState({currentProduct: updateCurrent})
-    })
-    .then(() => this.calculateAverageReviews())
+    }).then(() => this.calculateAverageReviews())
     .catch((err) => console.log('Error getting reviews meta data', err))
   }
 
@@ -91,8 +90,6 @@ class App extends React.Component {
     : scoreDecimal > .3 && scoreDecimal <= .6 ? starFilledPercentage = '50%'
     : scoreDecimal > .6 && scoreDecimal <= .8 ? starFilledPercentage = '75%'
     : starFilledPercentage = '100%';
-     // display empty stars
-    // if score is 0.5-0.75
 
     let wholeStarCount = (reviewsAvg - scoreDecimal).toFixed(1);
     // create an array of Stars
@@ -160,7 +157,7 @@ class App extends React.Component {
       currentProduct={this.state.currentProduct}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
       <div><RelatedItems key={this.state.currentId} reviewsAvgScore={this.state.reviewsAvgScore} calculateStars={this.calculateStars} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
-      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore}/></div>
+      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings}/></div>
     </div>
 
     )
