@@ -5,6 +5,7 @@ import rightArrow from './Images/rightArrow.png';
 import upArrow from './Images/upArrow.png';
 import downArrow from './Images/downArrow.png';
 import ExpandedGallery from './ExpandedGallery.jsx';
+import noImage from './Images/noImage.png';
 
 class ImageGallery extends React.Component {
   constructor(props) {
@@ -122,7 +123,7 @@ class ImageGallery extends React.Component {
           <div className='imageContainer'>
           {/* main image */}
           <img onClick={this.toggleExpanded.bind(this)}
-          src={this.props.style.photos[this.state.photoIndex]?.url}
+          src={this.props.style.photos[this.state.photoIndex]?.url || noImage}
           className='mainImage'/>
 
         </div>

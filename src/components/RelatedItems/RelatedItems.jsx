@@ -143,16 +143,16 @@ class RelatedItems extends React.Component {
 
     return (
       <>
-        <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center', margin: '15px' }}>Related Products</div>
+        <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignItems: 'center', margin: '15px',marginTop: '3px' }}>Related Products</div>
 
         <div className="related-list" style={
-          { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center' }
+          { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignItems: 'center' }
         }>
           {this.state.relatedProducts ? <RelatedList calculateStars={this.props.calculateStars} reviewsAvgScore={this.props.reviewsAvgScore}onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
         </div>
-        <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'center', marginBottom: '15px', marginTop: '0px' }}>My Outfit</div>
+        <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignItems: 'center', marginBottom: '15px', marginTop: '0px', margin: '15px' }}>My Outfit</div>
         <div className="related-list" style={
-          { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignText: 'center' }
+          { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignText: 'center' }
         }>
           <OutfitList  reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle} />
         </div>

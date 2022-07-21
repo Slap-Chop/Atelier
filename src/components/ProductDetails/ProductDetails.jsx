@@ -5,6 +5,9 @@ import ImageGallery from './ImageGallery.jsx';
 import Cart from './Cart.jsx';
 import axios from 'axios';
 import config from '../../../config.js';
+import facebookShare from './Images/facebookShare.png';
+import twitterShare from './Images/twitterShare.png';
+import pintrestShare from './Images/pintrestShare.png';
 import './styles/ProductDetails.css';
 
 class ProductDetails extends React.Component {
@@ -60,7 +63,11 @@ class ProductDetails extends React.Component {
 
 
   render() {
-    return(<div className='productDetailsBody'>
+    return(
+    <div>
+      <div className='announcement'>SITE-WIDE ANNOUNCEMENT MESSAGE! SALE/DISCOUNT OFFER</div>
+
+    <div className='productDetailsBody'>
       <div className='imageGalleryBody'>
         <ImageGallery style={this.state.currentStyle}
         id={this.state.id}
@@ -81,10 +88,15 @@ class ProductDetails extends React.Component {
       <div className='productBorder'>
         <h5>{this.props.currentProduct.slogan}</h5>
         <p>{this.props.currentProduct.description}</p></div>
-      </div>
+        <div className='share'>
+        <div className="fb-share-button" data-href="http://54.219.28.151:8000/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F54.219.28.151%3A8000%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
+        <div className='fb-share-button shareButton'>        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-text="Atelier Slap Chop is really neat! Come check it out!" data-hashtags="Slap-Chop" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script></div>
+        <div className='fb-share-button share'><img className='shareButton' src={pintrestShare}/></div>
 
         </div>
-
+      </div>
+        </div>
+    </div>
     </div>
 
     )

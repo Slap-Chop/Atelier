@@ -36,11 +36,11 @@ class App extends React.Component {
     axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products").then((data) => {
       this.setState({productList : data.data});
       //if the list contains item, set current item to first item in the list as a default
-      if (this.state.productList.length > 0) {
-        this.setState({currentProduct: this.state.productList[0]})
+      if (data.data.length > 0) {
+        this.setState({currentProduct: data.data[0]})
         console.log('App current product on mount:', this.state.currentProduct)
         //set the id for the current product
-        this.setState({currentId: this.state.currentProduct.id})
+        this.setState({currentId: data.data[0].id})
         console.log('App currentId on mount:', this.state.currentId)
       }
     }).then(() => {
@@ -49,8 +49,7 @@ class App extends React.Component {
       var updateCurrent = this.state.currentProduct;
       updateCurrent.features = response.data.features;
       this.setState({currentProduct: updateCurrent})
-    })
-    .then(() => this.calculateAverageReviews())
+    }).then(() => this.calculateAverageReviews())
     .catch((err) => console.log('Error getting reviews meta data', err))
   }
 
@@ -91,8 +90,6 @@ class App extends React.Component {
     : scoreDecimal > .3 && scoreDecimal <= .6 ? starFilledPercentage = '50%'
     : scoreDecimal > .6 && scoreDecimal <= .8 ? starFilledPercentage = '75%'
     : starFilledPercentage = '100%';
-     // display empty stars
-    // if score is 0.5-0.75
 
     let wholeStarCount = (reviewsAvg - scoreDecimal).toFixed(1);
     // create an array of Stars
@@ -148,9 +145,9 @@ class App extends React.Component {
 
   render() {
     return(<div>
-      Hi friends!
+      {/* Hi friends!
       npm run react-dev should open a live listener of webpack,
-      in another terminal do npm run server-dev and navigate to localhost:8000 to view the app!
+      in another terminal do npm run server-dev and navigate to localhost:8000 to view the app! */}
       <div><ProductDetails updateStyle={this.updateStyle}
       products={this.state.productList}
       id={this.state.currentId}
