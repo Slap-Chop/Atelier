@@ -51,8 +51,8 @@ const AnswerList = (props) => {
         }
 
         return (
-              <>
-                <div className="answers" key={ans.id}>
+              <div key={ans.id}>
+                <div className="answers">
                   <div style={{"fontWeight": "bold", "fontSize":"1rem"}}>A:</div> <AnswerItem  data={ans} reportStatus={props.reportStatus}/>
                 </div>
                 {showPhoto && <div className="photos">
@@ -60,7 +60,7 @@ const AnswerList = (props) => {
                       return (<img className="photo" key={index} src={item}  />)
                     })}
                 </div>}
-              </> )
+              </div> )
        })}
     </div>
     <div className="ans-button">
