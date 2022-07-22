@@ -11,8 +11,6 @@ class ScrollRight extends React.Component {
   componentDidMount() {
       var mainWidth = document.getElementById('relatedMain').clientWidth;
       var smallWidth = document.getElementById('related-list').clientWidth;
-      console.log(document.getElementById('scroll-related').scrollLeft);
-      console.log(document.getElementById('related-list').scrollWidth, document.getElementById('relatedMain').clientWidth)
       var width = mainWidth - smallWidth;
       var listLength = this.props.products.length;
       var listWidth = listLength * 170;
@@ -23,16 +21,31 @@ class ScrollRight extends React.Component {
       } else {
         this.setState({arrowView: false})
       }
-
-
-
   }
+
+  // componentDidUpdate(prevProps) {
+  //   var listLength = this.props.products.length;
+  //   var listWidth = listLength * 170;
+
+
+  //   if (prevProps.scrollLeft !== this.props.scrollLeft && this.props.scrollLeft < listWidth*.35) {
+  //     var currScroll = document.getElementById('scroll-related').scrollLeft
+  //     this.setState({arrowView: false})
+
+  //   } else {
+  //     if (prevProps.scrollLeft !== this.props.scrollLeft && this.props.scrollLeft-prevProps.scrollLeft > 100) {
+  //       this.setState({arrowView: true})
+  //     }
+  //   }
+  // }
+
+
 
 
   render() {
     if (this.state.arrowView) {
       return(
-        <div onClick={this.props.scrollClickRight}style={{
+        <div value='scroll-related' onClick={this.props.scrollClickRight}style={{
           margin: '5px',
           marginLeft: '-20px',
           marginRight: '20px',
