@@ -29,6 +29,7 @@ const ImageModal = styled.div`
 const CloseButton = styled.button`
   top: 0;
   right: 0;
+  position: absolute;
 `
 
 export default function FullImageModal ({img, setShowFullImg}) {

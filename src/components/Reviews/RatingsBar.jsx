@@ -20,7 +20,7 @@ const Bar = styled.div`
   align-items: center;
   height: 10px;
   position: relative;
-  background: #ddd;
+  background: 	#888888;
   border-radius: 20px;
   bottom: -5px;
   width: 60%;

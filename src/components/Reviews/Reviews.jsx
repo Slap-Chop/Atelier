@@ -136,7 +136,7 @@ export default function Reviews ({id, calculateStars, reviewsAvgScore, allRating
         </RatingBreakdownContainer>
 
         <ReviewsList reviews={reviews} more={more} setMore={setMore} reviewsToShow={reviewsToShow}
-          setReviewsToShow={setReviewsToShow} style={reviewsListStyle} calculateStars={calculateStars} product={productName}
+          setReviewsToShow={setReviewsToShow} calculateStars={calculateStars} product={productName}
         />
       </Container>
     </>
