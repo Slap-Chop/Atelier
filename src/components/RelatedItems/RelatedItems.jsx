@@ -142,34 +142,31 @@ class RelatedItems extends React.Component {
 
   scrollChange(e) {
     e.preventDefault();
-    console.log(document.getElementById('scroll-related').scrollLeft)
     var left = document.getElementById('scroll-related').scrollLeft;
     this.setState({scrollLeft: left})
   }
 
   scrollClickRight(e) {
     e.preventDefault();
-    document.getElementById('scroll-related').scrollLeft += 169;
+    document.getElementById('scroll-related').scrollLeft += 180;
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
   }
 
   scrollClickLeft(e) {
     e.preventDefault();
-    console.log('clicked', document.getElementById('scroll-related').scrollLeft)
 
-    document.getElementById('scroll-related').scrollLeft -= 169
+    document.getElementById('scroll-related').scrollLeft -= 180
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
   }
 
-  scrollClickRight(e) {
+  scrollClickOutfitR(e) {
     e.preventDefault();
     document.getElementById('scroll-related').scrollLeft += 169;
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
   }
 
-  scrollClickLeft(e) {
+  scrollClickOutfitL(e) {
     e.preventDefault();
-    console.log('clicked', document.getElementById('scroll-related').scrollLeft)
 
     document.getElementById('scroll-related').scrollLeft -= 169
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})

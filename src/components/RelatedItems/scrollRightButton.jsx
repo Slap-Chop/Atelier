@@ -11,8 +11,6 @@ class ScrollRight extends React.Component {
   componentDidMount() {
       var mainWidth = document.getElementById('relatedMain').clientWidth;
       var smallWidth = document.getElementById('related-list').clientWidth;
-      console.log(document.getElementById('scroll-related').scrollLeft);
-      console.log(document.getElementById('related-list').scrollWidth, document.getElementById('relatedMain').clientWidth)
       var width = mainWidth - smallWidth;
       var listLength = this.props.products.length;
       var listWidth = listLength * 170;
