@@ -7,7 +7,6 @@ const Container = styled.div`
   flex: 2;
   overflow: scroll;
   width: 90%;
-  max-width: 900px;
   padding: 10px;
   align-items: flex-start;
   padding-left: 50px;

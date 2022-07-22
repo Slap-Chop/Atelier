@@ -49,6 +49,7 @@ export default function NewReviewModal({setShowModal, productName}) {
   const [reviewBody, setReviewBody] = useState('');
   const [reviewSummary, setReviewSummary] = useState('');
 
+
   return (
     <ModalContainer>
       <Modal>
@@ -80,6 +81,9 @@ export default function NewReviewModal({setShowModal, productName}) {
             </div>
             <h4><label>What is your nickname</label></h4>
             <input type="text" placeholder="Example: jackson11!" size="60" maxLength="60" onChange={(e) => setReviewSummary(e.target.value)}/>
+
+            <input type="file" name="image"  className="form-input"></input>
+
             <h4><label>Your email</label></h4>
             <input type="text" placeholder="Example: jackson11@email.com" size="60" maxLength="60" onChange={(e) => setReviewSummary(e.target.value)}/>
           </div>
