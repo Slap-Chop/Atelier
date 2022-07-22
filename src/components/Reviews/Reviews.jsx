@@ -8,17 +8,19 @@ import styled from 'styled-components';
 
 const reviewsListStyle = {
   'scroll-behavior': 'smooth',
-  overflow: 'scroll'
+  'overflow': 'scroll',
+  'display': 'flex'
 }
 
 const Container = styled.div`
   display: flex;
   max-height: 200;
-  padding: 40;
-  border: 3px solid black;
+  padding: 50px;
+
   align-items: flex-start;
   overflow: scroll;
   flex-direction: row;
+  font-family:'Franklin Gothic Medium', Arial, sans-serif;
 `
 
 const RatingBreakdownContainer = styled.div`
@@ -30,27 +32,32 @@ const RatingBreakdownContainer = styled.div`
 const TopBreakdown = styled.div`
   order: 1;
   display: flex;
-  ${'' /* justify-content: space-evenly; */}
-  align-content: space-between;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
 `
 
 const RatingsScore = styled.div`
-  order: 2;
+  flex: 1;
   height: 50;
   padding: 50;
   font-size: 150px;
-  position: static;
   weight: bold;
-  align-items: center;
 `
 
 const RatingsBarsContainer = styled.div`
   order: 3;
   justify-content: center;
 `
+const Recommendation = styled.div`
 
+`
 
-export default function Reviews ({id, calculateStars, reviewsAvgScore, allRatings}) {
+const StarsContainer = styled.div`
+
+`
+
+export default function Reviews ({id, calculateStars, reviewsAvgScore, allRatings, productName}) {
 
   const [productId, setProductId] = useState(id);
   // const [avgScore, setAvgScore] = useState(reviewsAvgScore);
@@ -115,21 +122,21 @@ export default function Reviews ({id, calculateStars, reviewsAvgScore, allRating
     <>
       <Container>
         <RatingBreakdownContainer>
-
+        <div>Ratings & Reviews</div>
           <TopBreakdown>
-            <div>Ratings & Reviews</div>
+            <RatingsScore>{reviewsAvgScore}
+            </RatingsScore>
             {stars.map(star => star)}
           </TopBreakdown>
 
-          <RatingsScore>{reviewsAvgScore}</RatingsScore>
-          <div>Total: {}</div>
           <RatingsBarsContainer>
             {bars.map(bar => bar)}
           </RatingsBarsContainer>
+          <Recommendation></Recommendation>
         </RatingBreakdownContainer>
 
         <ReviewsList reviews={reviews} more={more} setMore={setMore} reviewsToShow={reviewsToShow}
-          setReviewsToShow={setReviewsToShow} style={reviewsListStyle} calculateStars={calculateStars}
+          setReviewsToShow={setReviewsToShow} style={reviewsListStyle} calculateStars={calculateStars} product={productName}
         />
       </Container>
     </>
