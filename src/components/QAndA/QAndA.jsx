@@ -17,7 +17,7 @@ class QAndA extends React.Component {
       showItem:2,
       addQuestion: false,
       productId: 0,
-      page:1,
+      count:50,
       isLoading: true
     }
 
@@ -35,11 +35,9 @@ class QAndA extends React.Component {
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions`,
       headers: {
         'User-Agent': 'request',
-         //"params": {product_id: "40348"}
-         //uncomment this line 28 for group test
          "params": {
           product_id:this.state.productId,
-          page: this.state.page
+          count: this.state.count
         }
 
       }
@@ -49,16 +47,10 @@ class QAndA extends React.Component {
     .then( res => {
       console.log("this is product id", this.state.productId)
       console.log("this is the data", res.data.results)
-      if (res.data.results.length === 0 && this.state.isLoading) {
-        this.setState({page: this.state.page + 1})
-        if (this.state.page > 6) {
-          this.setState({isLoading: false})
-        }
-      } else {
+
         this.setState({
           qnaData:[...this.state.qnaData, ...res.data.results]
         })
-      }
     })
   }
 
@@ -74,8 +66,6 @@ class QAndA extends React.Component {
         searchText: "",
         showItem:2,
         addQuestion: false,
-        page:2,
-        isLoading: true
       })
 
       let options = {
@@ -84,7 +74,7 @@ class QAndA extends React.Component {
           'User-Agent': 'request',
            "params": {
             product_id:this.props.productId,
-            page: this.state.page
+            count: this.state.count
           }
         }
       };
@@ -93,17 +83,9 @@ class QAndA extends React.Component {
       .then( res => {
         console.log("this is product id", this.state.productId)
         console.log("this is the data", res.data.results)
-        if (res.data.results.length === 0 && this.state.isLoading) {
-          this.setState({page: this.state.page + 1})
-          if (this.state.page > 6) {
-            this.setState({isLoading: false})
-          }
-        } else {
           this.setState({
             qnaData:[...this.state.qnaData, ...res.data.results]
           })
-        }
-
     })
   }
 }
