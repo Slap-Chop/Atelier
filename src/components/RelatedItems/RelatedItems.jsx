@@ -51,7 +51,7 @@ class RelatedItems extends React.Component {
           .then((data) => { data = data.map((res) => { return res.data }); return data })
           .then((data) => {
             // console.log(data, '49')
-            this.setState({ relatedProducts: data })
+            this.setState({ relatedProducts: data }, ()=>{return})
           })
           .catch((err) => console.log(err))
       }).then(() => {
@@ -91,15 +91,24 @@ class RelatedItems extends React.Component {
         //extend the old related products state to include default keys with the product's default style as the value
         var relatedProducts;
         // console.log(this.state.relatedProducts, '88')
+        if (this.state.relatedProducts) {
+
+
         relatedProducts = this.state.relatedProducts.map((product) => {
+          if(newData) {
+
+
           for (let i = 0; i < newData.length; i++) {
             if (product.id === Number(Object.keys(newData[i])[0])) {
               product.default = newData[i][product.id]
             }
           }
           return product;
+        }
+
         })
-        this.setState({ relatedProducts: relatedProducts })
+
+        this.setState({ relatedProducts: relatedProducts })}
       })
       .then(() => {
         //do the same thing for the reviews meta data...need to pull the star ratings values
@@ -137,6 +146,12 @@ class RelatedItems extends React.Component {
       let avg = Math.round(((1*numScores[0] + 2*numScores[1] + 3*numScores[2] + 4*numScores[3] + 5*numScores[4]) / totalCountOfAllReviews) * 10) / 10;
 
       return avg;
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.relatedProducts !== this.state.relatedProducts) {
+      console.log('prodChange');
+    }
   }
 
 

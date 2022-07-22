@@ -33,7 +33,7 @@ class App extends React.Component {
     //setting header to include our Auth token
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     //getting list of products from the API
-    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products").then((data) => {
+    axios.get("https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products", {params: {count: 1}}).then((data) => {
       this.setState({productList : data.data});
       //if the list contains item, set current item to first item in the list as a default
       if (data.data.length > 0) {
@@ -44,12 +44,14 @@ class App extends React.Component {
         console.log('App currentId on mount:', this.state.currentId)
       }
     }).then(() => {
+      this.calculateAverageReviews();
       return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${this.state.currentId}`, {params: {product_id: this.state.currentId}})
+
     }).then((response) => {
       var updateCurrent = this.state.currentProduct;
       updateCurrent.features = response.data.features;
       this.setState({currentProduct: updateCurrent})
-    }).then(() => this.calculateAverageReviews())
+    })
     .catch((err) => console.log('Error getting reviews meta data', err))
   }
 
@@ -144,7 +146,7 @@ class App extends React.Component {
   }
 
   render() {
-    return(<div style={{backgroundColor: 'rgb(220,220,220)', opacity: '90%'}}>
+    return(<div >
       {/* Hi friends!
       npm run react-dev should open a live listener of webpack,
       in another terminal do npm run server-dev and navigate to localhost:8000 to view the app! */}
@@ -156,8 +158,9 @@ class App extends React.Component {
       reviewsAvgScore={this.state.reviewsAvgScore}
       currentProduct={this.state.currentProduct}/></div>
       <div id='relatedMain'style={{marginBottom: '15px'}}><RelatedItems key={this.state.currentId} reviewsAvgScore={this.state.reviewsAvgScore} calculateStars={this.calculateStars} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
-      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings} productName={this.state.currentProduct.name}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
+      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings} productName={this.state.currentProduct.name}/></div>
+
     </div>
 
     )
