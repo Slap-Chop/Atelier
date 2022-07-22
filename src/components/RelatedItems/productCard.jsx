@@ -37,13 +37,13 @@ class ProductCard extends React.Component {
   }
 
   cardOver() {
-    document.getElementById(`S${this.props.product.name}`).style.boxShadow = '0 2px 4px 0 rgba(0,0,0,0.4)';
+    // document.getElementById(`S${this.props.product.name}`).style.boxShadow = '0 2px 4px 0 rgba(0,0,0,0.4)';
     document.getElementById(`S${this.props.product.name}`).style.opacity = '100%'
   }
 
   cardOut() {
-    document.getElementById(`S${this.props.product.name}`).style.boxShadow = '0 1px 3px 0 rgba(0,0,0,0.2)';
-    document.getElementById(`S${this.props.product.name}`).style.opacity = '90%'
+    // document.getElementById(`S${this.props.product.name}`).style.boxShadow = '0 1px 3px 0 rgba(0,0,0,0.2)';
+    document.getElementById(`S${this.props.product.name}`).style.opacity = '85%'
   }
 
 
@@ -55,10 +55,10 @@ class ProductCard extends React.Component {
       )
 
     } else {
-      let price = <div style={{cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price">{this.props.product.default_price}</div>
+      let price = <div style={{color: 'dimgray', cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price">{this.props.product.default_price}</div>
       //check to see if default style is currently for sale, if so, strike through default price and list current sale price instead
       if (this.props.product.default.sale_price) {
-        price = <div style={{cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
+        price = <div style={{color: 'dimgray', cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="price"><span style={{color: 'red', textDecoration: 'line-through'}}>{this.props.product.default_price}</span><span>{this.props.product.default.sale_price}</span></div>
       }
 
       if (this.props.score !== undefined) {
@@ -82,12 +82,12 @@ class ProductCard extends React.Component {
           margin: '3px',
           width: '160px',
           minWidth: '160px',
-          boxShadow: '0 1px 3px 0 rgba(0,0,0,0.2)',
+          boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2)',
           transition: 'all 0.1s linear',
           marginBottom: '3px',
           borderRadius: '2%',
           backgroundColor: 'lightgrey',
-          opacity: '90%'
+          opacity: '85%'
         }
         } onMouseOver={this.cardOver} onMouseOut={this.cardOut}>
 
@@ -113,11 +113,12 @@ class ProductCard extends React.Component {
           </div>
 
           <div onClick={this.onProdClick} className="container" style={{
-            textAlign: 'center',
-            backgroundColor: 'lightgrey'
+            textAlign: 'left',
+            backgroundColor: 'lightgrey',
+            marginLeft: '2px'
           }}>
-          <div style={{cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="category">{this.props.product.category}</div>
-          <div style={{cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="prodName" id={this.props.product.name}>{this.props.product.name}</div>
+          <div style={{color: 'dimgray', cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="category">{this.props.product.category}</div>
+          <div style={{color: 'dimgray', cursor: 'default', fontFamily: 'Georgia, serif', fontSize: '70%'}}className="prodName" id={this.props.product.name}>{this.props.product.name}</div>
           {price}
           <div  style={{marginBottom:'5px'}} className="rating">{stars ? stars.map(star => star) : null}</div>
           </div>
