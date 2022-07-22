@@ -26,9 +26,19 @@ class ScrollLeft extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.scrollLeft !== this.props.scrollLeft && this.props.scrollLeft < 10) {
+      this.setState({arrowView: false})
+    } else {
+      if (prevProps.scrollLeft !== this.props.scrollLeft && this.props.scrollLeft > 10) {
+        this.setState({arrowView: true})
+      }
+    }
+  }
+
 
   render() {
-    if (this.state.arrowView) {
+    if (this.state.arrowView && document.getElementById('scroll-related').scrollLeft > 0) {
       return (
         <div onClick={this.props.scrollClickLeft} style={{
           margin: '5px',
