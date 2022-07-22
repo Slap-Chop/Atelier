@@ -44,15 +44,15 @@ export default function ReviewsListEntry({review, calculateStars}) {
   // const stars = calculateStars({reviewsAvg: review.rating});
   const stars = calculateStars(undefined, review.rating);
 
-  function updateHelpfulness() {
-    console.log('id', reviewId)
+  function updateHelpfulness(e) {
+    e.preventDefault();
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/helpful`)
     .then(response => console.log('saved helpfulness', response.status))
     .catch(err => console.log('Error updating helpfulness of review', err))
   }
 
-  function reportReview() {
-    console.log('id', reviewId)
+  function reportReview(e) {
+    e.preventDefault();
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${reviewId}/report`)
     .then(response => console.log('reported ', response.status))
     .catch(err => console.log('Error reporting review', err))
@@ -88,8 +88,8 @@ export default function ReviewsListEntry({review, calculateStars}) {
 
         {bodyTooLong && <button onClick={() => setBodyTooLong(false)}>Show More</button>}
         <div className="Helpful"> Helpful?
-          <a href="#" onClick={() => updateHelpfulness()}>Yes</a> ({review.helpfulness}) |
-          <a href="#" onClick={() => reportReview()}> Report</a>
+          <a href="#" onClick={(e) => updateHelpfulness(e)}>Yes</a> ({review.helpfulness}) |
+          <a href="#" onClick={(e) => reportReview(e)}> Report</a>
         </div>
       </div>
     </ContainerCard>
