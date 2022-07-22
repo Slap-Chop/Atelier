@@ -146,7 +146,7 @@ class App extends React.Component {
   }
 
   render() {
-    return(<div style={{backgroundColor: 'rgb(220,220,220)', opacity: '90%'}}>
+    return(<div >
       {/* Hi friends!
       npm run react-dev should open a live listener of webpack,
       in another terminal do npm run server-dev and navigate to localhost:8000 to view the app! */}
@@ -158,8 +158,9 @@ class App extends React.Component {
       reviewsAvgScore={this.state.reviewsAvgScore}
       currentProduct={this.state.currentProduct}/></div>
       <div id='relatedMain'style={{marginBottom: '15px'}}><RelatedItems key={this.state.currentId} reviewsAvgScore={this.state.reviewsAvgScore} calculateStars={this.calculateStars} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
-      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings} productName={this.state.currentProduct.name}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
+      <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings} productName={this.state.currentProduct.name}/></div>
+
     </div>
 
     )
