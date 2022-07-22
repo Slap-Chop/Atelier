@@ -103,14 +103,22 @@ class Cart extends React.Component {
       <div className='sizeContainer'>
       {/* Size dropdown menu */}
       {this.state.notSelected && 'Please select a size'}
-      <Select onChange={this.handleSizeChange.bind(this)}
+      {this.state.inStock &&
+        <Select onChange={this.handleSizeChange.bind(this)}
       openMenuOnFocus={true}
       defaultValue={{label: 'Select Size', value: 'N/A'}}
       options={options}
       ref={this.sizeRef}
       className='sizeMenu'
-      isDisabled={!this.state.inStock}/>
+      isDisabled={!this.state.inStock}/>}
       {/* check if item is in stock*/}
+      {!this.state.inStock && <Select onChange={this.handleSizeChange.bind(this)}
+      openMenuOnFocus={true}
+      defaultValue={{label: 'Out of Stock', value: 'N/A'}}
+      options={options}
+      ref={this.sizeRef}
+      className='sizeMenu'
+      isDisabled={!this.state.inStock}/>}
         {/* <option value={'N/A'}>{this.state.stockMessage}</option> */}
       {/* map and add sizes to the dropdown */}
         {/* {this.state.stock && Object.entries(this.state.stock)?.map((sku, index) => {
