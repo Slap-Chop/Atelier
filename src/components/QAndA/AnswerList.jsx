@@ -43,12 +43,25 @@ const AnswerList = (props) => {
 
   return (
     <>
-    <div  className="answerList" style={{maxHeight: 150, overflow: 'auto'}}>
+    <div  className="answerList" style={{maxHeight: 200, overflow: 'auto'}}>
       {displayData(props.answerData).map( (ans) => {
-        return <div className="answers" key={ans.id}>
-                <div style={{"fontWeight": "bold", "fontSize":"1rem"}}>A:</div> <AnswerItem  data={ans} reportStatus={props.reportStatus}/>
-              </div>
-      })}
+        let showPhoto = true;
+        if (ans.photos.length === 0) {
+          showPhoto = false;
+        }
+
+        return (
+              <>
+                <div className="answers" key={ans.id}>
+                  <div style={{"fontWeight": "bold", "fontSize":"1rem"}}>A:</div> <AnswerItem  data={ans} reportStatus={props.reportStatus}/>
+                </div>
+                {showPhoto && <div className="photos">
+                    {ans.photos.map( (item, index) => {
+                      return (<img className="photo" key={index} src={item}  />)
+                    })}
+                </div>}
+              </> )
+       })}
     </div>
     <div className="ans-button">
       {(checkAnswerLength(props.answerData) && !collapse) && <div style={{"fontWeight": "bold"}} onClick={onLoadHandler}>LOAD MORE ANSWERS</div>}
