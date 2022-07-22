@@ -12,8 +12,6 @@ class ScrollLeft extends React.Component {
   componentDidMount() {
     var mainWidth = document.getElementById('relatedMain').clientWidth;
     var smallWidth = document.getElementById('related-list').clientWidth;
-    console.log(document.getElementById('scroll-related').scrollLeft);
-    console.log(document.getElementById('related-list').scrollWidth, document.getElementById('relatedMain').clientWidth)
     var width = mainWidth - smallWidth;
     var listLength = this.props.products.length;
     var listWidth = listLength * 170;
@@ -26,9 +24,19 @@ class ScrollLeft extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.scrollLeft !== this.props.scrollLeft && this.props.scrollLeft < 10) {
+      this.setState({arrowView: false})
+    } else {
+      if (prevProps.scrollLeft !== this.props.scrollLeft && this.props.scrollLeft > 10) {
+        this.setState({arrowView: true})
+      }
+    }
+  }
+
 
   render() {
-    if (this.state.arrowView) {
+    if (this.state.arrowView && document.getElementById('scroll-related').scrollLeft > 0) {
       return (
         <div onClick={this.props.scrollClickLeft} style={{
           margin: '5px',

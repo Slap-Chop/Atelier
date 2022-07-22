@@ -14,8 +14,9 @@ class RelatedItems extends React.Component {
       scrollLeft: 0
     }
     this.calcAvg = this.calcAvg.bind(this)
-    this.scrollClickRight = this.scrollClickRight.bind(this)
-    this.scrollClickLeft = this.scrollClickLeft.bind(this)
+    this.scrollClickRight = this.scrollClickRight.bind(this);
+    this.scrollClickLeft = this.scrollClickLeft.bind(this);
+    this.scrollChange = this.scrollChange.bind(this)
   }
 
 
@@ -138,19 +139,39 @@ class RelatedItems extends React.Component {
       return avg;
   }
 
+
+  scrollChange(e) {
+    e.preventDefault();
+    var left = document.getElementById('scroll-related').scrollLeft;
+    this.setState({scrollLeft: left})
+  }
+
   scrollClickRight(e) {
     e.preventDefault();
-    document.getElementById('scroll-related').scrollLeft += 169;
+    document.getElementById('scroll-related').scrollLeft += 180;
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
   }
 
   scrollClickLeft(e) {
     e.preventDefault();
-    console.log('clicked', document.getElementById('scroll-related').scrollLeft)
+
+    document.getElementById('scroll-related').scrollLeft -= 180
+    this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
+  }
+
+  scrollClickOutfitR(e) {
+    e.preventDefault();
+    document.getElementById('scroll-related').scrollLeft += 169;
+    this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
+  }
+
+  scrollClickOutfitL(e) {
+    e.preventDefault();
 
     document.getElementById('scroll-related').scrollLeft -= 169
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
   }
+
 
 
 
@@ -163,14 +184,14 @@ class RelatedItems extends React.Component {
         <div id='related-list'className="related-list" style={
           { display: 'flex', height: 'auto', paddingTop: '10px', width: 'auto', overflow: 'auto', overflowY: 'hidden', justifyContent: 'left', maxHeight: '250px', alignItems: 'center'}
         }>
-          {this.state.relatedProducts ? <RelatedList calculateStars={this.props.calculateStars} scrollClickRight={this.scrollClickRight} scrollClickLeft={this.scrollClickLeft} reviewsAvgScore={this.props.reviewsAvgScore}onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
+          {this.state.relatedProducts ? <RelatedList scrollLeft={this.state.scrollLeft} calculateStars={this.props.calculateStars} scrollClickRight={this.scrollClickRight} scrollClickLeft={this.scrollClickLeft} scrollChange={this.scrollChange} reviewsAvgScore={this.props.reviewsAvgScore}onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
         </div>
         <div  style={{ display: 'flex', height: 'auto', overflow: 'auto', overflowY: "hidden", justifyContent: 'left', alignItems: 'center', marginTop: '0px', margin: '5px', marginBottom: '0px' }}>My Outfit</div>
 
         <div className="OutfitList" style={
           { display: 'flex', height: 'auto', overflow: 'auto', overflowY: "hidden", justifyContent: 'left', alignText: 'center', maxHeight: '265px'}
         }>
-          <OutfitList  reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle} />
+          <OutfitList  scrollClickRight={this.scrollClickRight} scrollClickLeft={this.scrollClickLeft} scrollChange={this.scrollChange} reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle} />
         </div>
       </>
     )

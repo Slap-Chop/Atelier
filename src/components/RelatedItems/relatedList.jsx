@@ -39,8 +39,8 @@ var RelatedList = (props) => {
   return (
     <>
 
-  <ScrollLeft scrollClickLeft={props.scrollClickLeft} products={props.relatedProducts}/>
-   <div id="scroll-related" style={{
+  <ScrollLeft scrollClickLeft={props.scrollClickLeft} scrollLeft={props.scrollLeft} products={props.relatedProducts}/>
+   <div id="scroll-related" onScroll={props.scrollChange}style={{
     display: 'inline-block',
     marginLeft: '0px',
     marginRight: '0px',
@@ -56,7 +56,7 @@ var RelatedList = (props) => {
     {list}
    </div>
 
-  <ScrollRight scrollClickRight={props.scrollClickRight} products={props.relatedProducts}/>
+  <ScrollRight scrollLeft={props.scrollLeft} scrollClickRight={props.scrollClickRight} products={props.relatedProducts}/>
    </>
   );
 }
