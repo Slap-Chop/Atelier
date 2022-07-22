@@ -11,10 +11,10 @@ const HelpCounter = (props) => {
       setHelpness(helpness + 1)
       setClicked(true)
       if (props.questionId) {
-        alert("post question help")
+        console.log("post question help")
       }
       if (props.answerId) {
-        alert("post answer help")
+        console.log("post answer help")
       }
     }
     return null;

@@ -1,4 +1,5 @@
 import React from 'react';
+import noImage from './Images/noImage.png';
 
 const ExpandedIcon = (props) => {
   return (
@@ -11,7 +12,7 @@ const ExpandedIcon = (props) => {
         }}
         className='expandedIcon'
         style={{opacity: props.selected}}
-      src={`${props.photo.thumbnail_url}`}/>
+      src={`${props.photo.thumbnail_url}` || noImage}/>
 
     </div>
   )

@@ -1,8 +1,8 @@
 import React from 'react';
 import ProductCard from './productCard.jsx';
 import OutfitList from './outfitList.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowTurnRight } from '@fortawesome/free-solid-svg-icons'
+import ScrollRight from './scrollRightButton.jsx';
+import ScrollLeft from './scrollLeftButton.jsx';
 
 var RelatedList = (props) => {
   if (props.relatedProducts[0] === undefined) {
@@ -36,23 +36,27 @@ var RelatedList = (props) => {
 
 
 
-
   return (
     <>
-   <div id="scroll" style={{
-    display: 'inline-flex',
-    marginLeft: '50px',
-    marginRight: '50px',
-    maxHeight: '100%',
+
+  <ScrollLeft scrollClickLeft={props.scrollClickLeft} products={props.relatedProducts}/>
+   <div id="scroll-related" style={{
+    display: 'inline-block',
+    marginLeft: '0px',
+    marginRight: '0px',
+    maxHeight: '280px',
+    minHeight: '280px',
     whiteSpace: 'nowrap',
     overflow: 'auto',
-    marginTop: '0px'
+    marginTop: '0px',
+    scrollBehavior: 'smooth',
+    width: 'auto'
    }}
-   >{list}
-    {/* <div style={{position: 'relative', float: 'right', bottom: '100px'}}>
-      <FontAwesomeIcon icon={faArrowTurnRight} /> */}
-     {/* </div> */}
+   >
+    {list}
    </div>
+
+  <ScrollRight scrollClickRight={props.scrollClickRight} products={props.relatedProducts}/>
    </>
   );
 }

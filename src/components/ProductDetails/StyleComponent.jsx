@@ -1,5 +1,6 @@
 import React from 'react';
 import checkmark from './Images/checkmark.png';
+import noImage from './Images/noImage.png';
 
 const StyleComponent = (props) => {
   return(
@@ -12,7 +13,7 @@ const StyleComponent = (props) => {
     height: props.current,
     width: props.current,
     }}
-    src={`${props.style.photos[0].thumbnail_url}`}
+    src={`${props.style.photos[0].thumbnail_url}` || noImage}
     alt='Image N/A'/>
 
     {/* {console.log(props.style)} */}

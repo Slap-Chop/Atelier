@@ -35,11 +35,13 @@ class OutfitList extends React.Component {
       <>
       <div id="scroll" style={{
         display: 'inline-flex',
-        marginLeft: '50px',
+        marginLeft: '0px',
         marginRight: '50px',
-        height: '100%',
+        maxHeight: '280px',
+        minHeight: '280px',
         whiteSpace: 'nowrap',
-        overflow: 'auto',
+        marginTop: '0px',
+        overflow: 'auto'
        }} >
         {outfitCards}
        </div>
