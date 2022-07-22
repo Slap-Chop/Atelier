@@ -45,18 +45,22 @@ const AddQuestion = (props) => {
 
   const modalStyle = {
     position: "fixed",
-    top: "40%",
-    left: "40%",
+    top: "30%",
+    left: "30%",
     backgroundColor: "#FFF",
     padding: "50px",
-    zIndex: 1000
+    zIndex: 1000,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between"
   }
 
   const errorStyle = {
+    color: "white",
     position: "fixed",
-    top: "40%",
-    left: "40%",
-    backgroundColor: "#FF9999",
+    top: "35%",
+    left: "35%",
+    backgroundColor: "rgba(16,40,139,.95)",
     padding: "50px",
     zIndex: 1000
   }
@@ -69,6 +73,20 @@ const AddQuestion = (props) => {
     bottom:0,
     backgroundColor: "rgba(96,96,96,.8)",
     zIndex: 1000
+  }
+
+  const formStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginTop: 5
+  }
+
+  const buttonStyle = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 20
   }
 
   const submitHandler = (event) => {
@@ -96,6 +114,9 @@ const AddQuestion = (props) => {
       .then( (res) => {
         console.log("form is submited", res)
       })
+      .catch( err => {
+        console.log("error from submit form", err)
+      })
       props.addQuestionHandler(false)
     }
   }
@@ -106,21 +127,21 @@ const AddQuestion = (props) => {
     <div style={overlayStyle}>
       <form style={modalStyle} onSubmit={submitHandler}>
         <div className="form-title">
-          <h2>Ask Your Question</h2>
-          <h4>About the {productName}</h4>
+          <h4>Ask Your Question</h4>
+          <h5>About the {productName}</h5>
         </div>
-        <div className="form-entry">
+        <div className="form-entry" style={formStyle}>
             <div>Your Question (mandatory)</div>
-            <textarea value={Question} onChange={questionChangeHandler} placeholder="max 1000 characters"></textarea>
+            <textarea style={{"marginBottom":15, "height":90}} value={Question} onChange={questionChangeHandler} placeholder="max 1000 characters"></textarea>
             <div>What is your nickname (mandatory)</div>
-            <input type="text" value={Name} onChange={nameChangeHandler} placeholder="Example: jackson11!"/>
-            <div>For privacy reasons, do not use your full name or email address</div>
+            <input  type="text" value={Name} onChange={nameChangeHandler} placeholder="Example: jackson11!"/>
+            <div style={{"marginBottom":15}}>For privacy reasons, do not use your full name or email address</div>
             <div>Your email (mandatory)</div>
             <input type="email" value={Email} onChange={emailChangeHandler} placeholder="Example: jack@email.com"/>
             <div>For authentication reasons, you will not be emailed</div>
         </div>
 
-        <div className="form-button">
+        <div className="form-button" style={buttonStyle}>
           <button type="submit" >submit</button>
           <button type="button" onClick={() =>props.addQuestionHandler(false)} >cancel</button>
         </div>

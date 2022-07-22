@@ -17,8 +17,7 @@ class QAndA extends React.Component {
       showItem:2,
       addQuestion: false,
       productId: 0,
-      count:50,
-      isLoading: true
+      count:100
     }
 
     //inside constructor
@@ -45,9 +44,6 @@ class QAndA extends React.Component {
     axios.defaults.headers.common['Authorization'] = config.TOKEN;
     axios.get(options.url, options.headers)
     .then( res => {
-      console.log("this is product id", this.state.productId)
-      console.log("this is the data", res.data.results)
-
         this.setState({
           qnaData:[...this.state.qnaData, ...res.data.results]
         })
@@ -58,7 +54,7 @@ class QAndA extends React.Component {
 
 
   componentDidUpdate() {
-    if(this.state.productId !== this.props.productId && this.state.isLoading) {
+    if(this.state.productId !== this.props.productId) {
       //update new product, reset
       this.setState({
         productId: this.props.productId,
@@ -81,8 +77,6 @@ class QAndA extends React.Component {
       axios.defaults.headers.common['Authorization'] = config.TOKEN;
       axios.get(options.url, options.headers)
       .then( res => {
-        console.log("this is product id", this.state.productId)
-        console.log("this is the data", res.data.results)
           this.setState({
             qnaData:[...this.state.qnaData, ...res.data.results]
           })
