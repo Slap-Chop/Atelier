@@ -10,7 +10,7 @@ const ReportToggle = (props) => {
   const clickHandler = () => {
     setStatus(!status)
     //pass update to parents
-    alert("fix report and patch repot status")
+    //alert("fix report and patch repot status")
   }
 
   return (

@@ -6,11 +6,12 @@
   flex-direction: column;
   justify-content: space-around;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .qnaList {
   margin-top: 15px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,6 +47,7 @@
 }
 
 .answers {
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   font-size: 0.9rem;
@@ -104,4 +106,27 @@
   width: 20px;
   height: 20px;
   object-fit: cover;
+}
+
+.ans-button {
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+
+.photos {
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+  margin-left: 20px;
+
+}
+
+.photo {
+  width: 100px;
+  height: 75px;
+  padding: 2px;
+  border: solid 2px;
+  border-radius: 5px;
 }
