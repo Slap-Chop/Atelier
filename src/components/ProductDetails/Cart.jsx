@@ -103,7 +103,8 @@ class Cart extends React.Component {
       <div className='sizeContainer'>
       {/* Size dropdown menu */}
       {this.state.notSelected && 'Please select a size'}
-      {this.state.inStock &&
+      <div className='dropdownContainer'>
+            {this.state.inStock &&
         <Select onChange={this.handleSizeChange.bind(this)}
       openMenuOnFocus={true}
       defaultValue={{label: 'Select Size', value: 'N/A'}}
@@ -124,9 +125,6 @@ class Cart extends React.Component {
         {/* {this.state.stock && Object.entries(this.state.stock)?.map((sku, index) => {
         return (<option value={sku[0]} key={index}>{sku[1].size}</option>)
       })} */}
-
-
-      </div>
       <div>
         {/* Quantity dropdown menu */}
         <select className='quantityMenu'
@@ -141,8 +139,14 @@ class Cart extends React.Component {
 
       </div>
 
+
+      </div>
+
+
+      </div>
+
       {/* Add to Cart Button */}
-      {this.state.inStock && <button onClick={this.handleAddCart.bind(this)}>Add to Cart</button>}
+      {this.state.inStock && <button className='addCart' onClick={this.handleAddCart.bind(this)}>Add to Cart</button>}
     </div>
     )
   }

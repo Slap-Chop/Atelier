@@ -15,7 +15,6 @@ const reviewsListStyle = {
 const Container = styled.div`
   display: flex;
   max-height: 200;
-  padding: 50px;
 
   align-items: flex-start;
   overflow: scroll;
