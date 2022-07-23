@@ -3,7 +3,7 @@ div {
 }
 
 .productDetailsBody {
-  /* border: 1px solid black; */
+
   display: flex;
   justify-content: center;
 }
@@ -17,14 +17,14 @@ div {
 }
 
 .imageGalleryBody {
-  /* border: 1px solid black; */
+
   width: 130%;
 }
 
 .productInfoBody {
   float: right;
   width: 95%;
-  /* border: 1px solid black; */
+
   height: 100%
 }
 
