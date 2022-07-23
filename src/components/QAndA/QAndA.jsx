@@ -17,7 +17,7 @@ class QAndA extends React.Component {
       showItem:2,
       addQuestion: false,
       productId: 0,
-      count:100
+      count:50
     }
 
     //inside constructor
