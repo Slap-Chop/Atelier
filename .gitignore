@@ -2,3 +2,5 @@ node_modules
 dist/bundle.js
 config.js
 /coverage
+dist/.gz
+dist/bundle.js.gz

@@ -10,9 +10,13 @@ class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product_id: null
+      product_id: null,
+      scrollLeft: 0
     }
     this.calcAvg = this.calcAvg.bind(this)
+    this.scrollClickRight = this.scrollClickRight.bind(this);
+    this.scrollClickLeft = this.scrollClickLeft.bind(this);
+    this.scrollChange = this.scrollChange.bind(this)
   }
 
 
@@ -47,7 +51,7 @@ class RelatedItems extends React.Component {
           .then((data) => { data = data.map((res) => { return res.data }); return data })
           .then((data) => {
             // console.log(data, '49')
-            this.setState({ relatedProducts: data })
+            this.setState({ relatedProducts: data }, ()=>{return})
           })
           .catch((err) => console.log(err))
       }).then(() => {
@@ -87,15 +91,24 @@ class RelatedItems extends React.Component {
         //extend the old related products state to include default keys with the product's default style as the value
         var relatedProducts;
         // console.log(this.state.relatedProducts, '88')
+        if (this.state.relatedProducts) {
+
+
         relatedProducts = this.state.relatedProducts.map((product) => {
+          if(newData) {
+
+
           for (let i = 0; i < newData.length; i++) {
             if (product.id === Number(Object.keys(newData[i])[0])) {
               product.default = newData[i][product.id]
             }
           }
           return product;
+        }
+
         })
-        this.setState({ relatedProducts: relatedProducts })
+
+        this.setState({ relatedProducts: relatedProducts })}
       })
       .then(() => {
         //do the same thing for the reviews meta data...need to pull the star ratings values
@@ -135,26 +148,65 @@ class RelatedItems extends React.Component {
       return avg;
   }
 
+  componentDidUpdate(prevState) {
+    if (prevState.relatedProducts !== this.state.relatedProducts) {
+    }
+  }
+
+
+  scrollChange(e) {
+    e.preventDefault();
+    var left = document.getElementById('scroll-related').scrollLeft;
+    this.setState({scrollLeft: left})
+  }
+
+  scrollClickRight(e) {
+    e.preventDefault();
+    document.getElementById('scroll-related').scrollLeft += 180;
+    this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
+  }
+
+  scrollClickLeft(e) {
+    e.preventDefault();
+
+    document.getElementById('scroll-related').scrollLeft -= 180
+    this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
+  }
+
+  scrollClickOutfitR(e) {
+    e.preventDefault();
+    document.getElementById('scroll-related').scrollLeft += 169;
+    this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
+  }
+
+  scrollClickOutfitL(e) {
+    e.preventDefault();
+
+    document.getElementById('scroll-related').scrollLeft -= 169
+    this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
+  }
+
 
 
 
   render() {
 
-
     return (
       <>
-        <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignItems: 'center', margin: '15px',marginTop: '3px' }}>Related Products</div>
+        <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'center', alignItems: 'top', margin: '5px',marginTop: '3px', fontFamily:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif", fontSize: '0.8rem', color: 'rgb(86, 81, 81)'
+         }}>Related Products</div>
 
-        <div className="related-list" style={
-          { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignItems: 'center' }
+        <div id='related-list'className="related-list" style={
+          { display: 'flex', height: 'auto', paddingTop: '10px', width: 'auto', overflow: 'auto', overflowY: 'hidden', justifyContent: 'center', maxHeight: '250px', alignItems: 'center'}
         }>
-          {this.state.relatedProducts ? <RelatedList calculateStars={this.props.calculateStars} reviewsAvgScore={this.props.reviewsAvgScore}onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
+          {this.state.relatedProducts ? <RelatedList scrollLeft={this.state.scrollLeft} calculateStars={this.props.calculateStars} scrollClickRight={this.scrollClickRight} scrollClickLeft={this.scrollClickLeft} scrollChange={this.scrollChange} reviewsAvgScore={this.props.reviewsAvgScore}onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
         </div>
-        <div style={{ display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignItems: 'center', marginBottom: '15px', marginTop: '0px', margin: '15px' }}>My Outfit</div>
-        <div className="related-list" style={
-          { display: 'flex', height: 'auto', overflow: 'auto', justifyContent: 'left', alignText: 'center' }
+        <div  style={{ display: 'flex', height: 'auto', overflow: 'auto', overflowY: "hidden", justifyContent: 'center', alignItems: 'center', marginTop: '0px', margin: '10px', marginBottom: '0px', fontFamily:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif", fontSize: '0.8rem', color: 'rgb(86, 81, 81)' }}>My Outfit</div>
+
+        <div className="OutfitList" style={
+          { display: 'flex', height: 'auto', overflow: 'auto', overflowY: "hidden", justifyContent: 'center', alignText: 'center', maxHeight: '265px'}
         }>
-          <OutfitList  reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle} />
+          <OutfitList  scrollClickRight={this.scrollClickRight} scrollClickLeft={this.scrollClickLeft} scrollChange={this.scrollChange} reviewsAvgScore={this.props.reviewsAvgScore} calculateStars={this.props.calculateStars} currentProduct={this.props.products.currentProduct} currentOutfit={this.props.products.currentOutfit} onAddOutfit={this.props.onAddOutfit} onRemove={this.props.onRemove} defaultStyle={this.props.products.defaultStyle} />
         </div>
       </>
     )

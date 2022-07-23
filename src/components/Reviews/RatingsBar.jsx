@@ -6,11 +6,11 @@ const BarContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
-
+  padding: 10px;
 
 `
 
-const BarScore = styled.div`
+const BarScore = styled.label`
   order: 1;
 
 `
@@ -20,8 +20,9 @@ const Bar = styled.div`
   align-items: center;
   height: 10px;
   position: relative;
-  background: #ddd;
+  background: 	#888888;
   border-radius: 20px;
+  bottom: -5px;
   width: 60%;
 `
 
@@ -49,7 +50,7 @@ export default function RatingsBar ({scoreNumber, barFilledPercentage = 0, ratin
   return (
     <>
       <BarContainer>
-        <BarScore>{scoreNumber}</BarScore>
+        <BarScore>{scoreNumber} stars</BarScore>
         <Bar>
           <BarSpan className="ratings bar" filled={barFilledPercentage}></BarSpan>
         </Bar>

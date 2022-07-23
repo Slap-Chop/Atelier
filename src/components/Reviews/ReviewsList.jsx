@@ -1,19 +1,22 @@
 import React, {useState, useEffect} from 'react';
 import ReviewsListEntry from './ReviewsListEntry.jsx';
+import NewReviewModal from './NewReviewModal.jsx'
 import styled from 'styled-components';
 
 const Container = styled.div`
   flex: 2;
-  border: 3px solid red;
-  background-color: grey;
   overflow: scroll;
   width: 90%;
-  max-width: 900px;
+  padding: 10px;
+  align-items: flex-start;
+  padding-left: 50px;
+  top: 0;
 `
 
-export default function ReviewsList ({reviewsToShow, reviews, more, setMore, setReviewsToShow, calculateStars}) {
+export default function ReviewsList ({reviewsToShow, reviews, more, setMore, setReviewsToShow, calculateStars, product}) {
 
   const [sort, setSort] = useState({option1: 'Helpful', option2: 'Newest', option3: 'Relevant'})
+  const [showModal, setShowModal] = useState(false);
 
   function showMoreReviews() {
 
@@ -21,10 +24,11 @@ export default function ReviewsList ({reviewsToShow, reviews, more, setMore, set
     reviewsCount < reviews.length ? setReviewsToShow(reviewsCount +  2)
     // : reviewsCount === reviews.length - 1 ? setReviewsToShow(reviewsCount + 1)
     : setMore(false);
-
-    console.log('NEW COUNT', reviewsToShow)
   }
 
+  function createNewReviewModal() {
+    setShowModal(true);
+  }
 
   return (
     <>
@@ -42,6 +46,8 @@ export default function ReviewsList ({reviewsToShow, reviews, more, setMore, set
         </div>
 
         {more ? <button onClick={showMoreReviews}>More Reviews</button> : <button disabled={true}>No more reviews</button>}
+        <button onClick={createNewReviewModal}>New Review</button>
+        {showModal ? <NewReviewModal productName={product} setShowModal={setShowModal}/> : null}
       </Container>
     </>
   )
