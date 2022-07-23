@@ -52,8 +52,8 @@ class ScrollLeft extends React.Component {
       return (
         <div id="leftBtn" onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}onClick={this.props.scrollClickLeft} style={{
           margin: '5px',
-          marginLeft: '20px',
-          marginRight: '-30px',
+          marginLeft: '25px',
+          marginRight: '-31px',
           zIndex: '20',
           cursor: 'pointer',
           opacity: '0',
