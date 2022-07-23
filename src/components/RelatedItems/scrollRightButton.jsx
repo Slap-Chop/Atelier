@@ -21,7 +21,7 @@ class ScrollRight extends React.Component {
       if (listWidth > mainWidth) {
         this.setState({arrowView: true})
       } else {
-        this.setState({arrowView: false})
+        this.setState({arrowView: true})
       }
   }
 
@@ -59,7 +59,7 @@ class ScrollRight extends React.Component {
       return(
         <div id="rightBtn" value='scroll-related' onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}onClick={this.props.scrollClickRight}style={{
           margin: '5px',
-          marginLeft: '-28px',
+          marginLeft: '-30px',
           marginRight: '20px',
           zIndex: '20',
           cursor: 'pointer',
