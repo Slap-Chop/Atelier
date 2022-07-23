@@ -130,12 +130,16 @@ class ImageGallery extends React.Component {
 
           <div>
             {/* up arrow, hide if expanded */}
+            <div>
             {!this.state.expanded && this.state.photos.length > 7 && this.state.offset > 0 &&
             <img src={upArrow}
               onClick={this.handleUpClick.bind(this)}
-              className='vertArrow'/>
+              className='vertArrow upArrow'/>
             }
-            {!this.state.expanded && this.state.thumbnails.map((photo, index) => {
+
+            </div>
+            <div className='thumbnailContainer'>
+              {!this.state.expanded && this.state.thumbnails.map((photo, index) => {
               if (index + this.state.offset === this.state.photoIndex) {
                 //return a highlighted component if it is the current photo
                 return(
@@ -155,11 +159,13 @@ class ImageGallery extends React.Component {
                   key={index}/>
               )
             })}
+            </div>
+
             {/* down arrow, hide on expand */}
             {!this.state.expanded && this.state.photos?.length > 7 && this.state.offset + 7 < this.state.photos?.length &&
               <img src={downArrow}
               onClick={this.handleDownClick.bind(this)}
-              className='vertArrow'
+              className='vertArrow downArrow'
             />}
           </div>
           {/* left arrow, hide arrow if on first image, hide on expand */}
