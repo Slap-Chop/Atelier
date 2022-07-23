@@ -90,8 +90,8 @@ class ProductDetails extends React.Component {
         <p>{this.props.currentProduct.description}</p></div>
         <div className='share'>
         <div className="fb-share-button" data-href="http://54.219.28.151:8000/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F54.219.28.151%3A8000%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a></div>
-        <div className='fb-share-button shareButton'>        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-text="Atelier Slap Chop is really neat! Come check it out!" data-hashtags="Slap-Chop" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script></div>
-        <div className='fb-share-button share'><img className='shareButton' src={pintrestShare}/></div>
+        <div><img className='shareButton' src={twitterShare}/></div>
+        <div><img className='shareButton' src={pintrestShare}/></div>
 
         </div>
       </div>

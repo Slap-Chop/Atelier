@@ -146,7 +146,14 @@ class App extends React.Component {
   }
 
   render() {
-    return(<div >
+    return(<div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center space-around',
+      alignContent: 'space-around',
+      flexWrap: 'wrap',
+      alignItem: 'center',
+      }}>
       {/* Hi friends!
       npm run react-dev should open a live listener of webpack,
       in another terminal do npm run server-dev and navigate to localhost:8000 to view the app! */}
