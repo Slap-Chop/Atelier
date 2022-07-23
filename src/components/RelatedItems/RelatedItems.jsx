@@ -162,14 +162,14 @@ class RelatedItems extends React.Component {
 
   scrollClickRight(e) {
     e.preventDefault();
-    document.getElementById('scroll-related').scrollLeft += 180;
+    document.getElementById('scroll-related').scrollLeft += 168;
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
   }
 
   scrollClickLeft(e) {
     e.preventDefault();
 
-    document.getElementById('scroll-related').scrollLeft -= 180
+    document.getElementById('scroll-related').scrollLeft -= 168
     this.setState({scrollLeft: document.getElementById('scroll-related').scrollLeft})
   }
 
