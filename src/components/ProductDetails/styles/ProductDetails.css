@@ -38,6 +38,13 @@ div {
   height: 100%;
 }
 
+.thumbnailContainer {
+  position: absolute;
+  top: 5%;
+  height: 80%;
+  max-height: 80%;
+}
+
 .imageContainer {
   display: flex;
   justify-content: center;
@@ -59,11 +66,22 @@ div {
   width: 3%;
   height: 3%;
   display: flex;
-  left: .75%;
+  left: 2%;
   z-index: 3;
   position: relative;
   object-fit: contain;
-  opacity: 0.7;
+}
+
+.upArrow {
+  position: absolute;
+  top: 0%;
+  left: 3%;
+}
+
+.downArrow {
+  position: absolute;
+  bottom: 0%;
+  left: 3%;
 }
 
 .expandedUp {
