@@ -13,6 +13,12 @@ const Container = styled.div`
   top: 0;
 `
 
+const Button = styled.button`
+  padding: 10px;
+  position: relative;
+  left: 50px;
+`
+
 export default function ReviewsList ({reviewsToShow, reviews, more, setMore, setReviewsToShow, calculateStars, product}) {
 
   const [sort, setSort] = useState({option1: 'Helpful', option2: 'Newest', option3: 'Relevant'})
@@ -45,8 +51,8 @@ export default function ReviewsList ({reviewsToShow, reviews, more, setMore, set
           </ul>
         </div>
 
-        {more ? <button onClick={showMoreReviews}>More Reviews</button> : <button disabled={true}>No more reviews</button>}
-        <button onClick={createNewReviewModal}>New Review</button>
+        {more ? <Button onClick={showMoreReviews}>More Reviews</Button> : <Button disabled={true}>No more reviews</Button>}
+        <Button onClick={createNewReviewModal}>New Review</Button>
         {showModal ? <NewReviewModal productName={product} setShowModal={setShowModal}/> : null}
       </Container>
     </>

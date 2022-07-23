@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 
 const FullImageContainer = styled.div`
@@ -24,25 +24,19 @@ const ImageModal = styled.div`
   flex-direction:column;
   padding: 25px;
   position: relative;
+`
 
-`
-const CloseButton = styled.button`
-  top: 0;
-  right: 0;
-  position: absolute;
-`
 
 export default function FullImageModal ({img, setShowFullImg}) {
 
+  const closeModal = (e) => {
+    setShowFullImg(false);
+  }
+
   return(
     <>
-      <FullImageContainer>
-        <ImageModal>
-          <img src={img}/>
-          <CloseButton onClick={() => setShowFullImg(false)}>
-            X
-          </CloseButton>
-        </ImageModal>
+      <FullImageContainer onClick={() => closeModal()}>
+        <img src={img}/>
       </FullImageContainer>
     </>
   )
