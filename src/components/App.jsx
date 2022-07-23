@@ -147,12 +147,15 @@ class App extends React.Component {
 
   render() {
     return(<div style={{
-      display: 'flex',
+      display: 'block',
       flexDirection: 'column',
       justifyContent: 'center space-around',
       alignContent: 'space-around',
       flexWrap: 'wrap',
       alignItem: 'center',
+      paddingLeft: '20%',
+      paddingRight: '20%'
+
       }}>
       {/* Hi friends!
       npm run react-dev should open a live listener of webpack,
@@ -164,7 +167,7 @@ class App extends React.Component {
       calculateStars={this.calculateStars}
       reviewsAvgScore={this.state.reviewsAvgScore}
       currentProduct={this.state.currentProduct}/></div>
-      <div id='relatedMain'style={{marginBottom: '15px'}}><RelatedItems key={this.state.currentId} reviewsAvgScore={this.state.reviewsAvgScore} calculateStars={this.calculateStars} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
+      <div id='relatedMain'style={{marginBottom: '15px', padding: '0px'}}><RelatedItems key={this.state.currentId} reviewsAvgScore={this.state.reviewsAvgScore} calculateStars={this.calculateStars} products={this.state} onClick={this.relatedProdClick} onAddOutfit={this.addOutfitClick} onRemove={this.removeOutfitLick}/></div>
       <div><QAndA productId={this.state.currentId}/></div>
       <div ref={this.reviewRef}><Reviews key={this.state.currentId} id={this.state.currentId} calculateStars={this.calculateStars} reviewsAvgScore={this.state.reviewsAvgScore} allRatings={this.state.reviewsMeta.ratings} productName={this.state.currentProduct.name}/></div>
 

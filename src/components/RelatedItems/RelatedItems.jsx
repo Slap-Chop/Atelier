@@ -201,7 +201,7 @@ class RelatedItems extends React.Component {
         }>
           {this.state.relatedProducts ? <RelatedList scrollLeft={this.state.scrollLeft} calculateStars={this.props.calculateStars} scrollClickRight={this.scrollClickRight} scrollClickLeft={this.scrollClickLeft} scrollChange={this.scrollChange} reviewsAvgScore={this.props.reviewsAvgScore}onClick={this.props.onClick} relatedProducts={this.state.relatedProducts} relatedProductsBackUp={this.props.products.productList} currentProduct={this.props.products.currentProduct} /> : null}
         </div>
-        <div  style={{ display: 'flex', height: 'auto', overflow: 'auto', overflowY: "hidden", justifyContent: 'center', alignItems: 'center', marginTop: '0px', margin: '10px', marginBottom: '0px', fontFamily:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif", fontSize: '0.8rem', color: 'rgb(86, 81, 81)' }}>My Outfit</div>
+        <div  style={{ display: 'flex', height: 'auto', overflow: 'auto', overflowY: "hidden", justifyContent: 'center', alignItems: 'center', marginTop: '0px', marginBottom: '0px', fontFamily:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif", fontSize: '0.8rem', color: 'rgb(86, 81, 81)' }}>My Outfit</div>
 
         <div className="OutfitList" style={
           { display: 'flex', height: 'auto', overflow: 'auto', overflowY: "hidden", justifyContent: 'center', alignText: 'center', maxHeight: '265px'}

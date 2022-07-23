@@ -7,6 +7,8 @@ class ScrollLeft extends React.Component {
       scrollLeft: 0
 
     }
+    this.onMouseOver = this.onMouseOver.bind(this);
+    this.onMouseOut = this.onMouseOut.bind(this);
   }
 
   componentDidMount() {
@@ -34,16 +36,36 @@ class ScrollLeft extends React.Component {
     }
   }
 
+  onMouseOver() {
+    document.getElementById('leftBtn').style.opacity = '80%'
+    document.getElementById('leftBtn').style.color = 'black';
+    document.getElementById('leftBtn').style.backgroundColor = 'darkGrey';
+
+  }
+  onMouseOut() {
+    document.getElementById('leftBtn').style.opacity = '0%';
+    document.getElementById('leftBtn').style.color = 'grey'
+  }
+
 
   render() {
     if (this.state.arrowView && document.getElementById('scroll-related').scrollLeft > 0) {
       return (
-        <div onClick={this.props.scrollClickLeft} style={{
+        <div id="leftBtn" onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}onClick={this.props.scrollClickLeft} style={{
           margin: '5px',
           marginLeft: '20px',
-          marginRight: '-20px',
-          padding: '0px',
-          zIndex: '20'
+          marginRight: '-28px',
+          zIndex: '20',
+          cursor: 'pointer',
+          opacity: '0',
+          transition: '.3s',
+          color: 'gray',
+          padding: '5px',
+          paddingLeft: '10px',
+          paddingTop: '60px',
+          paddingBottom: '60px',
+          borderRadius: '5%'
+
         }}>&lt;</div>
       )
     } else {

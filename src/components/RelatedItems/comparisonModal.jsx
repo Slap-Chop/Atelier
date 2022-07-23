@@ -48,10 +48,11 @@ var ComparisonModal = (props) => {
     position: "fixed",
     top: "30%",
     left: "30%",
-    backgroundColor: "#FFF",
+    backgroundColor: "lightgray",
     padding: "50px",
     zIndex: 1000,
-    display: 'inline-flex'
+    display: 'inline-flex',
+    opacity: '98%'
   }
 
   const overlayStyle = {
@@ -70,16 +71,22 @@ var ComparisonModal = (props) => {
     padding: '20px',
     paddingLeft: '40px',
     paddingRight: '40px',
-    border: '1px solid black'
+    border: '1px inset rgb(86, 81, 81)',
+    fontFamily:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+    fontSize: '0.8rem',
+    color: 'rgb(86, 81, 81)'
   }
 
   const noFeatStyle = {
     textAlign: 'center',
-    color: 'white',
+    color: 'lightgrey',
     padding: '20px',
     paddingLeft: '40px',
     paddingRight: '40px',
-    border: '1px solid black'
+    border: '1px inset rgb(86, 81, 81)',
+    fontFamily:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+    fontSize: '0.8rem',
+
   }
 
   const innerStyle = {
@@ -87,9 +94,12 @@ var ComparisonModal = (props) => {
     padding: '20px',
     paddingLeft: '40px',
     paddingRight: '40px',
-    border: '1px solid black',
+    border: '1px inset rgb(86, 81, 81)',
     borderLeft: '0px',
-    borderRight: '0px'
+    borderRight: '0px',
+    fontFamily:"'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif",
+    fontSize: '0.8rem',
+    color: 'rgb(86, 81, 81)'
 
   }
 
